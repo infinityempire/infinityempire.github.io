@@ -17,12 +17,27 @@
             <ul class="nav-menu">
                 <li><a href="#home">בית</a></li>
                 <li><a href="#products">מוצרים</a></li>
-                <li><a href="#about">אודות</a></li>
+                <li><a href="cart.html">עגלה</a></li>
                 <li><a href="#contact">צור קשר</a></li>
-                <li><a href="#cart" class="cart-btn">🛒 <span id="cart-count">0</span></a></li>
+                <li><a href="#" class="cart-btn" onclick="openMiniCart()">🛒 <span id="cart-count">0</span></a></li>
             </ul>
         </nav>
     </header>
+
+    <!-- Mini Cart -->
+    <div id="mini-cart" class="mini-cart">
+        <div class="mini-cart-content">
+            <h3>עגלת קניות</h3>
+            <div id="mini-cart-items"></div>
+            <div class="mini-cart-total">
+                <strong>סה"כ: ₪<span id="mini-cart-total">0</span></strong>
+            </div>
+            <div class="mini-cart-actions">
+                <a href="cart.html" class="btn btn-secondary">צפה בעגלה</a>
+                <a href="checkout.html" class="btn btn-primary">לתשלום</a>
+            </div>
+        </div>
+    </div>
 
     <main>
         <!-- Hero Section -->
@@ -54,8 +69,66 @@
         <section id="products" class="products">
             <div class="container">
                 <h2 class="section-title">המוצרים שלנו</h2>
-                <div class="products-grid" id="products-grid">
-                    <!-- Products will be loaded here by JavaScript -->
+                <div class="products-grid">
+                    <div class="product-card">
+                        <div class="product-image">📚</div>
+                        <div class="product-info">
+                            <h3 class="product-title">מדריך PDF - שיווק דיגיטלי</h3>
+                            <p class="product-description">מדריך מקיף לשיווק דיגיטלי ברשתות החברתיות</p>
+                            <div class="product-price">₪79</div>
+                            <a href="product1.html" class="btn btn-primary">לפרטים</a>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <div class="product-image">📊</div>
+                        <div class="product-info">
+                            <h3 class="product-title">תבנית עסקית - מצגת עסקית</h3>
+                            <p class="product-description">תבנית PowerPoint מקצועית לעסקים וחברות</p>
+                            <div class="product-price">₪49</div>
+                            <a href="product2.html" class="btn btn-primary">לפרטים</a>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <div class="product-image">🎨</div>
+                        <div class="product-info">
+                            <h3 class="product-title">פוסטר דיגיטלי - השראה יומית</h3>
+                            <p class="product-description">פוסטר מעוצב בסגנון מינימליסטי עם ציטוט מעורר השראה</p>
+                            <div class="product-price">₪29</div>
+                            <a href="product1.html" class="btn btn-primary">לפרטים</a>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <div class="product-image">🎭</div>
+                        <div class="product-info">
+                            <h3 class="product-title">חבילת אייקונים - עיצוב מודרני</h3>
+                            <p class="product-description">100 אייקונים מעוצבים בסגנון מודרני ומינימליסטי</p>
+                            <div class="product-price">₪39</div>
+                            <a href="product3.html" class="btn btn-primary">לפרטים</a>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <div class="product-image">📝</div>
+                        <div class="product-info">
+                            <h3 class="product-title">תבנית קורות חיים - מקצועי</h3>
+                            <p class="product-description">תבנית קורות חיים מעוצבת ומקצועית בפורמט Word</p>
+                            <div class="product-price">₪25</div>
+                            <a href="product4.html" class="btn btn-primary">לפרטים</a>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <div class="product-image">🌟</div>
+                        <div class="product-info">
+                            <h3 class="product-title">חבילת רקעים - גרדיאנטים</h3>
+                            <p class="product-description">20 רקעי גרדיאנט יוקרתיים לעיצוב ומדיה חברתית</p>
+                            <div class="product-price">₪35</div>
+                            <a href="product5.html" class="btn btn-primary">לפרטים</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -67,47 +140,59 @@
                 <div class="about-content">
                     <div class="about-text">
                         <p>
-                            Infinity Empire היא חנות דיגיטלית יוקרתית המתמחה במוצרים דיגיטליים איכותיים.
-                            אנו מציעים מגוון רחב של פוסטרים דיגיטליים, תבניות עיצוב, מדריכים מקצועיים ומוצרי Etsy ייחודיים.
+                            Infinity Empire היא חנות דיגיטלית יוקרתית המתמחה במוצרים דיגיטליים איכותיים ומעוצבים.
+                            אנו מציעים מגוון רחב של מוצרים: פוסטרים, תבניות, מדריכים, אייקונים ועוד.
                         </p>
                         <p>
-                            המטרה שלנו היא לספק לך מוצרים דיגיטליים ברמה הגבוהה ביותר, עם עיצוב מודרני ואיכות פרימיום.
+                            כל המוצרים שלנו נוצרים בקפידה רבה ובאיכות הגבוהה ביותר, מתוך מחויבות לספק לכם 
+                            חוויית קנייה מעולה ומוצרים שיעזרו לכם להצליח בפרויקטים שלכם.
                         </p>
+                        <div class="features">
+                            <div class="feature">
+                                <span class="feature-icon">⚡</span>
+                                <span>הורדה מיידית</span>
+                            </div>
+                            <div class="feature">
+                                <span class="feature-icon">🎨</span>
+                                <span>עיצוב מקצועי</span>
+                            </div>
+                            <div class="feature">
+                                <span class="feature-icon">🔒</span>
+                                <span>תשלום מאובטח</span>
+                            </div>
+                            <div class="feature">
+                                <span class="feature-icon">💎</span>
+                                <span>איכות פרימיום</span>
+                            </div>
+                        </div>
                     </div>
-                    <div class="about-features">
-                        <div class="feature">
-                            <span class="feature-icon">🎨</span>
-                            <h3>עיצוב מקצועי</h3>
-                            <p>כל המוצרים שלנו מעוצבים ברמה מקצועית</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="contact">
+            <div class="container">
+                <h2 class="section-title">צור קשר</h2>
+                <div class="contact-content">
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <span class="contact-icon">📧</span>
+                            <span>support@infinityempire.com</span>
                         </div>
-                        <div class="feature">
-                            <span class="feature-icon">⚡</span>
-                            <h3>הורדה מיידית</h3>
-                            <p>קבל את המוצרים שלך מיד לאחר הרכישה</p>
+                        <div class="contact-item">
+                            <span class="contact-icon">💬</span>
+                            <span>צ'אט תמיכה 24/7</span>
                         </div>
-                        <div class="feature">
-                            <span class="feature-icon">💎</span>
-                            <h3>איכות פרימיום</h3>
-                            <p>רק מוצרים באיכות הגבוהה ביותר</p>
+                        <div class="contact-item">
+                            <span class="contact-icon">🌐</span>
+                            <span>www.infinityempire.com</span>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
     </main>
-
-    <!-- Cart Modal -->
-    <div id="cart-modal" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <h2>עגלת הקניות שלך</h2>
-            <div id="cart-items"></div>
-            <div class="cart-total">
-                <strong>סה"כ: ₪<span id="cart-total">0</span></strong>
-            </div>
-            <button id="checkout-btn" class="btn btn-primary">המשך לתשלום</button>
-        </div>
-    </div>
 
     <footer class="footer">
         <div class="container">
@@ -120,27 +205,147 @@
                     <p>חנות דיגיטלית יוקרתית למוצרים איכותיים</p>
                 </div>
                 <div class="footer-section">
-                    <h3>קישורים מהירים</h3>
+                    <h4>קישורים מהירים</h4>
                     <ul>
                         <li><a href="#home">בית</a></li>
                         <li><a href="#products">מוצרים</a></li>
-                        <li><a href="#about">אודות</a></li>
+                        <li><a href="cart.html">עגלה</a></li>
                         <li><a href="#contact">צור קשר</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
-                    <h3>צור קשר</h3>
-                    <p>📧 info@infinityempire.com</p>
-                    <p>📱 050-123-4567</p>
+                    <h4>מדיניות</h4>
+                    <ul>
+                        <li><a href="#">תנאי שימוש</a></li>
+                        <li><a href="#">מדיניות פרטיות</a></li>
+                        <li><a href="#">מדיניות החזרות</a></li>
+                    </ul>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2024 Infinity Empire Store. כל הזכויות שמורות.</p>
+                <p>&copy; 2024 Infinity Empire. כל הזכויות שמורות.</p>
             </div>
         </div>
     </footer>
 
     <script src="script.js"></script>
+    <script>
+        function openMiniCart() {
+            const miniCart = document.getElementById('mini-cart');
+            miniCart.classList.add('show');
+            renderMiniCart();
+        }
+
+        function renderMiniCart() {
+            const cart = JSON.parse(localStorage.getItem('infinityCart')) || [];
+            const miniCartItems = document.getElementById('mini-cart-items');
+            const miniCartTotal = document.getElementById('mini-cart-total');
+            
+            if (cart.length === 0) {
+                miniCartItems.innerHTML = '<p style="text-align: center; color: #cccccc;">העגלה ריקה</p>';
+                miniCartTotal.textContent = '0';
+                return;
+            }
+            
+            let total = 0;
+            miniCartItems.innerHTML = cart.map(item => {
+                const itemTotal = item.price * item.quantity;
+                total += itemTotal;
+                
+                return `
+                    <div class="mini-cart-item">
+                        <span>${item.image}</span>
+                        <div>
+                            <div style="font-weight: 600;">${item.title}</div>
+                            <div style="color: #ffd700;">₪${item.price} x ${item.quantity}</div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+            
+            miniCartTotal.textContent = total;
+        }
+
+        function updateCartCount() {
+            const cart = JSON.parse(localStorage.getItem('infinityCart')) || [];
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            document.getElementById('cart-count').textContent = totalItems;
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            updateCartCount();
+            
+            // Close mini cart when clicking outside
+            document.addEventListener('click', function(e) {
+                const miniCart = document.getElementById('mini-cart');
+                if (!miniCart.contains(e.target) && !e.target.closest('.cart-btn')) {
+                    miniCart.classList.remove('show');
+                }
+            });
+        });
+    </script>
+
+    <style>
+        .mini-cart {
+            position: fixed;
+            top: 80px;
+            right: 20px;
+            width: 300px;
+            background: linear-gradient(145deg, #1a1a2e, #16213e);
+            border-radius: 15px;
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            padding: 1.5rem;
+            z-index: 2000;
+            transform: translateX(100%);
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+        
+        .mini-cart.show {
+            transform: translateX(0);
+            opacity: 1;
+        }
+        
+        .mini-cart h3 {
+            color: #ffd700;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        
+        .mini-cart-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid rgba(255, 215, 0, 0.1);
+        }
+        
+        .mini-cart-item span {
+            font-size: 1.5rem;
+        }
+        
+        .mini-cart-total {
+            text-align: center;
+            margin: 1rem 0;
+            color: #ffd700;
+            font-size: 1.2rem;
+        }
+        
+        .mini-cart-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+        
+        .mini-cart-actions .btn {
+            flex: 1;
+            padding: 0.5rem;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 0.9rem;
+        }
+    </style>
 </body>
 </html>
 

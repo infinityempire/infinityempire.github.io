@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>עגלת קניות | Infinity Empire Store</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        .cart-page {
+            max-width: 1000px;
+            margin: 100px auto 50px;
+            padding: 2rem;
+        }
+        
+        .cart-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #ffd700;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .cart-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 3rem;
+        }
+        
+        .cart-items {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            padding: 2rem;
+        }
+        
+        .cart-item {
+            display: grid;
+            grid-template-columns: 80px 1fr auto auto auto;
+            gap: 1rem;
+            align-items: center;
+            padding: 1.5rem 0;
+            border-bottom: 1px solid rgba(255, 215, 0, 0.1);
+        }
+        
+        .cart-item:last-child {
+            border-bottom: none;
+        }
+        
+        .item-image {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(45deg, #8b5cf6, #3b82f6);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+        }
+        
+        .item-details h3 {
+            color: #ffd700;
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+        
+        .item-price {
+            color: #cccccc;
+            font-weight: 600;
+        }
+        
+        .quantity-controls {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .qty-btn {
+            background: #8b5cf6;
+            color: white;
+            border: none;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background 0.3s ease;
+        }
+        
+        .qty-btn:hover {
+            background: #7c3aed;
+        }
+        
+        .qty-input {
+            width: 50px;
+            text-align: center;
+            padding: 0.3rem;
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+        }
+        
+        .item-total {
+            color: #ffd700;
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+        
+        .remove-btn {
+            background: #ef4444;
+            color: white;
+            border: none;
+            padding: 0.5rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background 0.3s ease;
+        }
+        
+        .remove-btn:hover {
+            background: #dc2626;
+        }
+        
+        .cart-summary {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            padding: 2rem;
+            height: fit-content;
+        }
+        
+        .summary-title {
+            color: #ffd700;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+        
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+            color: #cccccc;
+        }
+        
+        .summary-total {
+            display: flex;
+            justify-content: space-between;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #ffd700;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(255, 215, 0, 0.2);
+            margin-bottom: 2rem;
+        }
+        
+        .coupon-section {
+            margin-bottom: 2rem;
+        }
+        
+        .coupon-input {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+            margin-bottom: 0.5rem;
+        }
+        
+        .coupon-btn {
+            width: 100%;
+            padding: 0.8rem;
+            background: #8b5cf6;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background 0.3s ease;
+        }
+        
+        .coupon-btn:hover {
+            background: #7c3aed;
+        }
+        
+        .checkout-btn {
+            width: 100%;
+            padding: 1.2rem;
+            background: linear-gradient(45deg, #8b5cf6, #3b82f6);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 1rem;
+        }
+        
+        .checkout-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(139, 92, 246, 0.4);
+        }
+        
+        .continue-shopping-btn {
+            width: 100%;
+            padding: 1rem;
+            background: transparent;
+            color: #ffd700;
+            border: 2px solid #ffd700;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .continue-shopping-btn:hover {
+            background: #ffd700;
+            color: #000000;
+        }
+        
+        .empty-cart {
+            text-align: center;
+            padding: 3rem;
+            color: #cccccc;
+        }
+        
+        .empty-cart-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+        
+        .empty-cart h2 {
+            color: #ffd700;
+            margin-bottom: 1rem;
+        }
+        
+        @media (max-width: 768px) {
+            .cart-page {
+                margin: 80px 1rem 2rem;
+                padding: 1rem;
+            }
+            
+            .cart-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .cart-item {
+                grid-template-columns: 60px 1fr;
+                gap: 1rem;
+            }
+            
+            .quantity-controls,
+            .item-total,
+            .remove-btn {
+                grid-column: 1 / -1;
+                justify-self: start;
+                margin-top: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <nav class="navbar">
+            <div class="logo">
+                <span class="infinity-symbol">∞</span>
+                <span class="brand-name">Infinity Empire</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">בית</a></li>
+                <li><a href="index.html#products">מוצרים</a></li>
+                <li><a href="cart.html" class="active">עגלה</a></li>
+                <li><a href="index.html#contact">צור קשר</a></li>
+                <li><a href="#" class="cart-btn">🛒 <span id="cart-count">0</span></a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="cart-page">
+        <h1 class="cart-title">עגלת קניות</h1>
+        
+        <div id="cart-content" class="cart-content">
+            <!-- Cart items will be rendered here -->
+        </div>
+        
+        <div id="empty-cart" class="empty-cart" style="display: none;">
+            <div class="empty-cart-icon">🛒</div>
+            <h2>העגלה שלך ריקה</h2>
+            <p>נראה שעדיין לא הוספת מוצרים לעגלה.</p>
+            <button class="continue-shopping-btn" onclick="window.location.href='index.html#products'">
+                התחל בקניות
+            </button>
+        </div>
+    </main>
+
+    <script>
+        let cart = [];
+        let couponDiscount = 0;
+
+        function loadCart() {
+            cart = JSON.parse(localStorage.getItem('infinityCart')) || [];
+            renderCart();
+            updateCartCount();
+        }
+
+        function renderCart() {
+            const cartContent = document.getElementById('cart-content');
+            const emptyCart = document.getElementById('empty-cart');
+            
+            if (cart.length === 0) {
+                cartContent.style.display = 'none';
+                emptyCart.style.display = 'block';
+                return;
+            }
+            
+            cartContent.style.display = 'grid';
+            emptyCart.style.display = 'none';
+            
+            const cartItemsHTML = cart.map((item, index) => `
+                <div class="cart-item">
+                    <div class="item-image">${item.image}</div>
+                    <div class="item-details">
+                        <h3>${item.title}</h3>
+                        <div class="item-price">₪${item.price}</div>
+                    </div>
+                    <div class="quantity-controls">
+                        <button class="qty-btn" onclick="updateQuantity(${index}, -1)">-</button>
+                        <input type="number" class="qty-input" value="${item.quantity}" 
+                               onchange="setQuantity(${index}, this.value)" min="1">
+                        <button class="qty-btn" onclick="updateQuantity(${index}, 1)">+</button>
+                    </div>
+                    <div class="item-total">₪${item.price * item.quantity}</div>
+                    <button class="remove-btn" onclick="removeItem(${index})">🗑️</button>
+                </div>
+            `).join('');
+            
+            const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            const discount = subtotal * couponDiscount;
+            const total = subtotal - discount;
+            
+            cartContent.innerHTML = `
+                <div class="cart-items">
+                    ${cartItemsHTML}
+                </div>
+                
+                <div class="cart-summary">
+                    <h3 class="summary-title">סיכום הזמנה</h3>
+                    
+                    <div class="summary-row">
+                        <span>סכום ביניים:</span>
+                        <span>₪${subtotal}</span>
+                    </div>
+                    
+                    ${discount > 0 ? `
+                        <div class="summary-row" style="color: #4ade80;">
+                            <span>הנחה:</span>
+                            <span>-₪${discount.toFixed(2)}</span>
+                        </div>
+                    ` : ''}
+                    
+                    <div class="summary-row">
+                        <span>משלוח:</span>
+                        <span style="color: #4ade80;">חינם (דיגיטלי)</span>
+                    </div>
+                    
+                    <div class="summary-total">
+                        <span>סה"כ לתשלום:</span>
+                        <span>₪${total.toFixed(2)}</span>
+                    </div>
+                    
+                    <div class="coupon-section">
+                        <input type="text" class="coupon-input" id="coupon-code" 
+                               placeholder="קוד קופון (אופציונלי)">
+                        <button class="coupon-btn" onclick="applyCoupon()">החל קופון</button>
+                    </div>
+                    
+                    <button class="checkout-btn" onclick="proceedToCheckout()">
+                        המשך לתשלום
+                    </button>
+                    
+                    <button class="continue-shopping-btn" onclick="window.location.href='index.html#products'">
+                        המשך בקניות
+                    </button>
+                </div>
+            `;
+        }
+
+        function updateQuantity(index, change) {
+            cart[index].quantity = Math.max(1, cart[index].quantity + change);
+            saveCart();
+            renderCart();
+            updateCartCount();
+        }
+
+        function setQuantity(index, quantity) {
+            cart[index].quantity = Math.max(1, parseInt(quantity) || 1);
+            saveCart();
+            renderCart();
+            updateCartCount();
+        }
+
+        function removeItem(index) {
+            if (confirm('האם אתה בטוח שברצונך להסיר את המוצר מהעגלה?')) {
+                cart.splice(index, 1);
+                saveCart();
+                renderCart();
+                updateCartCount();
+            }
+        }
+
+        function applyCoupon() {
+            const couponCode = document.getElementById('coupon-code').value.trim().toLowerCase();
+            
+            // Sample coupon codes
+            const coupons = {
+                'welcome10': 0.1,
+                'save20': 0.2,
+                'infinity15': 0.15
+            };
+            
+            if (coupons[couponCode]) {
+                couponDiscount = coupons[couponCode];
+                alert(`קופון הוחל בהצלחה! הנחה של ${(couponDiscount * 100)}%`);
+                renderCart();
+            } else if (couponCode) {
+                alert('קוד קופון לא תקין');
+            }
+        }
+
+        function proceedToCheckout() {
+            if (cart.length === 0) {
+                alert('העגלה ריקה');
+                return;
+            }
+            
+            // Save cart data for checkout
+            localStorage.setItem('checkoutData', JSON.stringify({
+                cart: cart,
+                couponDiscount: couponDiscount
+            }));
+            
+            window.location.href = 'checkout.html';
+        }
+
+        function saveCart() {
+            localStorage.setItem('infinityCart', JSON.stringify(cart));
+        }
+
+        function updateCartCount() {
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            document.getElementById('cart-count').textContent = totalItems;
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            loadCart();
+        });
+    </script>
+</body>
+</html>
+

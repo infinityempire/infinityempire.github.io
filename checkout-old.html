@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>תשלום - Infinity Empire Store</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        .checkout-container {
+            max-width: 800px;
+            margin: 100px auto 50px;
+            padding: 2rem;
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+            border-radius: 20px;
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            backdrop-filter: blur(10px);
+        }
+        
+        .checkout-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            background: linear-gradient(45deg, #ffd700, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .checkout-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #ffd700;
+            font-weight: 600;
+        }
+        
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 1rem;
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+            font-size: 1rem;
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #8b5cf6;
+            box-shadow: 0 0 10px rgba(139, 92, 246, 0.3);
+        }
+        
+        .order-summary {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 215, 0, 0.2);
+        }
+        
+        .summary-title {
+            font-size: 1.5rem;
+            color: #ffd700;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid rgba(255, 215, 0, 0.1);
+        }
+        
+        .summary-total {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #ffd700;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 2px solid rgba(255, 215, 0, 0.3);
+        }
+        
+        .payment-methods {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        
+        .payment-method {
+            padding: 1rem;
+            border: 2px solid rgba(255, 215, 0, 0.2);
+            border-radius: 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.05);
+        }
+        
+        .payment-method:hover,
+        .payment-method.selected {
+            border-color: #8b5cf6;
+            background: rgba(139, 92, 246, 0.2);
+        }
+        
+        .payment-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .complete-order {
+            width: 100%;
+            padding: 1.5rem;
+            background: linear-gradient(45deg, #8b5cf6, #3b82f6);
+            color: white;
+            border: none;
+            border-radius: 15px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 2rem;
+        }
+        
+        .complete-order:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(139, 92, 246, 0.4);
+        }
+        
+        @media (max-width: 768px) {
+            .checkout-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .checkout-container {
+                margin: 80px 1rem 2rem;
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <nav class="navbar">
+            <div class="logo">
+                <span class="infinity-symbol">∞</span>
+                <span class="brand-name">Infinity Empire</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">חזרה לאתר</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="checkout-container">
+        <h1 class="checkout-title">השלמת הזמנה</h1>
+        
+        <div class="checkout-grid">
+            <div class="billing-form">
+                <h2 style="color: #ffd700; margin-bottom: 1.5rem;">פרטי חיוב</h2>
+                
+                <form id="checkout-form">
+                    <div class="form-group">
+                        <label for="fullName">שם מלא *</label>
+                        <input type="text" id="fullName" name="fullName" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">כתובת אימייל *</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone">טלפון</label>
+                        <input type="tel" id="phone" name="phone">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="country">מדינה *</label>
+                        <select id="country" name="country" required>
+                            <option value="">בחר מדינה</option>
+                            <option value="IL">ישראל</option>
+                            <option value="US">ארצות הברית</option>
+                            <option value="UK">בריטניה</option>
+                            <option value="CA">קנדה</option>
+                            <option value="AU">אוסטרליה</option>
+                        </select>
+                    </div>
+                    
+                    <h3 style="color: #ffd700; margin: 2rem 0 1rem;">אמצעי תשלום</h3>
+                    
+                    <div class="payment-methods">
+                        <div class="payment-method" data-method="paypal">
+                            <div class="payment-icon">💳</div>
+                            <div>PayPal</div>
+                        </div>
+                        <div class="payment-method" data-method="stripe">
+                            <div class="payment-icon">💰</div>
+                            <div>כרטיס אשראי</div>
+                        </div>
+                        <div class="payment-method" data-method="crypto">
+                            <div class="payment-icon">₿</div>
+                            <div>קריפטו</div>
+                        </div>
+                    </div>
+                    
+                    <div id="payment-details" style="display: none;">
+                        <div class="form-group">
+                            <label for="cardNumber">מספר כרטיס</label>
+                            <input type="text" id="cardNumber" name="cardNumber" placeholder="1234 5678 9012 3456">
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                            <div class="form-group">
+                                <label for="expiry">תוקף</label>
+                                <input type="text" id="expiry" name="expiry" placeholder="MM/YY">
+                            </div>
+                            <div class="form-group">
+                                <label for="cvv">CVV</label>
+                                <input type="text" id="cvv" name="cvv" placeholder="123">
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            
+            <div class="order-summary">
+                <h3 class="summary-title">סיכום הזמנה</h3>
+                <div id="order-items"></div>
+                <div class="summary-total">
+                    <div class="summary-item">
+                        <span>סה"כ:</span>
+                        <span>₪<span id="final-total">0</span></span>
+                    </div>
+                </div>
+                
+                <button type="button" class="complete-order" onclick="processPayment()">
+                    השלם הזמנה
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Load cart from localStorage
+        const cart = JSON.parse(localStorage.getItem('infinityCart')) || [];
+        let selectedPaymentMethod = null;
+
+        // Initialize checkout
+        document.addEventListener('DOMContentLoaded', function() {
+            if (cart.length === 0) {
+                alert('העגלה שלך ריקה!');
+                window.location.href = 'index.html';
+                return;
+            }
+            
+            renderOrderSummary();
+            setupPaymentMethods();
+        });
+
+        // Render order summary
+        function renderOrderSummary() {
+            const orderItems = document.getElementById('order-items');
+            const finalTotal = document.getElementById('final-total');
+            
+            let total = 0;
+            
+            orderItems.innerHTML = cart.map(item => {
+                const itemTotal = item.price * item.quantity;
+                total += itemTotal;
+                
+                return `
+                    <div class="summary-item">
+                        <span>${item.title} (x${item.quantity})</span>
+                        <span>₪${itemTotal}</span>
+                    </div>
+                `;
+            }).join('');
+            
+            finalTotal.textContent = total;
+        }
+
+        // Setup payment methods
+        function setupPaymentMethods() {
+            const paymentMethods = document.querySelectorAll('.payment-method');
+            const paymentDetails = document.getElementById('payment-details');
+            
+            paymentMethods.forEach(method => {
+                method.addEventListener('click', function() {
+                    // Remove selected class from all methods
+                    paymentMethods.forEach(m => m.classList.remove('selected'));
+                    
+                    // Add selected class to clicked method
+                    this.classList.add('selected');
+                    selectedPaymentMethod = this.dataset.method;
+                    
+                    // Show/hide payment details based on method
+                    if (selectedPaymentMethod === 'stripe') {
+                        paymentDetails.style.display = 'block';
+                    } else {
+                        paymentDetails.style.display = 'none';
+                    }
+                });
+            });
+        }
+
+        // Process payment
+        function processPayment() {
+            const form = document.getElementById('checkout-form');
+            const formData = new FormData(form);
+            
+            // Validate required fields
+            const fullName = formData.get('fullName');
+            const email = formData.get('email');
+            const country = formData.get('country');
+            
+            if (!fullName || !email || !country) {
+                alert('אנא מלא את כל השדות הנדרשים');
+                return;
+            }
+            
+            if (!selectedPaymentMethod) {
+                alert('אנא בחר אמצעי תשלום');
+                return;
+            }
+            
+            // Show loading
+            const button = document.querySelector('.complete-order');
+            button.textContent = 'מעבד תשלום...';
+            button.disabled = true;
+            
+            // Simulate payment processing
+            setTimeout(() => {
+                // Clear cart
+                localStorage.removeItem('infinityCart');
+                
+                // Redirect to success page
+                window.location.href = 'success.html';
+            }, 2000);
+        }
+
+        // Form validation
+        document.getElementById('cardNumber').addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\s/g, '').replace(/[^0-9]/gi, '');
+            let formattedValue = value.match(/.{1,4}/g)?.join(' ') || value;
+            e.target.value = formattedValue;
+        });
+
+        document.getElementById('expiry').addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.length >= 2) {
+                value = value.substring(0, 2) + '/' + value.substring(2, 4);
+            }
+            e.target.value = value;
+        });
+
+        document.getElementById('cvv').addEventListener('input', function(e) {
+            e.target.value = e.target.value.replace(/\D/g, '').substring(0, 3);
+        });
+    </script>
+</body>
+</html>
+
