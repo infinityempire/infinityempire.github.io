@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>תשלום בוטל - Infinity Empire Store</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        .cancel-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+        
+        .cancel-card {
+            max-width: 600px;
+            text-align: center;
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+            border-radius: 20px;
+            padding: 3rem;
+            border: 1px solid rgba(255, 107, 53, 0.2);
+            backdrop-filter: blur(10px);
+        }
+        
+        .cancel-icon {
+            font-size: 5rem;
+            margin-bottom: 2rem;
+            animation: shake 0.5s ease-in-out infinite alternate;
+        }
+        
+        @keyframes shake {
+            from { transform: translateX(-5px); }
+            to { transform: translateX(5px); }
+        }
+        
+        .cancel-title {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #ff6b35, #ff4757);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .cancel-message {
+            font-size: 1.2rem;
+            color: #cccccc;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+        
+        .cancel-reasons {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            border: 1px solid rgba(255, 107, 53, 0.2);
+            text-align: right;
+        }
+        
+        .reason-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 0.5rem 0;
+            color: #cccccc;
+        }
+        
+        .cancel-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+        
+        .help-section {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 107, 53, 0.2);
+        }
+        
+        .help-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            margin: 0.5rem 0;
+            color: #cccccc;
+        }
+    </style>
+</head>
+<body>
+    <div class="cancel-container">
+        <div class="cancel-card">
+            <div class="cancel-icon">❌</div>
+            <h1 class="cancel-title">הרכישה בוטלה</h1>
+            <p class="cancel-message">
+                נראה שביטלת את הרכישה. אין בעיה – תמיד אפשר לנסות שוב בכל עת.
+            </p>
+            
+            <div class="cancel-reasons">
+                <h3 style="color: #ff6b35; margin-bottom: 1rem; text-align: center;">סיבות נפוצות לביטול:</h3>
+                <div class="reason-item">
+                    <span>💳</span>
+                    <span>בעיה בכרטיס האשראי או אמצעי התשלום</span>
+                </div>
+                <div class="reason-item">
+                    <span>🤔</span>
+                    <span>רצית לחשוב עוד על הרכישה</span>
+                </div>
+                <div class="reason-item">
+                    <span>🛒</span>
+                    <span>רצית לשנות משהו בעגלת הקניות</span>
+                </div>
+                <div class="reason-item">
+                    <span>❓</span>
+                    <span>היו לך שאלות נוספות על המוצרים</span>
+                </div>
+            </div>
+            
+            <div class="cancel-actions">
+                <a href="checkout.html" class="btn btn-primary">חזרה לעמוד התשלום</a>
+                <a href="index.html" class="btn btn-secondary">חזרה לאתר</a>
+            </div>
+            
+            <div class="help-section">
+                <h3 style="color: #ffd700; margin-bottom: 1rem;">זקוק לעזרה?</h3>
+                <div class="help-item">
+                    <span>📧</span>
+                    <span>info@infinityempire.com</span>
+                </div>
+                <div class="help-item">
+                    <span>📱</span>
+                    <span>050-123-4567</span>
+                </div>
+                <div class="help-item">
+                    <span>💬</span>
+                    <span>צ'אט חי באתר (בקרוב)</span>
+                </div>
+                
+                <div style="margin-top: 2rem; padding: 1.5rem; background: rgba(139, 92, 246, 0.1); border-radius: 10px; border: 1px solid rgba(139, 92, 246, 0.3);">
+                    <h4 style="color: #8b5cf6; margin-bottom: 1rem;">💡 טיפ:</h4>
+                    <p style="color: #cccccc; font-size: 0.9rem; line-height: 1.6;">
+                        המוצרים שלנו נשמרים בעגלת הקניות שלך. תוכל לחזור בכל עת להשלים את הרכישה.
+                        אם יש לך שאלות על המוצרים או התשלום, אנחנו כאן לעזור!
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add some interactive elements
+            const cancelIcon = document.querySelector('.cancel-icon');
+            
+            // Stop shake animation after 3 seconds
+            setTimeout(() => {
+                cancelIcon.style.animation = 'none';
+            }, 3000);
+            
+            // Auto-redirect suggestion after 15 seconds
+            setTimeout(() => {
+                if (confirm('האם תרצה לחזור לעמוד התשלום כדי לנסות שוב?')) {
+                    window.location.href = 'checkout.html';
+                }
+            }, 15000);
+            
+            // Track cancel reason (for analytics)
+            const reasons = document.querySelectorAll('.reason-item');
+            reasons.forEach(reason => {
+                reason.addEventListener('click', function() {
+                    this.style.background = 'rgba(255, 107, 53, 0.2)';
+                    this.style.borderRadius = '5px';
+                    this.style.padding = '0.5rem';
+                    
+                    // You could send this data to analytics
+                    console.log('Cancel reason selected:', this.textContent.trim());
+                });
+            });
+        });
+    </script>
+</body>
+</html>
+

@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>תשלום הושלם - Infinity Empire Store</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        .success-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+        
+        .success-card {
+            max-width: 600px;
+            text-align: center;
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+            border-radius: 20px;
+            padding: 3rem;
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            backdrop-filter: blur(10px);
+        }
+        
+        .success-icon {
+            font-size: 5rem;
+            margin-bottom: 2rem;
+            animation: bounce 1s ease infinite alternate;
+        }
+        
+        @keyframes bounce {
+            from { transform: translateY(0px); }
+            to { transform: translateY(-10px); }
+        }
+        
+        .success-title {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #ffd700, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .success-message {
+            font-size: 1.2rem;
+            color: #cccccc;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+        
+        .success-details {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            border: 1px solid rgba(255, 215, 0, 0.2);
+        }
+        
+        .detail-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid rgba(255, 215, 0, 0.1);
+        }
+        
+        .detail-item:last-child {
+            border-bottom: none;
+        }
+        
+        .success-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+        
+        .confetti {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1000;
+        }
+        
+        .confetti-piece {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: #ffd700;
+            animation: confetti-fall 3s linear infinite;
+        }
+        
+        @keyframes confetti-fall {
+            0% {
+                transform: translateY(-100vh) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="confetti" id="confetti"></div>
+    
+    <div class="success-container">
+        <div class="success-card">
+            <div class="success-icon">🎉</div>
+            <h1 class="success-title">תודה על הרכישה!</h1>
+            <p class="success-message">
+                הרכישה שלך התקבלה בהצלחה. פרטי ההזמנה נשלחו אליך במייל.<br>
+                במידה ולא קיבלת מייל בתוך מספר דקות, בדוק בתיבת הספאם או צור קשר איתנו.
+            </p>
+            
+            <div class="success-details">
+                <h3 style="color: #ffd700; margin-bottom: 1rem;">פרטי ההזמנה</h3>
+                <div class="detail-item">
+                    <span>מספר הזמנה:</span>
+                    <span style="color: #ffd700;" id="order-number">#INF-2024-001</span>
+                </div>
+                <div class="detail-item">
+                    <span>תאריך:</span>
+                    <span id="order-date"></span>
+                </div>
+                <div class="detail-item">
+                    <span>סטטוס:</span>
+                    <span style="color: #4ade80;">✅ הושלם</span>
+                </div>
+                <div class="detail-item">
+                    <span>אמצעי תשלום:</span>
+                    <span>💳 כרטיס אשראי</span>
+                </div>
+            </div>
+            
+            <div class="success-actions">
+                <a href="index.html" class="btn btn-primary">חזרה לאתר</a>
+                <button onclick="downloadReceipt()" class="btn btn-secondary">הורד קבלה</button>
+            </div>
+            
+            <div style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid rgba(255, 215, 0, 0.2);">
+                <p style="color: #cccccc; font-size: 0.9rem;">
+                    💌 המוצרים הדיגיטליים שלך יישלחו אליך במייל תוך 5 דקות<br>
+                    🔒 התשלום שלך מאובטח ומוגן<br>
+                    📞 לשירות לקוחות: info@infinityempire.com
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Generate order number and date
+        document.addEventListener('DOMContentLoaded', function() {
+            // Generate random order number
+            const orderNumber = '#INF-' + new Date().getFullYear() + '-' + 
+                               String(Math.floor(Math.random() * 10000)).padStart(4, '0');
+            document.getElementById('order-number').textContent = orderNumber;
+            
+            // Set current date
+            const now = new Date();
+            const dateStr = now.toLocaleDateString('he-IL', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+            document.getElementById('order-date').textContent = dateStr;
+            
+            // Create confetti
+            createConfetti();
+            
+            // Auto-redirect after 30 seconds
+            setTimeout(() => {
+                if (confirm('האם תרצה לחזור לאתר הראשי?')) {
+                    window.location.href = 'index.html';
+                }
+            }, 30000);
+        });
+        
+        // Create confetti animation
+        function createConfetti() {
+            const confettiContainer = document.getElementById('confetti');
+            const colors = ['#ffd700', '#8b5cf6', '#3b82f6', '#ff6b35', '#4ade80'];
+            
+            for (let i = 0; i < 50; i++) {
+                const confettiPiece = document.createElement('div');
+                confettiPiece.className = 'confetti-piece';
+                confettiPiece.style.left = Math.random() * 100 + '%';
+                confettiPiece.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                confettiPiece.style.animationDelay = Math.random() * 3 + 's';
+                confettiPiece.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                confettiContainer.appendChild(confettiPiece);
+            }
+            
+            // Remove confetti after animation
+            setTimeout(() => {
+                confettiContainer.innerHTML = '';
+            }, 6000);
+        }
+        
+        // Download receipt function
+        function downloadReceipt() {
+            const orderNumber = document.getElementById('order-number').textContent;
+            const orderDate = document.getElementById('order-date').textContent;
+            
+            const receiptContent = `
+===========================================
+        INFINITY EMPIRE STORE
+           קבלה על רכישה
+===========================================
+
+מספר הזמנה: ${orderNumber}
+תאריך: ${orderDate}
+סטטוס: הושלם ✅
+
+-------------------------------------------
+פרטי הרכישה:
+- מוצרים דיגיטליים מ-Infinity Empire Store
+- התשלום בוצע בהצלחה
+- המוצרים נשלחו למייל
+
+-------------------------------------------
+תודה על הרכישה!
+info@infinityempire.com
+===========================================
+            `;
+            
+            const blob = new Blob([receiptContent], { type: 'text/plain;charset=utf-8' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `receipt-${orderNumber.replace('#', '')}.txt`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            window.URL.revokeObjectURL(url);
+        }
+    </script>
+</body>
+</html>
+

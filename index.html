@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infinity Empire Store - חנות דיגיטלית יוקרתית</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <nav class="navbar">
+            <div class="logo">
+                <span class="infinity-symbol">∞</span>
+                <span class="brand-name">Infinity Empire</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home">בית</a></li>
+                <li><a href="#products">מוצרים</a></li>
+                <li><a href="#about">אודות</a></li>
+                <li><a href="#contact">צור קשר</a></li>
+                <li><a href="#cart" class="cart-btn">🛒 <span id="cart-count">0</span></a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="home" class="hero">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    <span class="gradient-text">Infinity Empire</span>
+                    <span class="subtitle">חנות דיגיטלית יוקרתית</span>
+                </h1>
+                <p class="hero-description">
+                    גלה מוצרים דיגיטליים יוקרתיים ויצירתיים - פוסטרים, תבניות, מדריכים ועוד
+                </p>
+                <div class="hero-buttons">
+                    <a href="#products" class="btn btn-primary">צפה במוצרים</a>
+                    <a href="#about" class="btn btn-secondary">למד עוד</a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="floating-elements">
+                    <div class="element element-1">💎</div>
+                    <div class="element element-2">🎨</div>
+                    <div class="element element-3">📱</div>
+                    <div class="element element-4">✨</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Products Section -->
+        <section id="products" class="products">
+            <div class="container">
+                <h2 class="section-title">המוצרים שלנו</h2>
+                <div class="products-grid" id="products-grid">
+                    <!-- Products will be loaded here by JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="about">
+            <div class="container">
+                <h2 class="section-title">אודות Infinity Empire</h2>
+                <div class="about-content">
+                    <div class="about-text">
+                        <p>
+                            Infinity Empire היא חנות דיגיטלית יוקרתית המתמחה במוצרים דיגיטליים איכותיים.
+                            אנו מציעים מגוון רחב של פוסטרים דיגיטליים, תבניות עיצוב, מדריכים מקצועיים ומוצרי Etsy ייחודיים.
+                        </p>
+                        <p>
+                            המטרה שלנו היא לספק לך מוצרים דיגיטליים ברמה הגבוהה ביותר, עם עיצוב מודרני ואיכות פרימיום.
+                        </p>
+                    </div>
+                    <div class="about-features">
+                        <div class="feature">
+                            <span class="feature-icon">🎨</span>
+                            <h3>עיצוב מקצועי</h3>
+                            <p>כל המוצרים שלנו מעוצבים ברמה מקצועית</p>
+                        </div>
+                        <div class="feature">
+                            <span class="feature-icon">⚡</span>
+                            <h3>הורדה מיידית</h3>
+                            <p>קבל את המוצרים שלך מיד לאחר הרכישה</p>
+                        </div>
+                        <div class="feature">
+                            <span class="feature-icon">💎</span>
+                            <h3>איכות פרימיום</h3>
+                            <p>רק מוצרים באיכות הגבוהה ביותר</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Cart Modal -->
+    <div id="cart-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>עגלת הקניות שלך</h2>
+            <div id="cart-items"></div>
+            <div class="cart-total">
+                <strong>סה"כ: ₪<span id="cart-total">0</span></strong>
+            </div>
+            <button id="checkout-btn" class="btn btn-primary">המשך לתשלום</button>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="logo">
+                        <span class="infinity-symbol">∞</span>
+                        <span class="brand-name">Infinity Empire</span>
+                    </div>
+                    <p>חנות דיגיטלית יוקרתית למוצרים איכותיים</p>
+                </div>
+                <div class="footer-section">
+                    <h3>קישורים מהירים</h3>
+                    <ul>
+                        <li><a href="#home">בית</a></li>
+                        <li><a href="#products">מוצרים</a></li>
+                        <li><a href="#about">אודות</a></li>
+                        <li><a href="#contact">צור קשר</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>צור קשר</h3>
+                    <p>📧 info@infinityempire.com</p>
+                    <p>📱 050-123-4567</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Infinity Empire Store. כל הזכויות שמורות.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
