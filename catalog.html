@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>קטלוג מוצרים | Infinity Empire Store</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        .catalog-header {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            padding: 2rem 0;
+            text-align: center;
+        }
+        
+        .catalog-title {
+            color: #ffd700;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .search-filters {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2rem;
+            margin: 2rem 0;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .search-bar {
+            width: 100%;
+            max-width: 500px;
+            padding: 1rem;
+            border: 2px solid #6c5ce7;
+            border-radius: 25px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .search-bar::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        .filters {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 1rem;
+        }
+        
+        .filter-btn {
+            padding: 0.5rem 1rem;
+            border: 2px solid #6c5ce7;
+            background: transparent;
+            color: white;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .filter-btn.active,
+        .filter-btn:hover {
+            background: #6c5ce7;
+            color: white;
+        }
+        
+        .sort-options {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+        
+        .sort-select {
+            padding: 0.5rem 1rem;
+            border: 2px solid #ffd700;
+            border-radius: 10px;
+            background: rgba(255, 215, 0, 0.1);
+            color: white;
+        }
+        
+        .products-count {
+            text-align: center;
+            color: #ffd700;
+            margin: 1rem 0;
+            font-size: 1.1rem;
+        }
+        
+        .no-results {
+            text-align: center;
+            color: white;
+            font-size: 1.2rem;
+            margin: 3rem 0;
+        }
+        
+        .bundle-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: linear-gradient(45deg, #ffd700, #ffed4e);
+            color: #1a1a2e;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+        
+        .ultimate-bundle .bundle-badge {
+            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <nav class="navbar">
+            <div class="logo">
+                <span class="infinity-symbol">∞</span>
+                <span class="brand-name">Infinity Empire</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">בית</a></li>
+                <li><a href="index.html#products">מוצרים</a></li>
+                <li><a href="catalog.html">קטלוג</a></li>
+                <li><a href="index.html#contact">צור קשר</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="catalog-header">
+            <div class="container">
+                <h1 class="catalog-title">קטלוג מוצרים</h1>
+                <p>גלה את כל המוצרים הדיגיטליים שלנו</p>
+            </div>
+        </section>
+
+        <section class="catalog-section">
+            <div class="container">
+                <div class="search-filters">
+                    <input type="text" id="searchInput" class="search-bar" placeholder="חפש מוצרים...">
+                    
+                    <div class="filters">
+                        <button class="filter-btn active" data-category="all">הכל</button>
+                        <button class="filter-btn" data-category="ai">בינה מלאכותית</button>
+                        <button class="filter-btn" data-category="lotto">לוטו</button>
+                        <button class="filter-btn" data-category="productivity">פרודוקטיביות</button>
+                        <button class="filter-btn" data-category="business">עסקים</button>
+                        <button class="filter-btn" data-category="design">עיצוב</button>
+                        <button class="filter-btn" data-category="bundle">חבילות</button>
+                    </div>
+                    
+                    <div class="sort-options">
+                        <select id="sortSelect" class="sort-select">
+                            <option value="name">מיון לפי שם</option>
+                            <option value="price-low">מחיר: נמוך לגבוה</option>
+                            <option value="price-high">מחיר: גבוה לנמוך</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="products-count">
+                    <span id="productsCount">14</span> מוצרים נמצאו
+                </div>
+
+                <div id="productsGrid" class="products-grid">
+                    <!-- המוצרים יטענו כאן דינמית -->
+                </div>
+
+                <div id="noResults" class="no-results" style="display: none;">
+                    לא נמצאו מוצרים התואמים לחיפוש שלך
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Infinity Empire Store. כל הזכויות שמורות.</p>
+        </div>
+    </footer>
+
+    <script>
+        const API = 'https://8xhpiqcq8kyy.manus.space';
+        
+        // נתוני המוצרים
+        const products = [
+            {
+                id: 'ai-guide',
+                name: 'מדריך AI מקיף',
+                description: 'מדריך מקיף לבינה מלאכותית עם כלים מעשיים ואסטרטגיות מתקדמות',
+                price: 49.90,
+                category: 'ai',
+                icon: '🤖'
+            },
+            {
+                id: 'lotto-guide',
+                name: 'מדריך לוטו מתקדם',
+                description: 'אסטרטגיות מתקדמות ושיטות מוכחות לשיפור הסיכויים בלוטו',
+                price: 39.90,
+                category: 'lotto',
+                icon: '🎰'
+            },
+            {
+                id: 'time-management',
+                name: 'ניהול זמן יעיל',
+                description: 'טכניקות מוכחות לניהול זמן ושיפור פרודוקטיביות אישית',
+                price: 9.90,
+                category: 'productivity',
+                icon: '⏰'
+            },
+            {
+                id: 'chatbot-quickstart',
+                name: 'צ\'אטבוט מהיר',
+                description: 'מדריך מהיר לבניית צ\'אטבוט חכם עם AI מתקדם',
+                price: 59.90,
+                category: 'ai',
+                icon: '💬'
+            },
+            {
+                id: 'smallbiz-automations',
+                name: 'אוטומציות עסק קטן',
+                description: 'כלים ושיטות לאוטומציה של תהליכים בעסק קטן',
+                price: 79.90,
+                category: 'business',
+                icon: '🏢'
+            },
+            {
+                id: 'winning-prompts-50',
+                name: '50 פרומפטים מנצחים',
+                description: 'אוסף של 50 פרומפטים מוכחים לAI שיחסכו לך זמן ויעילו תוצאות',
+                price: 29.90,
+                category: 'ai',
+                icon: '🎯'
+            },
+            {
+                id: 'lotto-psychology',
+                name: 'פסיכולוגיית לוטו',
+                description: 'הבנת הפסיכולוגיה מאחורי משחקי המזל ואסטרטגיות מנטליות',
+                price: 39.90,
+                category: 'lotto',
+                icon: '🧠'
+            },
+            {
+                id: 'lotto-excel',
+                name: 'אקסל לוטו מתקדם',
+                description: 'תבניות אקסל מתקדמות לניתוח וחיזוי תוצאות לוטו',
+                price: 19.90,
+                category: 'lotto',
+                icon: '📊'
+            },
+            {
+                id: 'digital-focus',
+                name: 'פוקוס דיגיטלי',
+                description: 'טכניקות לשיפור הריכוז והפוקוס בעידן הדיגיטלי',
+                price: 29.90,
+                category: 'productivity',
+                icon: '🎯'
+            },
+            {
+                id: 'posters-pack-5',
+                name: 'חבילת פוסטרים (5)',
+                description: '5 פוסטרים דיגיטליים מעוצבים להשראה ומוטיבציה יומית',
+                price: 129.90,
+                category: 'design',
+                icon: '🎨'
+            },
+            {
+                id: 'productivity-bundle',
+                name: 'חבילת פרודוקטיביות',
+                description: 'ניהול זמן + פוקוס דיגיטלי + 50 פרומפטים - חסכון של 30%',
+                price: 89.90,
+                category: 'bundle',
+                icon: '📦',
+                isBundle: true
+            },
+            {
+                id: 'ai-mastery-bundle',
+                name: 'חבילת שליטה ב-AI',
+                description: 'מדריך AI + צ\'אטבוט + 50 פרומפטים - הפוך למומחה AI',
+                price: 109.90,
+                category: 'bundle',
+                icon: '🤖',
+                isBundle: true
+            },
+            {
+                id: 'lotto-perfect-bundle',
+                name: 'חבילת לוטו מושלמת',
+                description: 'כל מדריכי הלוטו + אקסל + פסיכולוגיה - הכל במקום אחד',
+                price: 79.90,
+                category: 'bundle',
+                icon: '🎰',
+                isBundle: true
+            },
+            {
+                id: 'ultimate-bundle',
+                name: 'החבילה האולטימטיבית',
+                description: 'כל המוצרים שלנו במחיר מיוחד - חסכון של 50%!',
+                price: 299.90,
+                category: 'bundle',
+                icon: '👑',
+                isBundle: true,
+                isUltimate: true
+            }
+        ];
+
+        let filteredProducts = [...products];
+
+        function getUTM() {
+            const p = new URLSearchParams(location.search);
+            return {
+                utm_source: p.get('utm_source') || '',
+                utm_medium: p.get('utm_medium') || '',
+                utm_campaign: p.get('utm_campaign') || ''
+            };
+        }
+        
+        async function buyProduct(productId) {
+            try {
+                const utm = getUTM();
+                const res = await fetch(`${API}/create-checkout-session`, {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({ productId, utm })
+                });
+                
+                const data = await res.json();
+                if (data.url) {
+                    location.href = data.url;
+                } else {
+                    alert('שגיאה ביצירת התשלום');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('שגיאה ביצירת התשלום');
+            }
+        }
+
+        function renderProducts(productsToRender) {
+            const grid = document.getElementById('productsGrid');
+            const count = document.getElementById('productsCount');
+            const noResults = document.getElementById('noResults');
+
+            count.textContent = productsToRender.length;
+
+            if (productsToRender.length === 0) {
+                grid.innerHTML = '';
+                noResults.style.display = 'block';
+                return;
+            }
+
+            noResults.style.display = 'none';
+
+            grid.innerHTML = productsToRender.map(product => `
+                <div class="product-card ${product.isBundle ? 'bundle-card' : ''} ${product.isUltimate ? 'ultimate-bundle' : ''}">
+                    ${product.isBundle ? `<div class="bundle-badge">${product.isUltimate ? 'חבילה אולטימטיבית' : 'חבילה'}</div>` : ''}
+                    <div class="product-image">
+                        <div class="product-icon">${product.icon}</div>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">${product.name}</h3>
+                        <p class="product-description">${product.description}</p>
+                        <div class="product-price">₪${product.price}</div>
+                        <button class="btn btn-primary" onclick="buyProduct('${product.id}')">קנה עכשיו</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function filterProducts() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const activeCategory = document.querySelector('.filter-btn.active').dataset.category;
+            const sortBy = document.getElementById('sortSelect').value;
+
+            // סינון לפי חיפוש וקטגוריה
+            filteredProducts = products.filter(product => {
+                const matchesSearch = product.name.toLowerCase().includes(searchTerm) || 
+                                    product.description.toLowerCase().includes(searchTerm);
+                const matchesCategory = activeCategory === 'all' || product.category === activeCategory;
+                return matchesSearch && matchesCategory;
+            });
+
+            // מיון
+            switch (sortBy) {
+                case 'name':
+                    filteredProducts.sort((a, b) => a.name.localeCompare(b.name, 'he'));
+                    break;
+                case 'price-low':
+                    filteredProducts.sort((a, b) => a.price - b.price);
+                    break;
+                case 'price-high':
+                    filteredProducts.sort((a, b) => b.price - a.price);
+                    break;
+            }
+
+            renderProducts(filteredProducts);
+        }
+
+        // Event listeners
+        document.getElementById('searchInput').addEventListener('input', filterProducts);
+        document.getElementById('sortSelect').addEventListener('change', filterProducts);
+
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                filterProducts();
+            });
+        });
+
+        // טעינה ראשונית
+        renderProducts(products);
+    </script>
+</body>
+</html>
+
