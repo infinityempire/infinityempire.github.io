@@ -585,25 +585,175 @@
     <!-- PayPal SDK -->
     <script src="https://www.paypal.com/sdk/js?client-id=YOUR_PAYPAL_CLIENT_ID&currency=ILS"></script>
     
-    <!-- Main JavaScript -->
-    <script src="assets/script.js"></script>
-    <script src="assets/ecommerce.js"></script>
+    <!-- Inline JavaScript -->
     <script>
-        // Initialize cart count on page load
-        document.addEventListener('DOMContentLoaded', function() {
-            updateCartCount();
-        });
-    </script>
-</body>  <!-- PayPal Integration -->
-    <script>
-        // PayPal button configuration will be added here
-        function initializePayPalButtons() {
-            // This will be implemented in script.js
+        // Product Database
+        const PRODUCTS = {
+            ai_guide: {
+                id: 'ai_guide',
+                name: 'מדריך AI מקיף',
+                price: 49.90,
+                originalPrice: 79.90,
+                currency: 'ILS',
+                description: 'מדריך מקיף לבינה מלאכותית עם כלים מעשיים ואסטרטגיות מתקדמות לשימוש יומיומי'
+            },
+            lottery_guide: {
+                id: 'lottery_guide',
+                name: 'מדריך לוטו מתקדם',
+                price: 39.90,
+                currency: 'ILS',
+                description: 'אסטרטגיות מתקדמות ושיטות מוכחות לשיפור הסיכויים בלוטו הישראלי'
+            },
+            time_management: {
+                id: 'time_management',
+                name: 'ניהול זמן יעיל',
+                price: 9.90,
+                originalPrice: 29.90,
+                currency: 'ILS',
+                description: 'טכניקות מוכחות לניהול זמן ושיפור פרודוקטיביות אישית ומקצועית'
+            },
+            chatbot_guide: {
+                id: 'chatbot_guide',
+                name: 'צ\'אטבוט מהיר',
+                price: 59.90,
+                currency: 'ILS',
+                description: 'מדריך מהיר לבניית צ\'אטבוט חכם עם AI מתקדם'
+            },
+            business_automation: {
+                id: 'business_automation',
+                name: 'אוטומציות עסק קטן',
+                price: 79.90,
+                currency: 'ILS',
+                description: 'כלים ושיטות לאוטומציה של תהליכים בעסק קטן'
+            },
+            ai_prompts: {
+                id: 'ai_prompts',
+                name: '50 פרומפטים מנצחים',
+                price: 29.90,
+                currency: 'ILS',
+                description: 'אוסף של 50 פרומפטים מוכחים לAI שיחסכו לך זמן ויעילו תוצאות'
+            }
+        };
+
+        // Shopping Cart Management
+        class ShoppingCart {
+            constructor() {
+                this.items = this.loadCart();
+                this.updateCartDisplay();
+            }
+
+            loadCart() {
+                const saved = localStorage.getItem('infinityCart');
+                return saved ? JSON.parse(saved) : [];
+            }
+
+            saveCart() {
+                localStorage.setItem('infinityCart', JSON.stringify(this.items));
+                this.updateCartDisplay();
+            }
+
+            addItem(productId) {
+                const product = PRODUCTS[productId];
+                if (!product) return false;
+
+                const existingItem = this.items.find(item => item.id === productId);
+                if (existingItem) {
+                    existingItem.quantity += 1;
+                } else {
+                    this.items.push({
+                        id: productId,
+                        name: product.name,
+                        price: product.price,
+                        quantity: 1
+                    });
+                }
+
+                this.saveCart();
+                this.showAddedToCartMessage(product.name);
+                return true;
+            }
+
+            getTotalItems() {
+                return this.items.reduce((total, item) => total + item.quantity, 0);
+            }
+
+            updateCartDisplay() {
+                const cartCount = document.getElementById('cart-count');
+                if (cartCount) {
+                    cartCount.textContent = this.getTotalItems();
+                }
+            }
+
+            showAddedToCartMessage(productName) {
+                const message = document.createElement('div');
+                message.style.cssText = `
+                    position: fixed;
+                    top: 100px;
+                    right: 20px;
+                    background: #27ae60;
+                    color: white;
+                    padding: 1rem 1.5rem;
+                    border-radius: 10px;
+                    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+                    z-index: 1001;
+                    animation: slideIn 0.3s ease-out;
+                `;
+                message.innerHTML = `
+                    <div style="display: flex; align-items: center; gap: 1rem;">
+                        <span>✅</span>
+                        <span>${productName} נוסף לעגלה!</span>
+                        <a href="cart.html" style="color: #ffd700; text-decoration: none; font-weight: 700;">צפה בעגלה</a>
+                    </div>
+                `;
+                
+                document.body.appendChild(message);
+                
+                setTimeout(() => {
+                    message.remove();
+                }, 3000);
+            }
         }
-        
+
+        // Initialize cart
+        const cart = new ShoppingCart();
+
+        // Product Functions
+        function viewProduct(productId) {
+            const product = PRODUCTS[productId];
+            if (!product) return;
+            
+            // Add directly to cart
+            cart.addItem(productId);
+            
+            // Track view_item event
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'view_item', {
+                    currency: 'ILS',
+                    value: product.price,
+                    items: [{
+                        item_id: productId,
+                        item_name: product.name,
+                        price: product.price,
+                        quantity: 1
+                    }]
+                });
+            }
+        }
+
+        // Make functions globally available
+        window.viewProduct = viewProduct;
+        window.cart = cart;
+
+        // Update cart count on page load
+        function updateCartCount() {
+            if (cart) {
+                cart.updateCartDisplay();
+            }
+        }
+
         // Initialize when DOM is loaded
         document.addEventListener('DOMContentLoaded', function() {
-            initializePayPalButtons();
+            updateCartCount();
         });
     </script>
 </body>
