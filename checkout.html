@@ -8,8 +8,8 @@
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&display=swap" rel="stylesheet">
     
-    <!-- Stripe JS -->
-    <script src="https://js.stripe.com/v3/"></script>
+    <!-- PayPal SDK -->
+    <script src="https://www.paypal.com/sdk/js?client-id=AZDxjDScFpQtjWTOUtWKbyN_bDt4OgqaF4eYXlewfBP4-8aqX3PiV8e1GWU6liB2CUXlkA59kJXE7M6R&currency=ILS&intent=capture&enable-funding=venmo,card"></script>
     
     <style>
         * {
@@ -299,15 +299,11 @@
                     </div>
                     
                     <div class="form-group">
-                        <label class="form-label">פרטי כרטיס אשראי</label>
-                        <div id="card-element" class="card-element">
-                            <!-- Stripe Elements will create form elements here -->
+                        <label class="form-label">פרטי תשלום</label>
+                        <div id="paypal-button-container" style="margin-top: 1rem;">
+                            <!-- PayPal Buttons will be rendered here -->
                         </div>
                     </div>
-                    
-                    <button type="submit" id="submit-button" class="pay-button">
-                        <span id="button-text">שלם עכשיו - <span id="button-amount">₪0.00</span></span>
-                    </button>
                     
                     <div id="loading" class="loading">
                         <div class="spinner"></div>
@@ -327,24 +323,6 @@
     </div>
 
     <script>
-        // Initialize Stripe
-        const stripe = Stripe('pk_test_51234567890abcdef'); // Replace with your publishable key
-        const elements = stripe.elements();
-        
-        // Create card element
-        const cardElement = elements.create('card', {
-            style: {
-                base: {
-                    fontSize: '16px',
-                    color: '#ffffff',
-                    '::placeholder': {
-                        color: 'rgba(255, 255, 255, 0.6)',
-                    },
-                },
-            },
-        });
-        cardElement.mount('#card-element');
-        
         // Load cart data
         let cartItems = [];
         let totalAmount = 0;
@@ -359,6 +337,7 @@
             }
             
             displayOrderSummary();
+            initializePayPal();
         }
         
         function displayOrderSummary() {
@@ -389,85 +368,103 @@
             document.getElementById('subtotal').textContent = `₪${subtotal.toFixed(2)}`;
             document.getElementById('tax').textContent = `₪${tax.toFixed(2)}`;
             document.getElementById('total').textContent = `₪${totalAmount.toFixed(2)}`;
-            document.getElementById('button-amount').textContent = `₪${totalAmount.toFixed(2)}`;
         }
         
-        // Handle form submission
-        const form = document.getElementById('payment-form');
-        form.addEventListener('submit', async (event) => {
-            event.preventDefault();
+        function initializePayPal() {
+            paypal.Buttons({
+                createOrder: function(data, actions) {
+                    return actions.order.create({
+                        purchase_units: [{
+                            amount: {
+                                value: totalAmount.toFixed(2),
+                                currency_code: 'ILS'
+                            },
+                            description: `Infinity Empire - ${cartItems.length} מוצרים דיגיטליים`,
+                            custom_id: 'IE-' + Date.now(),
+                            invoice_id: 'INV-' + Date.now()
+                        }],
+                        payer: {
+                            email_address: document.getElementById('email').value || undefined,
+                            name: {
+                                given_name: document.getElementById('firstName').value || undefined,
+                                surname: document.getElementById('lastName').value || undefined
+                            }
+                        }
+                    });
+                },
+                onApprove: function(data, actions) {
+                    document.getElementById('loading').style.display = 'block';
+                    
+                    return actions.order.capture().then(function(details) {
+                        // Send receipt email
+                        sendReceiptEmail(details);
+                        
+                        // Clear cart
+                        localStorage.removeItem('infinityCart');
+                        
+                        // Redirect to success page
+                        window.location.href = `success.html?orderID=${data.orderID}&amount=${totalAmount.toFixed(2)}&email=${encodeURIComponent(details.payer.email_address)}`;
+                    });
+                },
+                onCancel: function(data) {
+                    window.location.href = 'cancel.html';
+                },
+                onError: function(err) {
+                    console.error('PayPal Error:', err);
+                    document.getElementById('error-message').textContent = 'שגיאה בעיבוד התשלום. אנא נסה שוב.';
+                    document.getElementById('error-message').style.display = 'block';
+                    document.getElementById('loading').style.display = 'none';
+                }
+            }).render('#paypal-button-container');
+        }
+        
+        function sendReceiptEmail(details) {
+            // This would normally be handled by your backend
+            // For now, we'll just log the receipt data
+            const receiptData = {
+                orderID: details.id,
+                amount: totalAmount.toFixed(2),
+                currency: 'ILS',
+                customerEmail: details.payer.email_address,
+                customerName: details.payer.name.given_name + ' ' + details.payer.name.surname,
+                items: cartItems,
+                timestamp: new Date().toISOString()
+            };
             
-            const submitButton = document.getElementById('submit-button');
-            const loading = document.getElementById('loading');
-            const errorMessage = document.getElementById('error-message');
+            console.log('Receipt data to be sent:', receiptData);
             
-            // Show loading
-            submitButton.disabled = true;
-            loading.style.display = 'block';
-            errorMessage.style.display = 'none';
-            
-            // Get form data
+            // In a real implementation, you would send this to your backend:
+            // fetch('/api/send-receipt', {
+            //     method: 'POST',
+            //     headers: { 'Content-Type': 'application/json' },
+            //     body: JSON.stringify(receiptData)
+            // });
+        }
+        
+        // Validate form before allowing PayPal
+        function validateForm() {
             const email = document.getElementById('email').value;
             const firstName = document.getElementById('firstName').value;
             const lastName = document.getElementById('lastName').value;
             
-            try {
-                // Create payment method
-                const {error, paymentMethod} = await stripe.createPaymentMethod({
-                    type: 'card',
-                    card: cardElement,
-                    billing_details: {
-                        name: `${firstName} ${lastName}`,
-                        email: email,
-                    },
-                });
-                
-                if (error) {
-                    throw error;
-                }
-                
-                // Simulate payment processing (replace with actual backend call)
-                await simulatePayment(paymentMethod, totalAmount, email, firstName, lastName);
-                
-                // Clear cart and redirect to success
-                localStorage.removeItem('infinityCart');
-                window.location.href = `success.html?amount=${totalAmount.toFixed(2)}&email=${encodeURIComponent(email)}`;
-                
-            } catch (error) {
-                console.error('Payment error:', error);
-                errorMessage.textContent = error.message || 'שגיאה בעיבוד התשלום. אנא נסה שוב.';
-                errorMessage.style.display = 'block';
-            } finally {
-                submitButton.disabled = false;
-                loading.style.display = 'none';
+            if (!email || !firstName || !lastName) {
+                document.getElementById('error-message').textContent = 'אנא מלא את כל השדות הנדרשים';
+                document.getElementById('error-message').style.display = 'block';
+                return false;
             }
-        });
-        
-        async function simulatePayment(paymentMethod, amount, email, firstName, lastName) {
-            // Simulate API call delay
-            await new Promise(resolve => setTimeout(resolve, 2000));
             
-            // In a real implementation, you would send this to your backend:
-            const paymentData = {
-                paymentMethodId: paymentMethod.id,
-                amount: Math.round(amount * 100), // Convert to cents
-                currency: 'ils',
-                customer: {
-                    email: email,
-                    name: `${firstName} ${lastName}`
-                },
-                items: cartItems
-            };
-            
-            console.log('Payment data that would be sent to backend:', paymentData);
-            
-            // Simulate successful payment
-            return { success: true };
+            document.getElementById('error-message').style.display = 'none';
+            return true;
         }
         
-        // Initialize page
+        // Add form validation
         document.addEventListener('DOMContentLoaded', function() {
             loadCartData();
+            
+            // Add validation to form fields
+            ['email', 'firstName', 'lastName'].forEach(fieldId => {
+                document.getElementById(fieldId).addEventListener('blur', validateForm);
+            });
         });
     </script>
 </body>
