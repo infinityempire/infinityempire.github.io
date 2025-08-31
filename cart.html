@@ -344,7 +344,7 @@
         // Initialize cart page
         const cartPage = new CartPage();
 
-        // Checkout function
+        // Checkout function with guest payment
         function proceedToCheckout() {
             if (cartPage.items.length === 0) {
                 alert('העגלה שלך ריקה!');
@@ -354,7 +354,7 @@
             // Calculate total
             const total = cartPage.items.reduce((sum, item) => sum + (item.price * item.quantity), 0);
             
-            // Create PayPal form
+            // Create PayPal form for guest checkout
             const form = document.createElement('form');
             form.method = 'POST';
             form.action = 'https://www.paypal.com/cgi-bin/webscr';
@@ -372,7 +372,9 @@
                 'cancel_return': window.location.origin + '/cancel.html',
                 'notify_url': window.location.origin + '/ipn.php',
                 'no_shipping': '1',
-                'no_note': '1'
+                'no_note': '1',
+                'lc': 'IL',
+                'bn': 'PP-BuyNowBF'
             };
 
             // Create hidden inputs
