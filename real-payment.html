@@ -3,7 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>תשלום מאובטח - Infinity Empire</title>
+    <title>תשלום אמיתי - Infinity Empire</title>
+    
+    <!-- PayPal SDK -->
+    <script src="https://www.paypal.com/sdk/js?client-id=AYiPC9BjuuLvyKDUEFEE-AmQuFr24zfLjHREqHoh_dN0M6DaFp_adQIAOVFaucGKQE-6h5dG6fVVlHkA&currency=ILS&components=buttons,hosted-fields"></script>
     
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&display=swap" rel="stylesheet">
@@ -156,35 +159,8 @@
             gap: 1rem;
         }
         
-        .form-row-3 {
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr;
-            gap: 1rem;
-        }
-        
-        .pay-button {
-            width: 100%;
-            padding: 1.2rem;
-            background: linear-gradient(45deg, #ffd700, #ffed4e);
-            color: #1e3c72;
-            border: none;
-            border-radius: 50px;
-            font-size: 1.2rem;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.3s;
-            margin-top: 1rem;
-        }
-        
-        .pay-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(255, 215, 0, 0.3);
-        }
-        
-        .pay-button:disabled {
-            opacity: 0.6;
-            cursor: not-allowed;
-            transform: none;
+        .paypal-buttons-container {
+            margin-top: 2rem;
         }
         
         .security-info {
@@ -246,7 +222,7 @@
                 gap: 2rem;
             }
             
-            .form-row, .form-row-3 {
+            .form-row {
                 grid-template-columns: 1fr;
             }
         }
@@ -255,8 +231,8 @@
 <body>
     <div class="container">
         <div class="payment-header">
-            <h1 class="payment-title">תשלום מאובטח</h1>
-            <p class="payment-subtitle">השלם את הרכישה שלך בצורה מאובטחת</p>
+            <h1 class="payment-title">תשלום אמיתי</h1>
+            <p class="payment-subtitle">תשלום מאובטח עם PayPal - הכסף מגיע ישירות לחשבון שלך</p>
         </div>
         
         <div class="payment-container">
@@ -301,47 +277,26 @@
                     </div>
                     
                     <div class="form-group">
-                        <label class="form-label">מספר כרטיס אשראי</label>
-                        <input type="text" class="form-input" id="cardNumber" placeholder="1234 5678 9012 3456" maxlength="19" required>
-                    </div>
-                    
-                    <div class="form-row-3">
-                        <div class="form-group">
-                            <label class="form-label">תוקף</label>
-                            <input type="text" class="form-input" id="expiry" placeholder="MM/YY" maxlength="5" required>
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label">CVV</label>
-                            <input type="text" class="form-input" id="cvv" placeholder="123" maxlength="4" required>
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label">ת.ז.</label>
-                            <input type="text" class="form-input" id="idNumber" placeholder="123456789" maxlength="9" required>
-                        </div>
-                    </div>
-                    
-                    <div class="form-group">
                         <label class="form-label">כתובת</label>
                         <input type="text" class="form-input" id="address" placeholder="רחוב 123, עיר" required>
                     </div>
-                    
-                    <button type="submit" id="submit-button" class="pay-button">
-                        שלם עכשיו - <span id="button-amount">₪0.00</span>
-                    </button>
-                    
-                    <div id="loading" class="loading">
-                        <div class="spinner"></div>
-                        <p>מעבד תשלום...</p>
-                    </div>
-                    
-                    <div id="error-message" class="error-message"></div>
-                    <div id="success-message" class="success-message"></div>
                 </form>
+                
+                <!-- PayPal Buttons Container -->
+                <div id="paypal-button-container" class="paypal-buttons-container"></div>
+                
+                <div id="loading" class="loading">
+                    <div class="spinner"></div>
+                    <p>מעבד תשלום...</p>
+                </div>
+                
+                <div id="error-message" class="error-message"></div>
+                <div id="success-message" class="success-message"></div>
                 
                 <div class="security-info">
                     <div class="security-icon">🔒</div>
                     <p><strong>תשלום מאובטח 100%</strong></p>
-                    <p>הפרטים שלך מוגנים בהצפנה ברמה בנקאית</p>
+                    <p>מעובד דרך PayPal - הכסף מגיע ישירות לחשבון שלך</p>
                 </div>
             </div>
         </div>
@@ -362,6 +317,7 @@
             }
             
             displayOrderSummary();
+            initializePayPal();
         }
         
         function displayOrderSummary() {
@@ -392,133 +348,86 @@
             document.getElementById('subtotal').textContent = `₪${subtotal.toFixed(2)}`;
             document.getElementById('tax').textContent = `₪${tax.toFixed(2)}`;
             document.getElementById('total').textContent = `₪${totalAmount.toFixed(2)}`;
-            document.getElementById('button-amount').textContent = `₪${totalAmount.toFixed(2)}`;
         }
         
-        // Format card number
-        document.getElementById('cardNumber').addEventListener('input', function(e) {
-            let value = e.target.value.replace(/\s/g, '').replace(/[^0-9]/gi, '');
-            let formattedValue = value.match(/.{1,4}/g)?.join(' ') || value;
-            e.target.value = formattedValue;
-        });
-        
-        // Format expiry date
-        document.getElementById('expiry').addEventListener('input', function(e) {
-            let value = e.target.value.replace(/\D/g, '');
-            if (value.length >= 2) {
-                value = value.substring(0, 2) + '/' + value.substring(2, 4);
-            }
-            e.target.value = value;
-        });
-        
-        // Only numbers for CVV and ID
-        document.getElementById('cvv').addEventListener('input', function(e) {
-            e.target.value = e.target.value.replace(/[^0-9]/g, '');
-        });
-        
-        document.getElementById('idNumber').addEventListener('input', function(e) {
-            e.target.value = e.target.value.replace(/[^0-9]/g, '');
-        });
-        
-        // Handle form submission
-        document.getElementById('payment-form').addEventListener('submit', async function(e) {
-            e.preventDefault();
-            
-            const submitButton = document.getElementById('submit-button');
-            const loading = document.getElementById('loading');
-            const errorMessage = document.getElementById('error-message');
-            const successMessage = document.getElementById('success-message');
-            
-            // Hide messages
-            errorMessage.style.display = 'none';
-            successMessage.style.display = 'none';
-            
-            // Validate form
-            const email = document.getElementById('email').value;
-            const firstName = document.getElementById('firstName').value;
-            const lastName = document.getElementById('lastName').value;
-            const cardNumber = document.getElementById('cardNumber').value.replace(/\s/g, '');
-            const expiry = document.getElementById('expiry').value;
-            const cvv = document.getElementById('cvv').value;
-            const idNumber = document.getElementById('idNumber').value;
-            const address = document.getElementById('address').value;
-            
-            if (!email || !firstName || !lastName || !cardNumber || !expiry || !cvv || !idNumber || !address) {
-                errorMessage.textContent = 'אנא מלא את כל השדות';
-                errorMessage.style.display = 'block';
-                return;
-            }
-            
-            if (cardNumber.length < 13 || cardNumber.length > 19) {
-                errorMessage.textContent = 'מספר כרטיס לא תקין';
-                errorMessage.style.display = 'block';
-                return;
-            }
-            
-            if (cvv.length < 3 || cvv.length > 4) {
-                errorMessage.textContent = 'CVV לא תקין';
-                errorMessage.style.display = 'block';
-                return;
-            }
-            
-            if (idNumber.length !== 9) {
-                errorMessage.textContent = 'תעודת זהות לא תקינה';
-                errorMessage.style.display = 'block';
-                return;
-            }
-            
-            // Show loading
-            submitButton.disabled = true;
-            loading.style.display = 'block';
-            
-            try {
-                // Simulate payment processing
-                await processPayment({
-                    email,
-                    firstName,
-                    lastName,
-                    cardNumber,
-                    expiry,
-                    cvv,
-                    idNumber,
-                    address,
-                    amount: totalAmount,
-                    items: cartItems
-                });
-                
-                // Show success
-                successMessage.innerHTML = `
-                    <strong>התשלום בוצע בהצלחה!</strong><br>
-                    מספר הזמנה: IE-${Date.now()}<br>
-                    קבלה נשלחה לכתובת: ${email}
-                `;
-                successMessage.style.display = 'block';
-                
-                // Clear cart and redirect after 3 seconds
-                setTimeout(() => {
-                    localStorage.removeItem('infinityCart');
-                    window.location.href = `success.html?orderID=IE-${Date.now()}&amount=${totalAmount.toFixed(2)}&email=${encodeURIComponent(email)}`;
-                }, 3000);
-                
-            } catch (error) {
-                errorMessage.textContent = error.message || 'שגיאה בעיבוד התשלום. אנא נסה שוב.';
-                errorMessage.style.display = 'block';
-            } finally {
-                submitButton.disabled = false;
-                loading.style.display = 'none';
-            }
-        });
-        
-        async function processPayment(paymentData) {
-            // Simulate API call delay
-            await new Promise(resolve => setTimeout(resolve, 3000));
-            
-            // Simulate payment processing
-            console.log('Processing payment:', paymentData);
-            
-            // In a real implementation, you would send this to your payment processor
-            // For now, we'll just simulate success
-            return { success: true, transactionId: 'TXN-' + Date.now() };
+        function initializePayPal() {
+            paypal.Buttons({
+                style: {
+                    layout: 'vertical',
+                    color: 'gold',
+                    shape: 'rect',
+                    label: 'paypal'
+                },
+                createOrder: function(data, actions) {
+                    // Validate form
+                    const email = document.getElementById('email').value;
+                    const firstName = document.getElementById('firstName').value;
+                    const lastName = document.getElementById('lastName').value;
+                    const address = document.getElementById('address').value;
+                    
+                    if (!email || !firstName || !lastName || !address) {
+                        document.getElementById('error-message').textContent = 'אנא מלא את כל השדות';
+                        document.getElementById('error-message').style.display = 'block';
+                        return Promise.reject('Missing required fields');
+                    }
+                    
+                    document.getElementById('error-message').style.display = 'none';
+                    
+                    return actions.order.create({
+                        purchase_units: [{
+                            amount: {
+                                value: totalAmount.toFixed(2),
+                                currency_code: 'ILS'
+                            },
+                            description: `Infinity Empire - ${cartItems.length} מוצרים דיגיטליים`,
+                            custom_id: 'IE-' + Date.now(),
+                            invoice_id: 'INV-' + Date.now(),
+                            items: cartItems.map(item => ({
+                                name: item.name,
+                                unit_amount: {
+                                    currency_code: 'ILS',
+                                    value: item.price.toFixed(2)
+                                },
+                                quantity: item.quantity.toString()
+                            }))
+                        }],
+                        payer: {
+                            email_address: email,
+                            name: {
+                                given_name: firstName,
+                                surname: lastName
+                            },
+                            address: {
+                                address_line_1: address,
+                                admin_area_2: 'Israel',
+                                country_code: 'IL'
+                            }
+                        }
+                    });
+                },
+                onApprove: function(data, actions) {
+                    document.getElementById('loading').style.display = 'block';
+                    
+                    return actions.order.capture().then(function(details) {
+                        console.log('Payment completed:', details);
+                        
+                        // Clear cart
+                        localStorage.removeItem('infinityCart');
+                        
+                        // Redirect to success page
+                        window.location.href = `success.html?orderID=${data.orderID}&amount=${totalAmount.toFixed(2)}&email=${encodeURIComponent(details.payer.email_address)}`;
+                    });
+                },
+                onCancel: function(data) {
+                    window.location.href = 'cancel.html';
+                },
+                onError: function(err) {
+                    console.error('PayPal Error:', err);
+                    document.getElementById('error-message').textContent = 'שגיאה בעיבוד התשלום. אנא נסה שוב.';
+                    document.getElementById('error-message').style.display = 'block';
+                    document.getElementById('loading').style.display = 'none';
+                }
+            }).render('#paypal-button-container');
         }
         
         // Initialize page
