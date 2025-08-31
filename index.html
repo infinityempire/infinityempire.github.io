@@ -3,46 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Infinity Empire - חנות דיגיטלית יוקרתית למוצרים דיגיטליים, מדריכים, כלים וחבילות מתקדמות">
-    <meta name="keywords" content="מדריכים דיגיטליים, AI, בינה מלאכותית, לוטו, פרודוקטיביות, אוטומציה">
-    <meta name="author" content="Infinity Empire">
-    
-    <!-- Open Graph Meta Tags -->
-    <meta property="og:title" content="Infinity Empire - חנות דיגיטלית יוקרתית">
-    <meta property="og:description" content="גלה מוצרים דיגיטליים יוקרתיים ויצירתיים - מדריכים, כלים, חבילות ועוד">
-    <meta property="og:image" content="https://infinityempire.github.io/assets/og-image.jpg">
-    <meta property="og:url" content="https://infinityempire.github.io">
-    <meta property="og:type" content="website">
-    
-    <!-- Twitter Card Meta Tags -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Infinity Empire - חנות דיגיטלית יוקרתית">
-    <meta name="twitter:description" content="גלה מוצרים דיגיטליים יוקרתיים ויצירתיים">
-    <meta name="twitter:image" content="https://infinityempire.github.io/assets/og-image.jpg">
-    
     <title>Infinity Empire - חנות דיגיטלית יוקרתית</title>
+    <meta name="description" content="גלה מוצרים דיגיטליים יוקרתיים ויצירתיים - מדריכים מתקדמים, כלים חכמים, חבילות מקצועיות ועוד">
+    <meta name="keywords" content="מוצרים דיגיטליים, מדריכים, AI, לוטו, פרודוקטיביות, אוטומציה">
     
-    <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
-    <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&display=swap" rel="stylesheet">
     
-    <!-- CSS -->
-    <link rel="stylesheet" href="assets/style.css">
-    
-    <!-- Google Analytics 4 -->
+    <!-- Tracking Pixels -->
+    <!-- Google Analytics GA4 -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-INFINITY2024"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
-        gtag('config', 'G-INFINITY2024', {
-            page_title: 'Infinity Empire Store',
-            page_location: window.location.href,
-            send_page_view: true
-        });
+        gtag('config', 'G-INFINITY2024');
     </script>
     
-    <!-- Meta Pixel -->
+    <!-- Meta Pixel (Facebook) -->
     <script>
         !function(f,b,e,v,n,t,s)
         {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -55,9 +33,6 @@
         fbq('init', '1234567890123456');
         fbq('track', 'PageView');
     </script>
-    <noscript><img height="1" width="1" style="display:none"
-        src="https://www.facebook.com/tr?id=1234567890123456&ev=PageView&noscript=1"
-    /></noscript>
     
     <!-- TikTok Pixel -->
     <script>
@@ -68,32 +43,331 @@
         }(window, document, 'ttq');
     </script>
     
-    <!-- Structured Data -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "Organization",
-        "name": "Infinity Empire",
-        "url": "https://infinityempire.github.io",
-        "logo": "https://infinityempire.github.io/assets/logo.png",
-        "description": "חנות דיגיטלית יוקרתית למוצרים דיגיטליים, מדריכים וכלים מתקדמים",
-        "contactPoint": {
-            "@type": "ContactPoint",
-            "telephone": "+972-XX-XXXXXXX",
-            "contactType": "customer service",
-            "email": "support@infinityempire.com"
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
-    }
-    </script>
+        
+        body {
+            font-family: 'Heebo', sans-serif;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: #ffffff;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        .header {
+            background: rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 1rem 0;
+        }
+        
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: #ffd700;
+        }
+        
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        
+        .nav-link {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-link:hover {
+            color: #ffd700;
+        }
+        
+        .cart-link {
+            background: #ffd700;
+            color: #1e3c72 !important;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            font-weight: 700;
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding: 120px 0 80px;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #ffd700, #ffed4e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: linear-gradient(45deg, #ffd700, #ffed4e);
+            color: #1e3c72;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 1.1rem;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(255, 215, 0, 0.3);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: #ffffff;
+            border: 2px solid #ffd700;
+        }
+        
+        .btn-secondary:hover {
+            background: #ffd700;
+            color: #1e3c72;
+        }
+        
+        /* Products Section */
+        .products {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 3rem;
+            font-weight: 900;
+            margin-bottom: 3rem;
+            color: #ffd700;
+        }
+        
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+        
+        .product-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+        
+        .product-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 15px;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            position: relative;
+        }
+        
+        .product-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #ff4757;
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 700;
+        }
+        
+        .product-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #ffd700;
+        }
+        
+        .product-description {
+            margin-bottom: 1.5rem;
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+        
+        .product-features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+            justify-content: center;
+        }
+        
+        .feature-tag {
+            background: rgba(255, 215, 0, 0.2);
+            color: #ffd700;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        
+        .product-price {
+            margin-bottom: 1.5rem;
+        }
+        
+        .price-current {
+            font-size: 2rem;
+            font-weight: 900;
+            color: #ffd700;
+        }
+        
+        .price-original {
+            font-size: 1.2rem;
+            color: #ff6b6b;
+            text-decoration: line-through;
+            margin-right: 0.5rem;
+        }
+        
+        /* Contact Section */
+        .contact {
+            padding: 80px 0;
+            text-align: center;
+            background: rgba(0, 0, 0, 0.2);
+        }
+        
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-top: 2rem;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.2rem;
+        }
+        
+        /* Footer */
+        .footer {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 2rem 0;
+            text-align: center;
+        }
+        
+        /* Success Message */
+        .success-message {
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            background: #27ae60;
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            z-index: 1001;
+            animation: slideIn 0.3s ease-out;
+        }
+        
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+        
+        .success-content {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .success-link {
+            color: #ffd700;
+            text-decoration: none;
+            font-weight: 700;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav-menu {
+                display: none;
+            }
+            
+            .contact-info {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+    </style>
 </head>
 <body>
     <!-- Header -->
     <header class="header">
-        <nav class="navbar">
-            <div class="nav-container">
+        <div class="container">
+            <nav class="navbar">
                 <div class="nav-logo">
-                    <img src="assets/logo.png" alt="Infinity Empire Logo" class="logo-img">
-                    <span class="logo-text">Infinity Empire</span>
+                    <span>Infinity Empire</span>
+                    <span>∞</span>
                 </div>
                 <ul class="nav-menu">
                     <li class="nav-item">
@@ -103,75 +377,24 @@
                         <a href="#products" class="nav-link">מוצרים</a>
                     </li>
                     <li class="nav-item">
-                        <a href="#bundles" class="nav-link">חבילות</a>
-                    </li>
-                    <li class="nav-item">
                         <a href="#contact" class="nav-link">צור קשר</a>
                     </li>
                     <li class="nav-item">
                         <a href="cart.html" class="nav-link cart-link">🛒 עגלה (<span id="cart-count">0</span>)</a>
                     </li>
-                    <li class="nav-item">
-                        <a href="en/index.html" class="nav-link lang-switch">English</a>
-                    </li>
                 </ul>
-                <div class="hamburger">
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                </div>
-            </div>
-        </nav>
+            </nav>
+        </div>
     </header>
 
     <!-- Hero Section -->
     <section id="home" class="hero">
-        <div class="hero-container">
-            <div class="hero-content">
-                <h1 class="hero-title">
-                    <span class="gradient-text">Infinity Empire</span>
-                    <br>חנות דיגיטלית יוקרתית
-                </h1>
-                <p class="hero-description">
-                    גלה מוצרים דיגיטליים יוקרתיים ויצירתיים - מדריכים מתקדמים, כלים חכמים, חבילות מקצועיות ועוד
-                </p>
-                <div class="hero-buttons">
-                    <a href="#products" class="btn btn-primary">צפה במוצרים</a>
-                    <a href="#bundles" class="btn btn-secondary">חבילות מיוחדות</a>
-                </div>
-            </div>
-            <div class="hero-image">
-                <img src="assets/hero-image.jpg" alt="Infinity Empire Digital Products" class="hero-img">
-            </div>
-        </div>
-    </section>
-
-    <!-- Features Section -->
-    <section class="features">
         <div class="container">
-            <h2 class="section-title">למה לבחור ב-Infinity Empire?</h2>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">🚀</div>
-                    <h3>מוצרים מתקדמים</h3>
-                    <p>מדריכים וכלים מתקדמים שפותחו על ידי מומחים בתחום</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">💎</div>
-                    <h3>איכות יוקרתית</h3>
-                    <p>כל מוצר עובר בדיקת איכות קפדנית ומעוצב ברמה הגבוהה ביותר</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">⚡</div>
-                    <h3>גישה מיידית</h3>
-                    <p>קבל גישה מיידית למוצרים שלך מיד לאחר הרכישה</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🔒</div>
-                    <h3>תשלום מאובטח</h3>
-                    <p>תשלום מאובטח דרך PayPal עם הגנה מלאה על הפרטיות</p>
-                </div>
-            </div>
+            <h1>Infinity Empire</h1>
+            <p>חנות דיגיטלית יוקרתית</p>
+            <p>גלה מוצרים דיגיטליים יוקרתיים ויצירתיים - מדריכים מתקדמים, כלים חכמים, חבילות מקצועיות ועוד</p>
+            <a href="#products" class="btn">צפה במוצרים</a>
+            <a href="#contact" class="btn btn-secondary">למד עוד</a>
         </div>
     </section>
 
@@ -179,12 +402,12 @@
     <section id="products" class="products">
         <div class="container">
             <h2 class="section-title">המוצרים שלנו</h2>
+            
             <div class="products-grid">
-                
                 <!-- Product 1: AI Guide -->
                 <div class="product-card">
                     <div class="product-image">
-                        <img src="assets/products/ai-guide.jpg" alt="מדריך AI מקיף">
+                        🤖
                         <div class="product-badge">מומלץ</div>
                     </div>
                     <div class="product-content">
@@ -196,11 +419,11 @@
                             <span class="feature-tag">🎯 אסטרטגיות מוכחות</span>
                         </div>
                         <div class="product-price">
-                            <span class="price-current">₪49.90</span>
                             <span class="price-original">₪79.90</span>
+                            <span class="price-current">₪49.90</span>
                         </div>
-                        <button class="btn btn-primary product-btn" onclick="viewProduct('ai_guide')">
-                            צפה במוצר
+                        <button class="btn" onclick="addToCart('ai_guide')">
+                            הוסף לעגלה
                         </button>
                     </div>
                 </div>
@@ -208,8 +431,8 @@
                 <!-- Product 2: Lottery Guide -->
                 <div class="product-card">
                     <div class="product-image">
-                        <img src="assets/products/lottery-guide.jpg" alt="מדריך לוטו מתקדם">
-                        <div class="product-badge hot">חם</div>
+                        🎲
+                        <div class="product-badge">חם</div>
                     </div>
                     <div class="product-content">
                         <h3 class="product-title">מדריך לוטו מתקדם</h3>
@@ -222,8 +445,8 @@
                         <div class="product-price">
                             <span class="price-current">₪39.90</span>
                         </div>
-                        <button class="btn btn-primary product-btn" onclick="viewProduct('lottery_guide', 39.90)" data-product="lottery_guide" data-price="39.90">
-                            צפה במוצר
+                        <button class="btn" onclick="addToCart('lottery_guide')">
+                            הוסף לעגלה
                         </button>
                     </div>
                 </div>
@@ -231,8 +454,8 @@
                 <!-- Product 3: Time Management -->
                 <div class="product-card">
                     <div class="product-image">
-                        <img src="assets/products/time-management.jpg" alt="ניהול זמן יעיל">
-                        <div class="product-badge sale">מבצע</div>
+                        ⏰
+                        <div class="product-badge">מבצע</div>
                     </div>
                     <div class="product-content">
                         <h3 class="product-title">ניהול זמן יעיל</h3>
@@ -243,11 +466,11 @@
                             <span class="feature-tag">🎯 יעדים ברורים</span>
                         </div>
                         <div class="product-price">
-                            <span class="price-current">₪9.90</span>
                             <span class="price-original">₪29.90</span>
+                            <span class="price-current">₪9.90</span>
                         </div>
-                        <button class="btn btn-primary product-btn" onclick="viewProduct('time_management', 9.90)" data-product="time_management" data-price="9.90">
-                            צפה במוצר
+                        <button class="btn" onclick="addToCart('time_management')">
+                            הוסף לעגלה
                         </button>
                     </div>
                 </div>
@@ -255,21 +478,22 @@
                 <!-- Product 4: Chatbot Guide -->
                 <div class="product-card">
                     <div class="product-image">
-                        <img src="assets/products/chatbot-guide.jpg" alt="צ'אטבוט מהיר">
+                        💬
+                        <div class="product-badge">חדש</div>
                     </div>
                     <div class="product-content">
                         <h3 class="product-title">צ'אטבוט מהיר</h3>
-                        <p class="product-description">מדריך מהיר לבניית צ'אטבוט חכם עם AI מתקדם לעסק שלך</p>
+                        <p class="product-description">מדריך מהיר לבניית צ'אטבוט חכם עם AI מתקדם</p>
                         <div class="product-features">
                             <span class="feature-tag">🤖 AI מתקדם</span>
                             <span class="feature-tag">⚡ הקמה מהירה</span>
-                            <span class="feature-tag">💼 לעסקים</span>
+                            <span class="feature-tag">🔧 כלים מקצועיים</span>
                         </div>
                         <div class="product-price">
                             <span class="price-current">₪59.90</span>
                         </div>
-                        <button class="btn btn-primary product-btn" onclick="viewProduct('chatbot_guide', 59.90)" data-product="chatbot_guide" data-price="59.90">
-                            צפה במוצר
+                        <button class="btn" onclick="addToCart('chatbot_guide')">
+                            הוסף לעגלה
                         </button>
                     </div>
                 </div>
@@ -277,186 +501,46 @@
                 <!-- Product 5: Business Automation -->
                 <div class="product-card">
                     <div class="product-image">
-                        <img src="assets/products/business-automation.jpg" alt="אוטומציות עסק קטן">
+                        ⚙️
+                        <div class="product-badge">פופולרי</div>
                     </div>
                     <div class="product-content">
                         <h3 class="product-title">אוטומציות עסק קטן</h3>
-                        <p class="product-description">כלים ושיטות לאוטומציה של תהליכים בעסק קטן ובינוני</p>
+                        <p class="product-description">כלים ושיטות לאוטומציה של תהליכים בעסק קטן</p>
                         <div class="product-features">
-                            <span class="feature-tag">🔧 כלים מעשיים</span>
-                            <span class="feature-tag">📈 חיסכון בזמן</span>
-                            <span class="feature-tag">💰 הגדלת רווחים</span>
+                            <span class="feature-tag">⚙️ אוטומציה מלאה</span>
+                            <span class="feature-tag">💰 חיסכון בעלויות</span>
+                            <span class="feature-tag">📈 יעילות מקסימלית</span>
                         </div>
                         <div class="product-price">
                             <span class="price-current">₪79.90</span>
                         </div>
-                        <button class="btn btn-primary product-btn" onclick="viewProduct('business_automation', 79.90)" data-product="business_automation" data-price="79.90">
-                            צפה במוצר
+                        <button class="btn" onclick="addToCart('business_automation')">
+                            הוסף לעגלה
                         </button>
                     </div>
                 </div>
 
-                <!-- Product 6: AI Prompts -->
+                <!-- Product 6: Prompts Collection -->
                 <div class="product-card">
                     <div class="product-image">
-                        <img src="assets/products/ai-prompts.jpg" alt="50 פרומפטים מנצחים">
-                        <div class="product-badge">פופולרי</div>
+                        📝
+                        <div class="product-badge">מומלץ</div>
                     </div>
                     <div class="product-content">
                         <h3 class="product-title">50 פרומפטים מנצחים</h3>
-                        <p class="product-description">אוסף של 50 פרומפטים מוכחים לAI שיחסכו לך זמן ויעילו תוצאות מדהימות</p>
+                        <p class="product-description">אוסף של 50 פרומפטים מוכחים לAI שיחסכו לך זמן ויעילו תוצאות</p>
                         <div class="product-features">
-                            <span class="feature-tag">🎯 50 פרומפטים</span>
-                            <span class="feature-tag">✅ מוכחים</span>
+                            <span class="feature-tag">🎯 50 פרומפטים מוכחים</span>
                             <span class="feature-tag">⚡ תוצאות מיידיות</span>
+                            <span class="feature-tag">📝 מדריך שימוש</span>
                         </div>
                         <div class="product-price">
                             <span class="price-current">₪29.90</span>
                         </div>
-                        <button class="btn btn-primary product-btn" onclick="viewProduct('ai_prompts', 29.90)" data-product="ai_prompts" data-price="29.90">
-                            צפה במוצר
+                        <button class="btn" onclick="addToCart('ai_prompts')">
+                            הוסף לעגלה
                         </button>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- Bundles Section -->
-    <section id="bundles" class="bundles">
-        <div class="container">
-            <h2 class="section-title">חבילות מיוחדות</h2>
-            <p class="section-subtitle">חסוך עד 50% עם החבילות המיוחדות שלנו</p>
-            
-            <div class="bundles-grid">
-                
-                <!-- Bundle 1: Productivity Bundle -->
-                <div class="bundle-card">
-                    <div class="bundle-header">
-                        <h3 class="bundle-title">חבילת פרודוקטיביות</h3>
-                        <div class="bundle-badge">חסכון 30%</div>
-                    </div>
-                    <div class="bundle-content">
-                        <p class="bundle-description">הכל מה שאתה צריך לפרודוקטיביות מקסימלית</p>
-                        <ul class="bundle-includes">
-                            <li>✅ ניהול זמן יעיל</li>
-                            <li>✅ פוקוס דיגיטלי</li>
-                            <li>✅ 50 פרומפטים מנצחים</li>
-                        </ul>
-                        <div class="bundle-price">
-                            <span class="price-current">₪89.90</span>
-                            <span class="price-original">₪129.70</span>
-                        </div>
-                        <button class="btn btn-primary bundle-btn" onclick="viewProduct('productivity_bundle', 89.90)" data-product="productivity_bundle" data-price="89.90">
-                            קנה חבילה
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Bundle 2: AI Mastery Bundle -->
-                <div class="bundle-card featured">
-                    <div class="bundle-header">
-                        <h3 class="bundle-title">חבילת שליטה ב-AI</h3>
-                        <div class="bundle-badge">הכי פופולרי</div>
-                    </div>
-                    <div class="bundle-content">
-                        <p class="bundle-description">הפוך למומחה AI עם החבילה המקצועית</p>
-                        <ul class="bundle-includes">
-                            <li>✅ מדריך AI מקיף</li>
-                            <li>✅ צ'אטבוט מהיר</li>
-                            <li>✅ 50 פרומפטים מנצחים</li>
-                            <li>✅ בונוס: תמיכה אישית</li>
-                        </ul>
-                        <div class="bundle-price">
-                            <span class="price-current">₪109.90</span>
-                            <span class="price-original">₪139.70</span>
-                        </div>
-                        <button class="btn btn-primary bundle-btn" onclick="viewProduct('ai_mastery_bundle', 109.90)" data-product="ai_mastery_bundle" data-price="109.90">
-                            קנה חבילה
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Bundle 3: Ultimate Bundle -->
-                <div class="bundle-card ultimate">
-                    <div class="bundle-header">
-                        <h3 class="bundle-title">החבילה האולטימטיבית</h3>
-                        <div class="bundle-badge">חסכון 50%</div>
-                    </div>
-                    <div class="bundle-content">
-                        <p class="bundle-description">כל המוצרים שלנו במחיר מיוחד!</p>
-                        <ul class="bundle-includes">
-                            <li>✅ כל המדריכים והכלים</li>
-                            <li>✅ כל החבילות</li>
-                            <li>✅ עדכונים לכל החיים</li>
-                            <li>✅ תמיכה VIP</li>
-                            <li>✅ גישה למוצרים עתידיים</li>
-                        </ul>
-                        <div class="bundle-price">
-                            <span class="price-current">₪299.90</span>
-                            <span class="price-original">₪599.80</span>
-                        </div>
-                        <button class="btn btn-primary bundle-btn" onclick="viewProduct('ultimate_bundle', 299.90)" data-product="ultimate_bundle" data-price="299.90">
-                            קנה חבילה
-                        </button>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- Testimonials Section -->
-    <section class="testimonials">
-        <div class="container">
-            <h2 class="section-title">מה הלקוחות שלנו אומרים</h2>
-            <div class="testimonials-grid">
-                <div class="testimonial-card">
-                    <div class="testimonial-content">
-                        <p>"המדריך לAI שינה לי את החיים! עכשיו אני יכול לעבוד פי 3 יותר מהר ויעיל."</p>
-                    </div>
-                    <div class="testimonial-author">
-                        <img src="assets/testimonials/user1.jpg" alt="דוד כהן">
-                        <div class="author-info">
-                            <h4>דוד כהן</h4>
-                            <span>יזם דיגיטלי</span>
-                        </div>
-                    </div>
-                    <div class="testimonial-rating">
-                        ⭐⭐⭐⭐⭐
-                    </div>
-                </div>
-
-                <div class="testimonial-card">
-                    <div class="testimonial-content">
-                        <p>"החבילה האולטימטיבית הייתה השקעה הכי טובה שעשיתי השנה. המוצרים באיכות מדהימה!"</p>
-                    </div>
-                    <div class="testimonial-author">
-                        <img src="assets/testimonials/user2.jpg" alt="שרה לוי">
-                        <div class="author-info">
-                            <h4>שרה לוי</h4>
-                            <span>מנהלת פרויקטים</span>
-                        </div>
-                    </div>
-                    <div class="testimonial-rating">
-                        ⭐⭐⭐⭐⭐
-                    </div>
-                </div>
-
-                <div class="testimonial-card">
-                    <div class="testimonial-content">
-                        <p>"מדריך הלוטו עזר לי להבין את המשחק ברמה חדשה לגמרי. מומלץ בחום!"</p>
-                    </div>
-                    <div class="testimonial-author">
-                        <img src="assets/testimonials/user3.jpg" alt="מיכאל אברהם">
-                        <div class="author-info">
-                            <h4>מיכאל אברהם</h4>
-                            <span>אנליסט נתונים</span>
-                        </div>
-                    </div>
-                    <div class="testimonial-rating">
-                        ⭐⭐⭐⭐⭐
                     </div>
                 </div>
             </div>
@@ -467,59 +551,16 @@
     <section id="contact" class="contact">
         <div class="container">
             <h2 class="section-title">צור קשר</h2>
-            <p class="section-subtitle">יש לך שאלות? אנחנו כאן לעזור!</p>
+            <p>יש לך שאלות? אנחנו כאן לעזור!</p>
             
-            <div class="contact-content">
-                <div class="contact-info">
-                    <div class="contact-item">
-                        <div class="contact-icon">📧</div>
-                        <div class="contact-details">
-                            <h3>אימייל</h3>
-                            <p>support@infinityempire.com</p>
-                        </div>
-                    </div>
-                    
-                    <div class="contact-item">
-                        <div class="contact-icon">🌐</div>
-                        <div class="contact-details">
-                            <h3>אתר</h3>
-                            <p>infinityempire.github.io</p>
-                        </div>
-                    </div>
-                    
-                    <div class="contact-item">
-                        <div class="contact-icon">⏰</div>
-                        <div class="contact-details">
-                            <h3>זמני מענה</h3>
-                            <p>ראשון-חמישי: 9:00-18:00</p>
-                        </div>
-                    </div>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <span>📧</span>
+                    <span>support@infinityempire.com</span>
                 </div>
-                
-                <div class="contact-form">
-                    <form id="contactForm">
-                        <div class="form-group">
-                            <label for="name">שם מלא</label>
-                            <input type="text" id="name" name="name" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="email">אימייל</label>
-                            <input type="email" id="email" name="email" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="subject">נושא</label>
-                            <input type="text" id="subject" name="subject" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="message">הודעה</label>
-                            <textarea id="message" name="message" rows="5" required></textarea>
-                        </div>
-                        
-                        <button type="submit" class="btn btn-primary">שלח הודעה</button>
-                    </form>
+                <div class="contact-item">
+                    <span>🌐</span>
+                    <span>infinityempire.github.io</span>
                 </div>
             </div>
         </div>
@@ -528,64 +569,14 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <div class="footer-logo">
-                        <img src="assets/logo.png" alt="Infinity Empire Logo" class="footer-logo-img">
-                        <span class="footer-logo-text">Infinity Empire</span>
-                    </div>
-                    <p class="footer-description">
-                        חנות דיגיטלית יוקרתית למוצרים דיגיטליים מתקדמים
-                    </p>
-                </div>
-                
-                <div class="footer-section">
-                    <h3>קישורים מהירים</h3>
-                        <ul class="nav-menu">
-                    <li><a href="#home">בית</a></li>
-                    <li><a href="#products">מוצרים</a></li>
-                    <li><a href="#contact">צור קשר</a></li>
-                    <li><a href="cart.html" class="cart-link">🛒 עגלה (<span id="cart-count">0</span>)</a></li>
-                </ul>              <li><a href="#contact">צור קשר</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-section">
-                    <h3>מוצרים פופולריים</h3>
-                    <ul class="footer-links">
-                        <li><a href="#ai-guide">מדריך AI מקיף</a></li>
-                        <li><a href="#lottery-guide">מדריך לוטו מתקדם</a></li>
-                        <li><a href="#time-management">ניהול זמן יעיל</a></li>
-                        <li><a href="#ultimate-bundle">החבילה האולטימטיבית</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-section">
-                    <h3>מידע משפטי</h3>
-                    <ul class="footer-links">
-                        <li><a href="privacy.html">מדיניות פרטיות</a></li>
-                        <li><a href="terms.html">תנאי שימוש</a></li>
-                        <li><a href="refund.html">מדיניות החזרות</a></li>
-                    </ul>
-                </div>
-            </div>
-            
-            <div class="footer-bottom">
-                <p>&copy; 2024 Infinity Empire. כל הזכויות שמורות.</p>
-                <div class="footer-social">
-                    <a href="#" class="social-link">📘</a>
-                    <a href="#" class="social-link">📷</a>
-                    <a href="#" class="social-link">🐦</a>
-                    <a href="#" class="social-link">💼</a>
-                </div>
-            </div>
+            <p>&copy; 2024 Infinity Empire Store. כל הזכויות שמורות.</p>
         </div>
     </footer>
 
     <!-- PayPal SDK -->
     <script src="https://www.paypal.com/sdk/js?client-id=YOUR_PAYPAL_CLIENT_ID&currency=ILS"></script>
     
-    <!-- Inline JavaScript -->
+    <!-- Complete JavaScript -->
     <script>
         // Product Database
         const PRODUCTS = {
@@ -595,14 +586,16 @@
                 price: 49.90,
                 originalPrice: 79.90,
                 currency: 'ILS',
-                description: 'מדריך מקיף לבינה מלאכותית עם כלים מעשיים ואסטרטגיות מתקדמות לשימוש יומיומי'
+                description: 'מדריך מקיף לבינה מלאכותית עם כלים מעשיים ואסטרטגיות מתקדמות לשימוש יומיומי',
+                paypalItemId: 'ai_guide_49_90'
             },
             lottery_guide: {
                 id: 'lottery_guide',
                 name: 'מדריך לוטו מתקדם',
                 price: 39.90,
                 currency: 'ILS',
-                description: 'אסטרטגיות מתקדמות ושיטות מוכחות לשיפור הסיכויים בלוטו הישראלי'
+                description: 'אסטרטגיות מתקדמות ושיטות מוכחות לשיפור הסיכויים בלוטו הישראלי',
+                paypalItemId: 'lottery_guide_39_90'
             },
             time_management: {
                 id: 'time_management',
@@ -610,28 +603,32 @@
                 price: 9.90,
                 originalPrice: 29.90,
                 currency: 'ILS',
-                description: 'טכניקות מוכחות לניהול זמן ושיפור פרודוקטיביות אישית ומקצועית'
+                description: 'טכניקות מוכחות לניהול זמן ושיפור פרודוקטיביות אישית ומקצועית',
+                paypalItemId: 'time_management_9_90'
             },
             chatbot_guide: {
                 id: 'chatbot_guide',
                 name: 'צ\'אטבוט מהיר',
                 price: 59.90,
                 currency: 'ILS',
-                description: 'מדריך מהיר לבניית צ\'אטבוט חכם עם AI מתקדם'
+                description: 'מדריך מהיר לבניית צ\'אטבוט חכם עם AI מתקדם',
+                paypalItemId: 'chatbot_guide_59_90'
             },
             business_automation: {
                 id: 'business_automation',
                 name: 'אוטומציות עסק קטן',
                 price: 79.90,
                 currency: 'ILS',
-                description: 'כלים ושיטות לאוטומציה של תהליכים בעסק קטן'
+                description: 'כלים ושיטות לאוטומציה של תהליכים בעסק קטן',
+                paypalItemId: 'business_automation_79_90'
             },
             ai_prompts: {
                 id: 'ai_prompts',
                 name: '50 פרומפטים מנצחים',
                 price: 29.90,
                 currency: 'ILS',
-                description: 'אוסף של 50 פרומפטים מוכחים לAI שיחסכו לך זמן ויעילו תוצאות'
+                description: 'אוסף של 50 פרומפטים מוכחים לAI שיחסכו לך זמן ויעילו תוצאות',
+                paypalItemId: 'ai_prompts_29_90'
             }
         };
 
@@ -670,11 +667,33 @@
 
                 this.saveCart();
                 this.showAddedToCartMessage(product.name);
+                this.trackAddToCart(product);
                 return true;
+            }
+
+            removeItem(productId) {
+                this.items = this.items.filter(item => item.id !== productId);
+                this.saveCart();
+            }
+
+            updateQuantity(productId, quantity) {
+                const item = this.items.find(item => item.id === productId);
+                if (item) {
+                    if (quantity <= 0) {
+                        this.removeItem(productId);
+                    } else {
+                        item.quantity = quantity;
+                        this.saveCart();
+                    }
+                }
             }
 
             getTotalItems() {
                 return this.items.reduce((total, item) => total + item.quantity, 0);
+            }
+
+            getTotalPrice() {
+                return this.items.reduce((total, item) => total + (item.price * item.quantity), 0);
             }
 
             updateCartDisplay() {
@@ -686,23 +705,12 @@
 
             showAddedToCartMessage(productName) {
                 const message = document.createElement('div');
-                message.style.cssText = `
-                    position: fixed;
-                    top: 100px;
-                    right: 20px;
-                    background: #27ae60;
-                    color: white;
-                    padding: 1rem 1.5rem;
-                    border-radius: 10px;
-                    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-                    z-index: 1001;
-                    animation: slideIn 0.3s ease-out;
-                `;
+                message.className = 'success-message';
                 message.innerHTML = `
-                    <div style="display: flex; align-items: center; gap: 1rem;">
+                    <div class="success-content">
                         <span>✅</span>
                         <span>${productName} נוסף לעגלה!</span>
-                        <a href="cart.html" style="color: #ffd700; text-decoration: none; font-weight: 700;">צפה בעגלה</a>
+                        <a href="cart.html" class="success-link">צפה בעגלה</a>
                     </div>
                 `;
                 
@@ -712,48 +720,146 @@
                     message.remove();
                 }, 3000);
             }
+
+            trackAddToCart(product) {
+                // Google Analytics
+                if (typeof gtag !== 'undefined') {
+                    gtag('event', 'add_to_cart', {
+                        currency: 'ILS',
+                        value: product.price,
+                        items: [{
+                            item_id: product.id,
+                            item_name: product.name,
+                            price: product.price,
+                            quantity: 1
+                        }]
+                    });
+                }
+
+                // Facebook Pixel
+                if (typeof fbq !== 'undefined') {
+                    fbq('track', 'AddToCart', {
+                        content_name: product.name,
+                        content_ids: [product.id],
+                        content_type: 'product',
+                        value: product.price,
+                        currency: 'ILS'
+                    });
+                }
+
+                // TikTok Pixel
+                if (typeof ttq !== 'undefined') {
+                    ttq.track('AddToCart', {
+                        content_name: product.name,
+                        content_id: product.id,
+                        content_type: 'product',
+                        value: product.price,
+                        currency: 'ILS'
+                    });
+                }
+            }
+
+            checkout() {
+                if (this.items.length === 0) {
+                    alert('העגלה ריקה!');
+                    return;
+                }
+
+                // Create PayPal payment URL
+                const totalAmount = this.getTotalPrice().toFixed(2);
+                const itemsDescription = this.items.map(item => 
+                    `${item.name} x${item.quantity}`
+                ).join(', ');
+
+                // PayPal payment URL with all items
+                const paypalUrl = `https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=tal.derie.td@gmail.com&item_name=${encodeURIComponent(itemsDescription)}&amount=${totalAmount}&currency_code=ILS&return=https://infinityempire.github.io/success.html&cancel_return=https://infinityempire.github.io/cancel.html`;
+
+                // Track purchase initiation
+                this.trackBeginCheckout();
+
+                // Redirect to PayPal
+                window.open(paypalUrl, '_blank');
+            }
+
+            trackBeginCheckout() {
+                const totalValue = this.getTotalPrice();
+                const items = this.items.map(item => ({
+                    item_id: item.id,
+                    item_name: item.name,
+                    price: item.price,
+                    quantity: item.quantity
+                }));
+
+                // Google Analytics
+                if (typeof gtag !== 'undefined') {
+                    gtag('event', 'begin_checkout', {
+                        currency: 'ILS',
+                        value: totalValue,
+                        items: items
+                    });
+                }
+
+                // Facebook Pixel
+                if (typeof fbq !== 'undefined') {
+                    fbq('track', 'InitiateCheckout', {
+                        value: totalValue,
+                        currency: 'ILS',
+                        num_items: this.getTotalItems()
+                    });
+                }
+
+                // TikTok Pixel
+                if (typeof ttq !== 'undefined') {
+                    ttq.track('InitiateCheckout', {
+                        value: totalValue,
+                        currency: 'ILS'
+                    });
+                }
+            }
         }
 
         // Initialize cart
         const cart = new ShoppingCart();
 
-        // Product Functions
-        function viewProduct(productId) {
-            const product = PRODUCTS[productId];
-            if (!product) return;
-            
-            // Add directly to cart
+        // Global Functions
+        function addToCart(productId) {
             cart.addItem(productId);
-            
-            // Track view_item event
-            if (typeof gtag !== 'undefined') {
-                gtag('event', 'view_item', {
-                    currency: 'ILS',
-                    value: product.price,
-                    items: [{
-                        item_id: productId,
-                        item_name: product.name,
-                        price: product.price,
-                        quantity: 1
-                    }]
-                });
-            }
+        }
+
+        function updateCartCount() {
+            cart.updateCartDisplay();
         }
 
         // Make functions globally available
-        window.viewProduct = viewProduct;
+        window.addToCart = addToCart;
         window.cart = cart;
-
-        // Update cart count on page load
-        function updateCartCount() {
-            if (cart) {
-                cart.updateCartDisplay();
-            }
-        }
+        window.updateCartCount = updateCartCount;
 
         // Initialize when DOM is loaded
         document.addEventListener('DOMContentLoaded', function() {
             updateCartCount();
+            
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+        });
+
+        // Console log for debugging
+        console.log('Infinity Empire - E-commerce system loaded successfully! 🚀');
+        console.log('Available functions:', {
+            addToCart: typeof addToCart,
+            cart: typeof cart,
+            updateCartCount: typeof updateCartCount
         });
     </script>
 </body>
