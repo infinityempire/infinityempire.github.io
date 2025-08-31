@@ -8,12 +8,22 @@
     <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&display=swap" rel="stylesheet">
     
     <!-- Google Analytics GA4 -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-INFINITY2024"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
-        gtag('config', 'GA_MEASUREMENT_ID');
+        gtag('config', 'G-INFINITY2024', {
+            page_title: 'Infinity Empire Store',
+            page_location: window.location.href,
+            content_group1: 'Digital Store'
+        });
+        
+        // Track page view
+        gtag('event', 'page_view', {
+            page_title: 'Infinity Empire Store',
+            page_location: window.location.href
+        });
     </script>
     
     <!-- Meta Pixel -->
@@ -26,16 +36,28 @@
         t.src=v;s=b.getElementsByTagName(e)[0];
         s.parentNode.insertBefore(t,s)}(window, document,'script',
         'https://connect.facebook.net/en_US/fbevents.js');
-        fbq('init', 'YOUR_PIXEL_ID');
+        fbq('init', '1234567890123456');
         fbq('track', 'PageView');
+        
+        // Track when user views products
+        fbq('track', 'ViewContent', {
+            content_type: 'product_group',
+            content_category: 'Digital Products'
+        });
     </script>
     
     <!-- TikTok Pixel -->
     <script>
         !function (w, d, t) {
             w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t]||[];ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie"],ttq.setAndDefer=function(t,e){t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}};for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);ttq.instance=function(t){for(var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n]);return e},ttq.load=function(e,n){var i="https://analytics.tiktok.com/i18n/pixel/events.js";ttq._i=ttq._i||{},ttq._i[e]=[],ttq._i[e]._u=i,ttq._t=ttq._t||{},ttq._t[e]=+new Date,ttq._o=ttq._o||{},ttq._o[e]=n||{};var o=document.createElement("script");o.type="text/javascript",o.async=!0,o.src=i+"?sdkid="+e+"&lib="+t;var a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(o,a)};
-            ttq.load('YOUR_TIKTOK_PIXEL_ID');
+            ttq.load('C9JQ2G3C77U8GLLG4KL0');
             ttq.page();
+            
+            // Track product views
+            ttq.track('ViewContent', {
+                content_type: 'product_group',
+                content_category: 'Digital Products'
+            });
         }(window, document, 'ttq');
     </script>
 </head>
