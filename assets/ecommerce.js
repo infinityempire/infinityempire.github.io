@@ -175,10 +175,25 @@ const cart = new ShoppingCart();
 
 // Product Functions
 function viewProduct(productId) {
-    // Store product ID for the product page
-    localStorage.setItem('currentProductId', productId);
-    // Navigate to product page
-    window.location.href = 'product.html';
+    const product = PRODUCTS[productId];
+    if (!product) return;
+    
+    // Add directly to cart instead of navigating to product page
+    cart.addItem(productId);
+    
+    // Track view_item event
+    if (typeof gtag !== 'undefined') {
+        gtag('event', 'view_item', {
+            currency: 'ILS',
+            value: product.price,
+            items: [{
+                item_id: productId,
+                item_name: product.name,
+                price: product.price,
+                quantity: 1
+            }]
+        });
+    }
 }
 
 function loadProductDetails() {
