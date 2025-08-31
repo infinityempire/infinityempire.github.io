@@ -829,12 +829,17 @@
             cart.addItem(productId);
         }
 
+        function viewProduct(productId) {
+            cart.addToCart(productId);
+        }
+
         function updateCartCount() {
             cart.updateCartDisplay();
         }
 
         // Make functions globally available
         window.addToCart = addToCart;
+        window.viewProduct = viewProduct;
         window.cart = cart;
         window.updateCartCount = updateCartCount;
 
