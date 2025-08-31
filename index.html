@@ -648,17 +648,16 @@
                 localStorage.setItem('infinityCart', JSON.stringify(this.items));
                 this.updateCartDisplay();
             }
-
-            addItem(productId) {
+            addToCart(productId) {
                 const product = PRODUCTS[productId];
-                if (!product) return false;
+                if (!product) return;
 
                 const existingItem = this.items.find(item => item.id === productId);
                 if (existingItem) {
                     existingItem.quantity += 1;
                 } else {
                     this.items.push({
-                        id: productId,
+                        id: product.id,
                         name: product.name,
                         price: product.price,
                         quantity: 1
@@ -666,9 +665,13 @@
                 }
 
                 this.saveCart();
-                this.showAddedToCartMessage(product.name);
-                this.trackAddToCart(product);
-                return true;
+                this.updateCartCount();
+                this.showSuccessMessage(`${product.name} נוסף לעגלה!`);
+                
+                // Force update cart count display
+                setTimeout(() => {
+                    this.updateCartCount();
+                }, 100);
             }
 
             removeItem(productId) {
