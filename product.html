@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>עגלת קניות - Infinity Empire Store</title>
+    <title id="product-title">מוצר - Infinity Empire Store</title>
     <link rel="stylesheet" href="assets/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&display=swap" rel="stylesheet">
     
@@ -41,7 +41,7 @@
                     <li><a href="index.html">בית</a></li>
                     <li><a href="index.html#products">מוצרים</a></li>
                     <li><a href="index.html#contact">צור קשר</a></li>
-                    <li><a href="cart.html" class="cart-link active">🛒 עגלה (<span id="cart-count">0</span>)</a></li>
+                    <li><a href="cart.html" class="cart-link">🛒 עגלה (<span id="cart-count">0</span>)</a></li>
                 </ul>
             </div>
         </nav>
@@ -49,41 +49,38 @@
 
     <main class="main">
         <div class="container">
-            <div class="cart-page">
-                <h1 class="page-title">עגלת הקניות שלך 🛒</h1>
+            <div class="product-detail">
+                <div class="product-images">
+                    <img id="product-image" src="" alt="" class="product-main-image">
+                </div>
                 
-                <div class="cart-content">
-                    <div class="cart-items" id="cart-items">
-                        <!-- Cart items will be loaded here -->
+                <div class="product-info">
+                    <h1 id="product-name" class="product-detail-title"></h1>
+                    <p id="product-description" class="product-detail-description"></p>
+                    
+                    <div class="product-features" id="product-features">
+                        <!-- Features will be loaded dynamically -->
                     </div>
                     
-                    <div class="cart-empty" id="cart-empty" style="display: none;">
-                        <div class="empty-cart-message">
-                            <h2>העגלה שלך ריקה</h2>
-                            <p>הוסף מוצרים לעגלה כדי להמשיך לתשלום</p>
-                            <a href="index.html#products" class="btn btn-primary">חזור לקטלוג</a>
-                        </div>
+                    <div class="product-price-section">
+                        <span id="product-price" class="product-detail-price"></span>
+                        <span id="product-original-price" class="product-original-price" style="display: none;"></span>
                     </div>
                     
-                    <div class="cart-summary" id="cart-summary" style="display: none;">
-                        <div class="summary-card">
-                            <h3>סיכום הזמנה</h3>
-                            <div class="summary-line">
-                                <span>סה"כ מוצרים:</span>
-                                <span id="total-items">0</span>
-                            </div>
-                            <div class="summary-line">
-                                <span>סה"כ לתשלום:</span>
-                                <span id="total-price" class="total-price">₪0.00</span>
-                            </div>
-                            
-                            <div class="cart-actions">
-                                <button id="checkout-btn" class="btn btn-primary btn-large">
-                                    המשך לתשלום 💳
-                                </button>
-                                <a href="index.html#products" class="btn btn-secondary">
-                                    המשך קניות
-                                </a>
+                    <div class="product-actions">
+                        <button id="add-to-cart-btn" class="btn btn-primary btn-large">
+                            הוסף לעגלה 🛒
+                        </button>
+                        <button onclick="window.history.back()" class="btn btn-secondary">
+                            חזור לקטלוג
+                        </button>
+                    </div>
+                    
+                    <div class="product-details-tabs">
+                        <div class="tab-content">
+                            <h3>פרטי המוצר</h3>
+                            <div id="product-full-description">
+                                <!-- Full description will be loaded -->
                             </div>
                         </div>
                     </div>
@@ -110,8 +107,9 @@
     <script src="assets/script.js"></script>
     <script src="assets/ecommerce.js"></script>
     <script>
+        // Load product details when page loads
         document.addEventListener('DOMContentLoaded', function() {
-            loadCart();
+            loadProductDetails();
             updateCartCount();
         });
     </script>

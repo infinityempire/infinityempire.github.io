@@ -3,11 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Infinity Empire Store - חנות דיגיטלית יוקרתית</title>
-    <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <meta name="description" content="Infinity Empire - חנות דיגיטלית יוקרתית למוצרים דיגיטליים, מדריכים, כלים וחבילות מתקדמות">
+    <meta name="keywords" content="מדריכים דיגיטליים, AI, בינה מלאכותית, לוטו, פרודוקטיביות, אוטומציה">
+    <meta name="author" content="Infinity Empire">
     
-    <!-- Google Analytics GA4 -->
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Infinity Empire - חנות דיגיטלית יוקרתית">
+    <meta property="og:description" content="גלה מוצרים דיגיטליים יוקרתיים ויצירתיים - מדריכים, כלים, חבילות ועוד">
+    <meta property="og:image" content="https://infinityempire.github.io/assets/og-image.jpg">
+    <meta property="og:url" content="https://infinityempire.github.io">
+    <meta property="og:type" content="website">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Infinity Empire - חנות דיגיטלית יוקרתית">
+    <meta name="twitter:description" content="גלה מוצרים דיגיטליים יוקרתיים ויצירתיים">
+    <meta name="twitter:image" content="https://infinityempire.github.io/assets/og-image.jpg">
+    
+    <title>Infinity Empire - חנות דיגיטלית יוקרתית</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+    <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="assets/style.css">
+    
+    <!-- Google Analytics 4 -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-INFINITY2024"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
@@ -16,13 +38,7 @@
         gtag('config', 'G-INFINITY2024', {
             page_title: 'Infinity Empire Store',
             page_location: window.location.href,
-            content_group1: 'Digital Store'
-        });
-        
-        // Track page view
-        gtag('event', 'page_view', {
-            page_title: 'Infinity Empire Store',
-            page_location: window.location.href
+            send_page_view: true
         });
     </script>
     
@@ -38,425 +54,558 @@
         'https://connect.facebook.net/en_US/fbevents.js');
         fbq('init', '1234567890123456');
         fbq('track', 'PageView');
-        
-        // Track when user views products
-        fbq('track', 'ViewContent', {
-            content_type: 'product_group',
-            content_category: 'Digital Products'
-        });
     </script>
+    <noscript><img height="1" width="1" style="display:none"
+        src="https://www.facebook.com/tr?id=1234567890123456&ev=PageView&noscript=1"
+    /></noscript>
     
     <!-- TikTok Pixel -->
     <script>
         !function (w, d, t) {
             w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t]||[];ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie"],ttq.setAndDefer=function(t,e){t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}};for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);ttq.instance=function(t){for(var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n]);return e},ttq.load=function(e,n){var i="https://analytics.tiktok.com/i18n/pixel/events.js";ttq._i=ttq._i||{},ttq._i[e]=[],ttq._i[e]._u=i,ttq._t=ttq._t||{},ttq._t[e]=+new Date,ttq._o=ttq._o||{},ttq._o[e]=n||{};var o=document.createElement("script");o.type="text/javascript",o.async=!0,o.src=i+"?sdkid="+e+"&lib="+t;var a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(o,a)};
-            ttq.load('C9JQ2G3C77U8GLLG4KL0');
+            ttq.load('INFINITY2024TT');
             ttq.page();
-            
-            // Track product views
-            ttq.track('ViewContent', {
-                content_type: 'product_group',
-                content_category: 'Digital Products'
-            });
         }(window, document, 'ttq');
+    </script>
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Infinity Empire",
+        "url": "https://infinityempire.github.io",
+        "logo": "https://infinityempire.github.io/assets/logo.png",
+        "description": "חנות דיגיטלית יוקרתית למוצרים דיגיטליים, מדריכים וכלים מתקדמים",
+        "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+972-XX-XXXXXXX",
+            "contactType": "customer service",
+            "email": "support@infinityempire.com"
+        }
+    }
     </script>
 </head>
 <body>
+    <!-- Header -->
     <header class="header">
         <nav class="navbar">
-            <div class="logo">
-                <span class="infinity-symbol">∞</span>
-                <span class="brand-name">Infinity Empire</span>
+            <div class="nav-container">
+                <div class="nav-logo">
+                    <img src="assets/logo.png" alt="Infinity Empire Logo" class="logo-img">
+                    <span class="logo-text">Infinity Empire</span>
+                </div>
+                <ul class="nav-menu">
+                    <li class="nav-item">
+                        <a href="#home" class="nav-link">בית</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#products" class="nav-link">מוצרים</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#bundles" class="nav-link">חבילות</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#contact" class="nav-link">צור קשר</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="cart.html" class="nav-link cart-link">🛒 עגלה (<span id="cart-count">0</span>)</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="en/index.html" class="nav-link lang-switch">English</a>
+                    </li>
+                </ul>
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
             </div>
-            <ul class="nav-menu">
-                <li><a href="#home">בית</a></li>
-                <li><a href="#products">מוצרים</a></li>
-                <li><a href="catalog.html">קטלוג</a></li>
-                <li><a href="#contact">צור קשר</a></li>
-            </ul>
         </nav>
     </header>
 
-    <main>
-        <!-- Hero Section -->
-        <section id="home" class="hero">
-            <div class="floating-elements">
-                <div class="floating-element">💎</div>
-                <div class="floating-element">✨</div>
-                <div class="floating-element">📱</div>
-                <div class="floating-element">🎨</div>
-            </div>
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-container">
             <div class="hero-content">
                 <h1 class="hero-title">
                     <span class="gradient-text">Infinity Empire</span>
-                    <span class="subtitle">חנות דיגיטלית יוקרתית</span>
+                    <br>חנות דיגיטלית יוקרתית
                 </h1>
                 <p class="hero-description">
-                    גלה מוצרים דיגיטליים יוקרתיים ויצירתיים - מדריכים, כלים, חבילות ועוד
+                    גלה מוצרים דיגיטליים יוקרתיים ויצירתיים - מדריכים מתקדמים, כלים חכמים, חבילות מקצועיות ועוד
                 </p>
                 <div class="hero-buttons">
                     <a href="#products" class="btn btn-primary">צפה במוצרים</a>
-                    <a href="catalog.html" class="btn btn-secondary">למד עוד</a>
+                    <a href="#bundles" class="btn btn-secondary">חבילות מיוחדות</a>
                 </div>
             </div>
-        </section>
+            <div class="hero-image">
+                <img src="assets/hero-image.jpg" alt="Infinity Empire Digital Products" class="hero-img">
+            </div>
+        </div>
+    </section>
 
-        <!-- Products Section -->
-        <section id="products" class="products-section">
-            <div class="container">
-                <h2 class="section-title">המוצרים שלנו</h2>
-                <div class="products-grid">
-                    <!-- מוצרים יחידים -->
-                    <div class="product-card">
-                        <div class="product-image">
-                            <div class="product-icon">🤖</div>
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <h2 class="section-title">למה לבחור ב-Infinity Empire?</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🚀</div>
+                    <h3>מוצרים מתקדמים</h3>
+                    <p>מדריכים וכלים מתקדמים שפותחו על ידי מומחים בתחום</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💎</div>
+                    <h3>איכות יוקרתית</h3>
+                    <p>כל מוצר עובר בדיקת איכות קפדנית ומעוצב ברמה הגבוהה ביותר</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>גישה מיידית</h3>
+                    <p>קבל גישה מיידית למוצרים שלך מיד לאחר הרכישה</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔒</div>
+                    <h3>תשלום מאובטח</h3>
+                    <p>תשלום מאובטח דרך PayPal עם הגנה מלאה על הפרטיות</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section id="products" class="products">
+        <div class="container">
+            <h2 class="section-title">המוצרים שלנו</h2>
+            <div class="products-grid">
+                
+                <!-- Product 1: AI Guide -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="assets/products/ai-guide.jpg" alt="מדריך AI מקיף">
+                        <div class="product-badge">מומלץ</div>
+                    </div>
+                    <div class="product-content">
+                        <h3 class="product-title">מדריך AI מקיף</h3>
+                        <p class="product-description">מדריך מקיף לבינה מלאכותית עם כלים מעשיים ואסטרטגיות מתקדמות לשימוש יומיומי</p>
+                        <div class="product-features">
+                            <span class="feature-tag">✨ 100+ כלי AI</span>
+                            <span class="feature-tag">📚 מדריך מפורט</span>
+                            <span class="feature-tag">🎯 אסטרטגיות מוכחות</span>
                         </div>
-                        <div class="product-info">
-                            <h3 class="product-title">מדריך AI מקיף</h3>
-                            <p class="product-description">מדריך מקיף לבינה מלאכותית עם כלים מעשיים ואסטרטגיות מתקדמות</p>
-                            <div class="product-price">₪49.90</div>
-                            <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-                                <input type="hidden" name="cmd" value="_xclick">
-                                <input type="hidden" name="business" value="tal.derie.td@gmail.com">
-                                <input type="hidden" name="item_name" value="מדריך AI מקיף">
-                                <input type="hidden" name="amount" value="49.90">
-                                <input type="hidden" name="currency_code" value="ILS">
-                                <input type="hidden" name="return" value="https://infinityempire.github.io/success.html">
-                                <input type="hidden" name="cancel_return" value="https://infinityempire.github.io/cancel.html">
-                                <input type="hidden" name="no_shipping" value="1">
-                                <input type="hidden" name="no_note" value="1">
-                                <button type="submit" class="btn btn-primary">קנה עכשיו</button>
-                            </form>
+                        <div class="product-price">
+                            <span class="price-current">₪49.90</span>
+                            <span class="price-original">₪79.90</span>
+                        </div>
+                        <button class="btn btn-primary product-btn" onclick="viewProduct('ai_guide')">
+                            צפה במוצר
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Product 2: Lottery Guide -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="assets/products/lottery-guide.jpg" alt="מדריך לוטו מתקדם">
+                        <div class="product-badge hot">חם</div>
+                    </div>
+                    <div class="product-content">
+                        <h3 class="product-title">מדריך לוטו מתקדם</h3>
+                        <p class="product-description">אסטרטגיות מתקדמות ושיטות מוכחות לשיפור הסיכויים בלוטו הישראלי</p>
+                        <div class="product-features">
+                            <span class="feature-tag">📊 ניתוח סטטיסטי</span>
+                            <span class="feature-tag">🎲 אסטרטגיות מוכחות</span>
+                            <span class="feature-tag">📈 מערכות מתקדמות</span>
+                        </div>
+                        <div class="product-price">
+                            <span class="price-current">₪39.90</span>
+                        </div>
+                        <button class="btn btn-primary product-btn" onclick="viewProduct('lottery_guide', 39.90)" data-product="lottery_guide" data-price="39.90">
+                            צפה במוצר
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Product 3: Time Management -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="assets/products/time-management.jpg" alt="ניהול זמן יעיל">
+                        <div class="product-badge sale">מבצע</div>
+                    </div>
+                    <div class="product-content">
+                        <h3 class="product-title">ניהול זמן יעיל</h3>
+                        <p class="product-description">טכניקות מוכחות לניהול זמן ושיפור פרודוקטיביות אישית ומקצועית</p>
+                        <div class="product-features">
+                            <span class="feature-tag">⏰ טכניקות מוכחות</span>
+                            <span class="feature-tag">📋 תבניות מוכנות</span>
+                            <span class="feature-tag">🎯 יעדים ברורים</span>
+                        </div>
+                        <div class="product-price">
+                            <span class="price-current">₪9.90</span>
+                            <span class="price-original">₪29.90</span>
+                        </div>
+                        <button class="btn btn-primary product-btn" onclick="viewProduct('time_management', 9.90)" data-product="time_management" data-price="9.90">
+                            צפה במוצר
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Product 4: Chatbot Guide -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="assets/products/chatbot-guide.jpg" alt="צ'אטבוט מהיר">
+                    </div>
+                    <div class="product-content">
+                        <h3 class="product-title">צ'אטבוט מהיר</h3>
+                        <p class="product-description">מדריך מהיר לבניית צ'אטבוט חכם עם AI מתקדם לעסק שלך</p>
+                        <div class="product-features">
+                            <span class="feature-tag">🤖 AI מתקדם</span>
+                            <span class="feature-tag">⚡ הקמה מהירה</span>
+                            <span class="feature-tag">💼 לעסקים</span>
+                        </div>
+                        <div class="product-price">
+                            <span class="price-current">₪59.90</span>
+                        </div>
+                        <button class="btn btn-primary product-btn" onclick="viewProduct('chatbot_guide', 59.90)" data-product="chatbot_guide" data-price="59.90">
+                            צפה במוצר
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Product 5: Business Automation -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="assets/products/business-automation.jpg" alt="אוטומציות עסק קטן">
+                    </div>
+                    <div class="product-content">
+                        <h3 class="product-title">אוטומציות עסק קטן</h3>
+                        <p class="product-description">כלים ושיטות לאוטומציה של תהליכים בעסק קטן ובינוני</p>
+                        <div class="product-features">
+                            <span class="feature-tag">🔧 כלים מעשיים</span>
+                            <span class="feature-tag">📈 חיסכון בזמן</span>
+                            <span class="feature-tag">💰 הגדלת רווחים</span>
+                        </div>
+                        <div class="product-price">
+                            <span class="price-current">₪79.90</span>
+                        </div>
+                        <button class="btn btn-primary product-btn" onclick="viewProduct('business_automation', 79.90)" data-product="business_automation" data-price="79.90">
+                            צפה במוצר
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Product 6: AI Prompts -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="assets/products/ai-prompts.jpg" alt="50 פרומפטים מנצחים">
+                        <div class="product-badge">פופולרי</div>
+                    </div>
+                    <div class="product-content">
+                        <h3 class="product-title">50 פרומפטים מנצחים</h3>
+                        <p class="product-description">אוסף של 50 פרומפטים מוכחים לAI שיחסכו לך זמן ויעילו תוצאות מדהימות</p>
+                        <div class="product-features">
+                            <span class="feature-tag">🎯 50 פרומפטים</span>
+                            <span class="feature-tag">✅ מוכחים</span>
+                            <span class="feature-tag">⚡ תוצאות מיידיות</span>
+                        </div>
+                        <div class="product-price">
+                            <span class="price-current">₪29.90</span>
+                        </div>
+                        <button class="btn btn-primary product-btn" onclick="viewProduct('ai_prompts', 29.90)" data-product="ai_prompts" data-price="29.90">
+                            צפה במוצר
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Bundles Section -->
+    <section id="bundles" class="bundles">
+        <div class="container">
+            <h2 class="section-title">חבילות מיוחדות</h2>
+            <p class="section-subtitle">חסוך עד 50% עם החבילות המיוחדות שלנו</p>
+            
+            <div class="bundles-grid">
+                
+                <!-- Bundle 1: Productivity Bundle -->
+                <div class="bundle-card">
+                    <div class="bundle-header">
+                        <h3 class="bundle-title">חבילת פרודוקטיביות</h3>
+                        <div class="bundle-badge">חסכון 30%</div>
+                    </div>
+                    <div class="bundle-content">
+                        <p class="bundle-description">הכל מה שאתה צריך לפרודוקטיביות מקסימלית</p>
+                        <ul class="bundle-includes">
+                            <li>✅ ניהול זמן יעיל</li>
+                            <li>✅ פוקוס דיגיטלי</li>
+                            <li>✅ 50 פרומפטים מנצחים</li>
+                        </ul>
+                        <div class="bundle-price">
+                            <span class="price-current">₪89.90</span>
+                            <span class="price-original">₪129.70</span>
+                        </div>
+                        <button class="btn btn-primary bundle-btn" onclick="viewProduct('productivity_bundle', 89.90)" data-product="productivity_bundle" data-price="89.90">
+                            קנה חבילה
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Bundle 2: AI Mastery Bundle -->
+                <div class="bundle-card featured">
+                    <div class="bundle-header">
+                        <h3 class="bundle-title">חבילת שליטה ב-AI</h3>
+                        <div class="bundle-badge">הכי פופולרי</div>
+                    </div>
+                    <div class="bundle-content">
+                        <p class="bundle-description">הפוך למומחה AI עם החבילה המקצועית</p>
+                        <ul class="bundle-includes">
+                            <li>✅ מדריך AI מקיף</li>
+                            <li>✅ צ'אטבוט מהיר</li>
+                            <li>✅ 50 פרומפטים מנצחים</li>
+                            <li>✅ בונוס: תמיכה אישית</li>
+                        </ul>
+                        <div class="bundle-price">
+                            <span class="price-current">₪109.90</span>
+                            <span class="price-original">₪139.70</span>
+                        </div>
+                        <button class="btn btn-primary bundle-btn" onclick="viewProduct('ai_mastery_bundle', 109.90)" data-product="ai_mastery_bundle" data-price="109.90">
+                            קנה חבילה
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Bundle 3: Ultimate Bundle -->
+                <div class="bundle-card ultimate">
+                    <div class="bundle-header">
+                        <h3 class="bundle-title">החבילה האולטימטיבית</h3>
+                        <div class="bundle-badge">חסכון 50%</div>
+                    </div>
+                    <div class="bundle-content">
+                        <p class="bundle-description">כל המוצרים שלנו במחיר מיוחד!</p>
+                        <ul class="bundle-includes">
+                            <li>✅ כל המדריכים והכלים</li>
+                            <li>✅ כל החבילות</li>
+                            <li>✅ עדכונים לכל החיים</li>
+                            <li>✅ תמיכה VIP</li>
+                            <li>✅ גישה למוצרים עתידיים</li>
+                        </ul>
+                        <div class="bundle-price">
+                            <span class="price-current">₪299.90</span>
+                            <span class="price-original">₪599.80</span>
+                        </div>
+                        <button class="btn btn-primary bundle-btn" onclick="viewProduct('ultimate_bundle', 299.90)" data-product="ultimate_bundle" data-price="299.90">
+                            קנה חבילה
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+        <div class="container">
+            <h2 class="section-title">מה הלקוחות שלנו אומרים</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>"המדריך לAI שינה לי את החיים! עכשיו אני יכול לעבוד פי 3 יותר מהר ויעיל."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="assets/testimonials/user1.jpg" alt="דוד כהן">
+                        <div class="author-info">
+                            <h4>דוד כהן</h4>
+                            <span>יזם דיגיטלי</span>
                         </div>
                     </div>
+                    <div class="testimonial-rating">
+                        ⭐⭐⭐⭐⭐
+                    </div>
+                </div>
 
-                    <div class="product-card">
-                        <div class="product-image">
-                            <div class="product-icon">🎰</div>
-                        </div>
-                        <div class="product-info">
-                            <h3 class="product-title">מדריך לוטו מתקדם</h3>
-                            <p class="product-description">אסטרטגיות מתקדמות ושיטות מוכחות לשיפור הסיכויים בלוטו</p>
-                            <div class="product-price">₪39.90</div>
-                            <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-                                <input type="hidden" name="cmd" value="_xclick">
-                                <input type="hidden" name="business" value="tal.derie.td@gmail.com">
-                                <input type="hidden" name="item_name" value="מדריך לוטו מתקדם">
-                                <input type="hidden" name="amount" value="39.90">
-                                <input type="hidden" name="currency_code" value="ILS">
-                                <input type="hidden" name="return" value="https://infinityempire.github.io/success.html">
-                                <input type="hidden" name="cancel_return" value="https://infinityempire.github.io/cancel.html">
-                                <input type="hidden" name="no_shipping" value="1">
-                                <input type="hidden" name="no_note" value="1">
-                                <button type="submit" class="btn btn-primary">קנה עכשיו</button>
-                            </form>
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>"החבילה האולטימטיבית הייתה השקעה הכי טובה שעשיתי השנה. המוצרים באיכות מדהימה!"</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="assets/testimonials/user2.jpg" alt="שרה לוי">
+                        <div class="author-info">
+                            <h4>שרה לוי</h4>
+                            <span>מנהלת פרויקטים</span>
                         </div>
                     </div>
+                    <div class="testimonial-rating">
+                        ⭐⭐⭐⭐⭐
+                    </div>
+                </div>
 
-                    <div class="product-card">
-                        <div class="product-image">
-                            <div class="product-icon">⏰</div>
-                        </div>
-                        <div class="product-info">
-                            <h3 class="product-title">ניהול זמן יעיל</h3>
-                            <p class="product-description">טכניקות מוכחות לניהול זמן ושיפור פרודוקטיביות אישית</p>
-                            <div class="product-price">₪9.90</div>
-                            <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-                                <input type="hidden" name="cmd" value="_xclick">
-                                <input type="hidden" name="business" value="tal.derie.td@gmail.com">
-                                <input type="hidden" name="item_name" value="ניהול זמן יעיל">
-                                <input type="hidden" name="amount" value="9.90">
-                                <input type="hidden" name="currency_code" value="ILS">
-                                <input type="hidden" name="return" value="https://infinityempire.github.io/success.html">
-                                <input type="hidden" name="cancel_return" value="https://infinityempire.github.io/cancel.html">
-                                <input type="hidden" name="no_shipping" value="1">
-                                <input type="hidden" name="no_note" value="1">
-                                <button type="submit" class="btn btn-primary">קנה עכשיו</button>
-                            </form>
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>"מדריך הלוטו עזר לי להבין את המשחק ברמה חדשה לגמרי. מומלץ בחום!"</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="assets/testimonials/user3.jpg" alt="מיכאל אברהם">
+                        <div class="author-info">
+                            <h4>מיכאל אברהם</h4>
+                            <span>אנליסט נתונים</span>
                         </div>
                     </div>
-
-                    <div class="product-card">
-                        <div class="product-image">
-                            <div class="product-icon">💬</div>
-                        </div>
-                        <div class="product-info">
-                            <h3 class="product-title">צ'אטבוט מהיר</h3>
-                            <p class="product-description">מדריך מהיר לבניית צ'אטבוט חכם עם AI מתקדם</p>
-                            <div class="product-price">₪59.90</div>
-                            <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-                                <input type="hidden" name="cmd" value="_xclick">
-                                <input type="hidden" name="business" value="tal.derie.td@gmail.com">
-                                <input type="hidden" name="item_name" value="צ'אטבוט מהיר">
-                                <input type="hidden" name="amount" value="59.90">
-                                <input type="hidden" name="currency_code" value="ILS">
-                                <input type="hidden" name="return" value="https://infinityempire.github.io/success.html">
-                                <input type="hidden" name="cancel_return" value="https://infinityempire.github.io/cancel.html">
-                                <input type="hidden" name="no_shipping" value="1">
-                                <input type="hidden" name="no_note" value="1">
-                                <button type="submit" class="btn btn-primary">קנה עכשיו</button>
-                            </form>
-                        </div>
-                    </div>
-
-                    <div class="product-card">
-                        <div class="product-image">
-                            <div class="product-icon">🏢</div>
-                        </div>
-                        <div class="product-info">
-                            <h3 class="product-title">אוטומציות עסק קטן</h3>
-                            <p class="product-description">כלים ושיטות לאוטומציה של תהליכים בעסק קטן</p>
-                            <div class="product-price">₪79.90</div>
-                            <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-                                <input type="hidden" name="cmd" value="_xclick">
-                                <input type="hidden" name="business" value="tal.derie.td@gmail.com">
-                                <input type="hidden" name="item_name" value="אוטומציות עסק קטן">
-                                <input type="hidden" name="amount" value="79.90">
-                                <input type="hidden" name="currency_code" value="ILS">
-                                <input type="hidden" name="return" value="https://infinityempire.github.io/success.html">
-                                <input type="hidden" name="cancel_return" value="https://infinityempire.github.io/cancel.html">
-                                <input type="hidden" name="no_shipping" value="1">
-                                <input type="hidden" name="no_note" value="1">
-                                <button type="submit" class="btn btn-primary">קנה עכשיו</button>
-                            </form>
-                        </div>
-                    </div>
-
-                    <div class="product-card">
-                        <div class="product-image">
-                            <div class="product-icon">🎯</div>
-                        </div>
-                        <div class="product-info">
-                            <h3 class="product-title">50 פרומפטים מנצחים</h3>
-                            <p class="product-description">אוסף של 50 פרומפטים מוכחים לAI שיחסכו לך זמן ויעילו תוצאות</p>
-                            <div class="product-price">₪29.90</div>
-                            <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-                                <input type="hidden" name="cmd" value="_xclick">
-                                <input type="hidden" name="business" value="tal.derie.td@gmail.com">
-                                <input type="hidden" name="item_name" value="50 פרומפטים מנצחים">
-                                <input type="hidden" name="amount" value="29.90">
-                                <input type="hidden" name="currency_code" value="ILS">
-                                <input type="hidden" name="return" value="https://infinityempire.github.io/success.html">
-                                <input type="hidden" name="cancel_return" value="https://infinityempire.github.io/cancel.html">
-                                <input type="hidden" name="no_shipping" value="1">
-                                <input type="hidden" name="no_note" value="1">
-                                <button type="submit" class="btn btn-primary">קנה עכשיו</button>
-                            </form>
-                        </div>
-                    </div>
-
-                    <div class="product-card">
-                        <div class="product-image">
-                            <div class="product-icon">🧠</div>
-                        </div>
-                        <div class="product-info">
-                            <h3 class="product-title">פסיכולוגיית לוטו</h3>
-                            <p class="product-description">הבנת הפסיכולוגיה מאחורי משחקי המזל ואסטרטגיות מנטליות</p>
-                            <div class="product-price">₪39.90</div>
-                            <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-                                <input type="hidden" name="cmd" value="_xclick">
-                                <input type="hidden" name="business" value="tal.derie.td@gmail.com">
-                                <input type="hidden" name="item_name" value="פסיכולוגיית לוטו">
-                                <input type="hidden" name="amount" value="39.90">
-                                <input type="hidden" name="currency_code" value="ILS">
-                                <input type="hidden" name="return" value="https://infinityempire.github.io/success.html">
-                                <input type="hidden" name="cancel_return" value="https://infinityempire.github.io/cancel.html">
-                                <input type="hidden" name="no_shipping" value="1">
-                                <input type="hidden" name="no_note" value="1">
-                                <button type="submit" class="btn btn-primary">קנה עכשיו</button>
-                            </form>
-                        </div>
-                    </div>
-
-                    <div class="product-card">
-                        <div class="product-image">
-                            <div class="product-icon">📊</div>
-                        </div>
-                        <div class="product-info">
-                            <h3 class="product-title">אקסל לוטו מתקדם</h3>
-                            <p class="product-description">תבניות אקסל מתקדמות לניתוח וחיזוי תוצאות לוטו</p>
-                            <div class="product-price">₪19.90</div>
-                            <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-                                <input type="hidden" name="cmd" value="_xclick">
-                                <input type="hidden" name="business" value="tal.derie.td@gmail.com">
-                                <input type="hidden" name="item_name" value="אקסל לוטו מתקדם">
-                                <input type="hidden" name="amount" value="19.90">
-                                <input type="hidden" name="currency_code" value="ILS">
-                                <input type="hidden" name="return" value="https://infinityempire.github.io/success.html">
-                                <input type="hidden" name="cancel_return" value="https://infinityempire.github.io/cancel.html">
-                                <input type="hidden" name="no_shipping" value="1">
-                                <input type="hidden" name="no_note" value="1">
-                                <button type="submit" class="btn btn-primary">קנה עכשיו</button>
-                            </form>
-                        </div>
-                    </div>
-
-                    <div class="product-card">
-                        <div class="product-image">
-                            <div class="product-icon">🎯</div>
-                        </div>
-                        <div class="product-info">
-                            <h3 class="product-title">פוקוס דיגיטלי</h3>
-                            <p class="product-description">טכניקות לשיפור הריכוז והפוקוס בעידן הדיגיטלי</p>
-                            <div class="product-price">₪29.90</div>
-                            <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-                                <input type="hidden" name="cmd" value="_xclick">
-                                <input type="hidden" name="business" value="tal.derie.td@gmail.com">
-                                <input type="hidden" name="item_name" value="פוקוס דיגיטלי">
-                                <input type="hidden" name="amount" value="29.90">
-                                <input type="hidden" name="currency_code" value="ILS">
-                                <input type="hidden" name="return" value="https://infinityempire.github.io/success.html">
-                                <input type="hidden" name="cancel_return" value="https://infinityempire.github.io/cancel.html">
-                                <input type="hidden" name="no_shipping" value="1">
-                                <input type="hidden" name="no_note" value="1">
-                                <button type="submit" class="btn btn-primary">קנה עכשיו</button>
-                            </form>
-                        </div>
-                    </div>
-
-                    <div class="product-card">
-                        <div class="product-image">
-                            <div class="product-icon">🎨</div>
-                        </div>
-                        <div class="product-info">
-                            <h3 class="product-title">חבילת פוסטרים (5)</h3>
-                            <p class="product-description">5 פוסטרים דיגיטליים מעוצבים להשראה ומוטיבציה יומית</p>
-                            <div class="product-price">₪129.90</div>
-                            <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-                                <input type="hidden" name="cmd" value="_xclick">
-                                <input type="hidden" name="business" value="tal.derie.td@gmail.com">
-                                <input type="hidden" name="item_name" value="חבילת פוסטרים (5)">
-                                <input type="hidden" name="amount" value="129.90">
-                                <input type="hidden" name="currency_code" value="ILS">
-                                <input type="hidden" name="return" value="https://infinityempire.github.io/success.html">
-                                <input type="hidden" name="cancel_return" value="https://infinityempire.github.io/cancel.html">
-                                <input type="hidden" name="no_shipping" value="1">
-                                <input type="hidden" name="no_note" value="1">
-                                <button type="submit" class="btn btn-primary">קנה עכשיו</button>
-                            </form>
-                        </div>
-                    </div>
-
-                    <!-- חבילות -->
-                    <div class="product-card bundle-card">
-                        <div class="bundle-badge">חבילה</div>
-                        <div class="product-image">
-                            <div class="product-icon">📦</div>
-                        </div>
-                        <div class="product-info">
-                            <h3 class="product-title">חבילת פרודוקטיביות</h3>
-                            <p class="product-description">ניהול זמן + פוקוס דיגיטלי + 50 פרומפטים - חסכון של 30%</p>
-                            <div class="product-price">₪89.90</div>
-                            <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-                                <input type="hidden" name="cmd" value="_xclick">
-                                <input type="hidden" name="business" value="tal.derie.td@gmail.com">
-                                <input type="hidden" name="item_name" value="חבילת פרודוקטיביות">
-                                <input type="hidden" name="amount" value="89.90">
-                                <input type="hidden" name="currency_code" value="ILS">
-                                <input type="hidden" name="return" value="https://infinityempire.github.io/success.html">
-                                <input type="hidden" name="cancel_return" value="https://infinityempire.github.io/cancel.html">
-                                <input type="hidden" name="no_shipping" value="1">
-                                <input type="hidden" name="no_note" value="1">
-                                <button type="submit" class="btn btn-primary">קנה עכשיו</button>
-                            </form>
-                        </div>
-                    </div>
-
-                    <div class="product-card bundle-card">
-                        <div class="bundle-badge">חבילה</div>
-                        <div class="product-image">
-                            <div class="product-icon">🤖</div>
-                        </div>
-                        <div class="product-info">
-                            <h3 class="product-title">חבילת שליטה ב-AI</h3>
-                            <p class="product-description">מדריך AI + צ'אטבוט + 50 פרומפטים - הפוך למומחה AI</p>
-                            <div class="product-price">₪109.90</div>
-                            <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-                                <input type="hidden" name="cmd" value="_xclick">
-                                <input type="hidden" name="business" value="tal.derie.td@gmail.com">
-                                <input type="hidden" name="item_name" value="חבילת שליטה ב-AI">
-                                <input type="hidden" name="amount" value="109.90">
-                                <input type="hidden" name="currency_code" value="ILS">
-                                <input type="hidden" name="return" value="https://infinityempire.github.io/success.html">
-                                <input type="hidden" name="cancel_return" value="https://infinityempire.github.io/cancel.html">
-                                <input type="hidden" name="no_shipping" value="1">
-                                <input type="hidden" name="no_note" value="1">
-                                <button type="submit" class="btn btn-primary">קנה עכשיו</button>
-                            </form>
-                        </div>
-                    </div>
-
-                    <div class="product-card bundle-card">
-                        <div class="bundle-badge">חבילה</div>
-                        <div class="product-image">
-                            <div class="product-icon">🎰</div>
-                        </div>
-                        <div class="product-info">
-                            <h3 class="product-title">חבילת לוטו מושלמת</h3>
-                            <p class="product-description">כל מדריכי הלוטו + אקסל + פסיכולוגיה - הכל במקום אחד</p>
-                            <div class="product-price">₪79.90</div>
-                            <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-                                <input type="hidden" name="cmd" value="_xclick">
-                                <input type="hidden" name="business" value="tal.derie.td@gmail.com">
-                                <input type="hidden" name="item_name" value="חבילת לוטו מושלמת">
-                                <input type="hidden" name="amount" value="79.90">
-                                <input type="hidden" name="currency_code" value="ILS">
-                                <input type="hidden" name="return" value="https://infinityempire.github.io/success.html">
-                                <input type="hidden" name="cancel_return" value="https://infinityempire.github.io/cancel.html">
-                                <input type="hidden" name="no_shipping" value="1">
-                                <input type="hidden" name="no_note" value="1">
-                                <button type="submit" class="btn btn-primary">קנה עכשיו</button>
-                            </form>
-                        </div>
-                    </div>
-
-                    <div class="product-card bundle-card ultimate-bundle">
-                        <div class="bundle-badge">חבילה אולטימטיבית</div>
-                        <div class="product-image">
-                            <div class="product-icon">👑</div>
-                        </div>
-                        <div class="product-info">
-                            <h3 class="product-title">החבילה האולטימטיבית</h3>
-                            <p class="product-description">כל המוצרים שלנו במחיר מיוחד - חסכון של 50%!</p>
-                            <div class="product-price">₪299.90</div>
-                            <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-                                <input type="hidden" name="cmd" value="_xclick">
-                                <input type="hidden" name="business" value="tal.derie.td@gmail.com">
-                                <input type="hidden" name="item_name" value="החבילה האולטימטיבית">
-                                <input type="hidden" name="amount" value="299.90">
-                                <input type="hidden" name="currency_code" value="ILS">
-                                <input type="hidden" name="return" value="https://infinityempire.github.io/success.html">
-                                <input type="hidden" name="cancel_return" value="https://infinityempire.github.io/cancel.html">
-                                <input type="hidden" name="no_shipping" value="1">
-                                <input type="hidden" name="no_note" value="1">
-                                <button type="submit" class="btn btn-primary">קנה עכשיו</button>
-                            </form>
-                        </div>
+                    <div class="testimonial-rating">
+                        ⭐⭐⭐⭐⭐
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Contact Section -->
-        <section id="contact" class="contact-section">
-            <div class="container">
-                <h2 class="section-title">צור קשר</h2>
-                <p class="contact-description">יש לך שאלות? אנחנו כאן לעזור!</p>
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">צור קשר</h2>
+            <p class="section-subtitle">יש לך שאלות? אנחנו כאן לעזור!</p>
+            
+            <div class="contact-content">
                 <div class="contact-info">
-                    <p>📧 support@infinityempire.com</p>
-                    <p>🌐 infinityempire.github.io</p>
+                    <div class="contact-item">
+                        <div class="contact-icon">📧</div>
+                        <div class="contact-details">
+                            <h3>אימייל</h3>
+                            <p>support@infinityempire.com</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">🌐</div>
+                        <div class="contact-details">
+                            <h3>אתר</h3>
+                            <p>infinityempire.github.io</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">⏰</div>
+                        <div class="contact-details">
+                            <h3>זמני מענה</h3>
+                            <p>ראשון-חמישי: 9:00-18:00</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-form">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name">שם מלא</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">אימייל</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="subject">נושא</label>
+                            <input type="text" id="subject" name="subject" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">הודעה</label>
+                            <textarea id="message" name="message" rows="5" required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary">שלח הודעה</button>
+                    </form>
                 </div>
             </div>
-        </section>
-    </main>
+        </div>
+    </section>
 
+    <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2024 Infinity Empire Store. כל הזכויות שמורות.</p>
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <img src="assets/logo.png" alt="Infinity Empire Logo" class="footer-logo-img">
+                        <span class="footer-logo-text">Infinity Empire</span>
+                    </div>
+                    <p class="footer-description">
+                        חנות דיגיטלית יוקרתית למוצרים דיגיטליים מתקדמים
+                    </p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>קישורים מהירים</h3>
+                        <ul class="nav-menu">
+                    <li><a href="#home">בית</a></li>
+                    <li><a href="#products">מוצרים</a></li>
+                    <li><a href="#contact">צור קשר</a></li>
+                    <li><a href="cart.html" class="cart-link">🛒 עגלה (<span id="cart-count">0</span>)</a></li>
+                </ul>              <li><a href="#contact">צור קשר</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>מוצרים פופולריים</h3>
+                    <ul class="footer-links">
+                        <li><a href="#ai-guide">מדריך AI מקיף</a></li>
+                        <li><a href="#lottery-guide">מדריך לוטו מתקדם</a></li>
+                        <li><a href="#time-management">ניהול זמן יעיל</a></li>
+                        <li><a href="#ultimate-bundle">החבילה האולטימטיבית</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>מידע משפטי</h3>
+                    <ul class="footer-links">
+                        <li><a href="privacy.html">מדיניות פרטיות</a></li>
+                        <li><a href="terms.html">תנאי שימוש</a></li>
+                        <li><a href="refund.html">מדיניות החזרות</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 Infinity Empire. כל הזכויות שמורות.</p>
+                <div class="footer-social">
+                    <a href="#" class="social-link">📘</a>
+                    <a href="#" class="social-link">📷</a>
+                    <a href="#" class="social-link">🐦</a>
+                    <a href="#" class="social-link">💼</a>
+                </div>
+            </div>
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <!-- PayPal SDK -->
+    <script src="https://www.paypal.com/sdk/js?client-id=YOUR_PAYPAL_CLIENT_ID&currency=ILS"></script>
+    
+    <!-- Main JavaScript -->
+    <script src="assets/script.js"></script>
+    <script src="assets/ecommerce.js"></script>
+    <script>
+        // Initialize cart count on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            updateCartCount();
+        });
+    </script>
+</body>  <!-- PayPal Integration -->
+    <script>
+        // PayPal button configuration will be added here
+        function initializePayPalButtons() {
+            // This will be implemented in script.js
+        }
+        
+        // Initialize when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            initializePayPalButtons();
+        });
+    </script>
 </body>
 </html>
 

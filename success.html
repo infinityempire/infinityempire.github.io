@@ -3,249 +3,499 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>תשלום הושלם - Infinity Empire Store</title>
-    <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <meta name="description" content="תשלום הושלם בהצלחה - Infinity Empire">
+    <title>תשלום הושלם בהצלחה - Infinity Empire</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="assets/style.css">
+    
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'GA_MEASUREMENT_ID');
+        
+        // Track purchase completion
+        gtag('event', 'purchase', {
+            transaction_id: new URLSearchParams(window.location.search).get('transaction_id') || 'unknown',
+            value: parseFloat(new URLSearchParams(window.location.search).get('value')) || 0,
+            currency: 'ILS'
+        });
+    </script>
+    
+    <!-- Meta Pixel -->
+    <script>
+        !function(f,b,e,v,n,t,s)
+        {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+        n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+        n.queue=[];t=b.createElement(e);t.async=!0;
+        t.src=v;s=b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t,s)}(window, document,'script',
+        'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', 'YOUR_PIXEL_ID');
+        fbq('track', 'PageView');
+        fbq('track', 'Purchase', {
+            value: parseFloat(new URLSearchParams(window.location.search).get('value')) || 0,
+            currency: 'ILS'
+        });
+    </script>
+    
+    <!-- TikTok Pixel -->
+    <script>
+        !function (w, d, t) {
+            w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t]||[];ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie"],ttq.setAndDefer=function(t,e){t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}};for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);ttq.instance=function(t){for(var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n]);return e},ttq.load=function(e,n){var i="https://analytics.tiktok.com/i18n/pixel/events.js";ttq._i=ttq._i||{},ttq._i[e]=[],ttq._i[e]._u=i,ttq._t=ttq._t||{},ttq._t[e]=+new Date,ttq._o=ttq._o||{},ttq._o[e]=n||{};var o=document.createElement("script");o.type="text/javascript",o.async=!0,o.src=i+"?sdkid="+e+"&lib="+t;var a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(o,a)};
+            ttq.load('YOUR_TIKTOK_PIXEL_ID');
+            ttq.page();
+            ttq.track('CompletePayment', {
+                value: parseFloat(new URLSearchParams(window.location.search).get('value')) || 0,
+                currency: 'ILS'
+            });
+        }(window, document, 'ttq');
+    </script>
+</head>
+<body>
+    <div class="success-container">
+        <div class="success-content">
+            <div class="success-icon">
+                <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="40" cy="40" r="40" fill="#00AA00"/>
+                    <path d="M25 40L35 50L55 30" stroke="white" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </div>
+            
+            <h1 class="success-title">🎉 תשלום הושלם בהצלחה!</h1>
+            
+            <div class="success-message">
+                <p class="success-text">תודה רבה על הרכישה! המוצר שלך מוכן להורדה.</p>
+                <p class="success-subtext">קיבלת אימייל עם קישור ההורדה וכל הפרטים הנדרשים.</p>
+            </div>
+            
+            <div class="purchase-details" id="purchaseDetails">
+                <!-- Purchase details will be populated by JavaScript -->
+            </div>
+            
+            <div class="success-actions">
+                <a href="mailto:support@infinityempire.com" class="btn btn-primary">
+                    📧 צור קשר לתמיכה
+                </a>
+                <a href="index.html" class="btn btn-secondary">
+                    🏠 חזרה לאתר
+                </a>
+            </div>
+            
+            <div class="next-steps">
+                <h3>מה הלאה?</h3>
+                <div class="steps-grid">
+                    <div class="step-card">
+                        <div class="step-icon">📧</div>
+                        <h4>בדוק את האימייל</h4>
+                        <p>קיבלת אימייל עם קישור ההורדה</p>
+                    </div>
+                    
+                    <div class="step-card">
+                        <div class="step-icon">📱</div>
+                        <h4>הצטרף לקהילה</h4>
+                        <p>קבל עדכונים ומבצעים בלעדיים</p>
+                    </div>
+                    
+                    <div class="step-card">
+                        <div class="step-icon">⭐</div>
+                        <h4>דרג אותנו</h4>
+                        <p>עזור לאחרים למצוא אותנו</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="upsell-section">
+                <h3>מוצרים נוספים שעשויים לעניין אותך</h3>
+                <div class="upsell-grid">
+                    <div class="upsell-card">
+                        <h4>חבילת פרודוקטיביות</h4>
+                        <p>ניהול זמן + פוקוס דיגיטלי + 50 פרומפטים</p>
+                        <div class="upsell-price">
+                            <span class="price-current">₪89.90</span>
+                            <span class="price-original">₪129.70</span>
+                        </div>
+                        <button class="btn btn-primary" onclick="trackPurchase('productivity_bundle', 89.90)">
+                            קנה עכשיו
+                        </button>
+                    </div>
+                    
+                    <div class="upsell-card">
+                        <h4>החבילה האולטימטיבית</h4>
+                        <p>כל המוצרים שלנו במחיר מיוחד - חסכון של 50%!</p>
+                        <div class="upsell-price">
+                            <span class="price-current">₪299.90</span>
+                            <span class="price-original">₪599.80</span>
+                        </div>
+                        <button class="btn btn-primary" onclick="trackPurchase('ultimate_bundle', 299.90)">
+                            קנה עכשיו
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="social-proof">
+                <h3>הצטרף ל-10,000+ לקוחות מרוצים</h3>
+                <div class="testimonial-mini">
+                    <p>"המוצרים של Infinity Empire שינו לי את החיים המקצועיים!"</p>
+                    <span>- דוד כהן, יזם דיגיטלי</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Footer -->
+    <footer class="footer-minimal">
+        <div class="container">
+            <p>&copy; 2024 Infinity Empire. כל הזכויות שמורות.</p>
+            <div class="footer-links-minimal">
+                <a href="privacy.html">מדיניות פרטיות</a>
+                <a href="terms.html">תנאי שימוש</a>
+                <a href="refund.html">מדיניות החזרות</a>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- JavaScript -->
+    <script src="assets/script.js"></script>
+    
+    <script>
+        // Parse URL parameters and display purchase details
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const productId = urlParams.get('utm_content') || urlParams.get('product');
+            const transactionId = urlParams.get('transaction_id');
+            const value = urlParams.get('value');
+            
+            if (productId && window.InfinityEmpire && window.InfinityEmpire.PRODUCTS[productId]) {
+                const product = window.InfinityEmpire.PRODUCTS[productId];
+                const purchaseDetailsElement = document.getElementById('purchaseDetails');
+                
+                if (purchaseDetailsElement) {
+                    purchaseDetailsElement.innerHTML = `
+                        <div class="purchase-summary">
+                            <h3>פרטי הרכישה</h3>
+                            <div class="purchase-item">
+                                <span class="item-name">${product.name}</span>
+                                <span class="item-price">₪${product.price}</span>
+                            </div>
+                            ${transactionId ? `<div class="transaction-id">מספר עסקה: ${transactionId}</div>` : ''}
+                        </div>
+                    `;
+                }
+            }
+            
+            // Auto-redirect to download or email instructions after 10 seconds
+            setTimeout(() => {
+                const downloadUrl = urlParams.get('download_url');
+                if (downloadUrl) {
+                    window.location.href = downloadUrl;
+                } else {
+                    // Show email instructions
+                    const emailInstructions = document.createElement('div');
+                    emailInstructions.className = 'email-instructions';
+                    emailInstructions.innerHTML = `
+                        <div class="alert alert-info">
+                            <strong>שים לב:</strong> קישור ההורדה נשלח לאימייל שלך. 
+                            אם לא קיבלת את האימייל, בדוק בתיקיית הספאם.
+                        </div>
+                    `;
+                    document.querySelector('.success-content').appendChild(emailInstructions);
+                }
+            }, 10000);
+        });
+    </script>
+    
     <style>
         .success-container {
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 2rem;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: var(--spacing-lg);
         }
         
-        .success-card {
-            max-width: 600px;
+        .success-content {
+            max-width: 800px;
+            background: var(--light-color);
+            padding: var(--spacing-xxl);
+            border-radius: var(--border-radius-xl);
+            box-shadow: var(--shadow-xl);
             text-align: center;
-            background: linear-gradient(145deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
-            border-radius: 20px;
-            padding: 3rem;
-            border: 1px solid rgba(255, 215, 0, 0.2);
-            backdrop-filter: blur(10px);
+            animation: fadeInUp 0.8s ease;
         }
         
         .success-icon {
-            font-size: 5rem;
-            margin-bottom: 2rem;
-            animation: bounce 1s ease infinite alternate;
-        }
-        
-        @keyframes bounce {
-            from { transform: translateY(0px); }
-            to { transform: translateY(-10px); }
+            margin-bottom: var(--spacing-lg);
+            animation: bounceIn 1s ease;
         }
         
         .success-title {
-            font-size: 3rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            background: linear-gradient(45deg, #ffd700, #8b5cf6);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: var(--dark-color);
+            margin-bottom: var(--spacing-lg);
+            font-size: var(--font-size-xxl);
         }
         
         .success-message {
-            font-size: 1.2rem;
-            color: #cccccc;
-            line-height: 1.8;
-            margin-bottom: 2rem;
+            margin-bottom: var(--spacing-xl);
         }
         
-        .success-details {
-            background: rgba(0, 0, 0, 0.3);
-            border-radius: 15px;
-            padding: 2rem;
-            margin: 2rem 0;
-            border: 1px solid rgba(255, 215, 0, 0.2);
+        .success-text {
+            font-size: var(--font-size-large);
+            color: var(--dark-color);
+            margin-bottom: var(--spacing-sm);
         }
         
-        .detail-item {
+        .success-subtext {
+            color: var(--gray-color);
+            font-size: var(--font-size-base);
+        }
+        
+        .purchase-details {
+            background: var(--light-gray);
+            padding: var(--spacing-lg);
+            border-radius: var(--border-radius-lg);
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .purchase-summary h3 {
+            margin-bottom: var(--spacing-md);
+            color: var(--dark-color);
+        }
+        
+        .purchase-item {
             display: flex;
             justify-content: space-between;
-            padding: 0.5rem 0;
-            border-bottom: 1px solid rgba(255, 215, 0, 0.1);
+            align-items: center;
+            padding: var(--spacing-sm) 0;
+            border-bottom: 1px solid var(--border-color);
         }
         
-        .detail-item:last-child {
-            border-bottom: none;
+        .item-name {
+            font-weight: 600;
+            color: var(--dark-color);
+        }
+        
+        .item-price {
+            font-weight: 700;
+            color: var(--primary-color);
+            font-size: var(--font-size-large);
+        }
+        
+        .transaction-id {
+            margin-top: var(--spacing-sm);
+            font-size: var(--font-size-small);
+            color: var(--gray-color);
         }
         
         .success-actions {
             display: flex;
-            gap: 1rem;
+            gap: var(--spacing-md);
             justify-content: center;
+            margin-bottom: var(--spacing-xl);
             flex-wrap: wrap;
-            margin-top: 2rem;
         }
         
-        .confetti {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 1000;
+        .next-steps {
+            margin-bottom: var(--spacing-xl);
         }
         
-        .confetti-piece {
-            position: absolute;
-            width: 10px;
-            height: 10px;
-            background: #ffd700;
-            animation: confetti-fall 3s linear infinite;
+        .next-steps h3 {
+            margin-bottom: var(--spacing-lg);
+            color: var(--dark-color);
         }
         
-        @keyframes confetti-fall {
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--spacing-lg);
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .step-card {
+            background: var(--light-gray);
+            padding: var(--spacing-lg);
+            border-radius: var(--border-radius-lg);
+            text-align: center;
+        }
+        
+        .step-icon {
+            font-size: 2rem;
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .step-card h4 {
+            color: var(--dark-color);
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .step-card p {
+            color: var(--gray-color);
+            font-size: var(--font-size-small);
+        }
+        
+        .upsell-section {
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .upsell-section h3 {
+            margin-bottom: var(--spacing-lg);
+            color: var(--dark-color);
+        }
+        
+        .upsell-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--spacing-lg);
+        }
+        
+        .upsell-card {
+            background: var(--light-gray);
+            padding: var(--spacing-lg);
+            border-radius: var(--border-radius-lg);
+            border: 2px solid var(--border-color);
+            transition: all var(--transition-normal);
+        }
+        
+        .upsell-card:hover {
+            border-color: var(--primary-color);
+            transform: translateY(-2px);
+        }
+        
+        .upsell-card h4 {
+            color: var(--dark-color);
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .upsell-card p {
+            color: var(--gray-color);
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .upsell-price {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--spacing-sm);
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .social-proof {
+            background: var(--light-gray);
+            padding: var(--spacing-lg);
+            border-radius: var(--border-radius-lg);
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .social-proof h3 {
+            margin-bottom: var(--spacing-md);
+            color: var(--dark-color);
+        }
+        
+        .testimonial-mini {
+            font-style: italic;
+            color: var(--gray-color);
+        }
+        
+        .testimonial-mini span {
+            display: block;
+            margin-top: var(--spacing-sm);
+            font-weight: 600;
+            color: var(--dark-color);
+        }
+        
+        .footer-minimal {
+            background: var(--dark-color);
+            color: var(--light-color);
+            padding: var(--spacing-lg) 0;
+            text-align: center;
+        }
+        
+        .footer-links-minimal {
+            margin-top: var(--spacing-sm);
+            display: flex;
+            justify-content: center;
+            gap: var(--spacing-md);
+            flex-wrap: wrap;
+        }
+        
+        .footer-links-minimal a {
+            color: #cccccc;
+            text-decoration: none;
+            font-size: var(--font-size-small);
+        }
+        
+        .footer-links-minimal a:hover {
+            color: var(--primary-color);
+        }
+        
+        .email-instructions {
+            margin-top: var(--spacing-lg);
+        }
+        
+        .alert {
+            padding: var(--spacing-md);
+            border-radius: var(--border-radius-md);
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .alert-info {
+            background: #d1ecf1;
+            border: 1px solid #bee5eb;
+            color: #0c5460;
+        }
+        
+        @keyframes bounceIn {
             0% {
-                transform: translateY(-100vh) rotate(0deg);
+                opacity: 0;
+                transform: scale(0.3);
+            }
+            50% {
                 opacity: 1;
+                transform: scale(1.05);
+            }
+            70% {
+                transform: scale(0.9);
             }
             100% {
-                transform: translateY(100vh) rotate(720deg);
-                opacity: 0;
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .success-content {
+                padding: var(--spacing-lg);
+                margin: var(--spacing-sm);
+            }
+            
+            .success-actions {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn {
+                width: 100%;
+                max-width: 300px;
+            }
+            
+            .steps-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .upsell-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
-</head>
-<body>
-    <div class="confetti" id="confetti"></div>
-    
-    <div class="success-container">
-        <div class="success-card">
-            <div class="success-icon">🎉</div>
-            <h1 class="success-title">תודה על הרכישה!</h1>
-            <p class="success-message">
-                הרכישה שלך התקבלה בהצלחה. פרטי ההזמנה נשלחו אליך במייל.<br>
-                במידה ולא קיבלת מייל בתוך מספר דקות, בדוק בתיבת הספאם או צור קשר איתנו.
-            </p>
-            
-            <div class="success-details">
-                <h3 style="color: #ffd700; margin-bottom: 1rem;">פרטי ההזמנה</h3>
-                <div class="detail-item">
-                    <span>מספר הזמנה:</span>
-                    <span style="color: #ffd700;" id="order-number">#INF-2024-001</span>
-                </div>
-                <div class="detail-item">
-                    <span>תאריך:</span>
-                    <span id="order-date"></span>
-                </div>
-                <div class="detail-item">
-                    <span>סטטוס:</span>
-                    <span style="color: #4ade80;">✅ הושלם</span>
-                </div>
-                <div class="detail-item">
-                    <span>אמצעי תשלום:</span>
-                    <span>💳 כרטיס אשראי</span>
-                </div>
-            </div>
-            
-            <div class="success-actions">
-                <a href="index.html" class="btn btn-primary">חזרה לאתר</a>
-                <button onclick="downloadReceipt()" class="btn btn-secondary">הורד קבלה</button>
-            </div>
-            
-            <div style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid rgba(255, 215, 0, 0.2);">
-                <p style="color: #cccccc; font-size: 0.9rem;">
-                    💌 המוצרים הדיגיטליים שלך יישלחו אליך במייל תוך 5 דקות<br>
-                    🔒 התשלום שלך מאובטח ומוגן<br>
-                    📞 לשירות לקוחות: info@infinityempire.com
-                </p>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        // Generate order number and date
-        document.addEventListener('DOMContentLoaded', function() {
-            // Generate random order number
-            const orderNumber = '#INF-' + new Date().getFullYear() + '-' + 
-                               String(Math.floor(Math.random() * 10000)).padStart(4, '0');
-            document.getElementById('order-number').textContent = orderNumber;
-            
-            // Set current date
-            const now = new Date();
-            const dateStr = now.toLocaleDateString('he-IL', {
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric',
-                hour: '2-digit',
-                minute: '2-digit'
-            });
-            document.getElementById('order-date').textContent = dateStr;
-            
-            // Create confetti
-            createConfetti();
-            
-            // Auto-redirect after 30 seconds
-            setTimeout(() => {
-                if (confirm('האם תרצה לחזור לאתר הראשי?')) {
-                    window.location.href = 'index.html';
-                }
-            }, 30000);
-        });
-        
-        // Create confetti animation
-        function createConfetti() {
-            const confettiContainer = document.getElementById('confetti');
-            const colors = ['#ffd700', '#8b5cf6', '#3b82f6', '#ff6b35', '#4ade80'];
-            
-            for (let i = 0; i < 50; i++) {
-                const confettiPiece = document.createElement('div');
-                confettiPiece.className = 'confetti-piece';
-                confettiPiece.style.left = Math.random() * 100 + '%';
-                confettiPiece.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-                confettiPiece.style.animationDelay = Math.random() * 3 + 's';
-                confettiPiece.style.animationDuration = (Math.random() * 3 + 2) + 's';
-                confettiContainer.appendChild(confettiPiece);
-            }
-            
-            // Remove confetti after animation
-            setTimeout(() => {
-                confettiContainer.innerHTML = '';
-            }, 6000);
-        }
-        
-        // Download receipt function
-        function downloadReceipt() {
-            const orderNumber = document.getElementById('order-number').textContent;
-            const orderDate = document.getElementById('order-date').textContent;
-            
-            const receiptContent = `
-===========================================
-        INFINITY EMPIRE STORE
-           קבלה על רכישה
-===========================================
-
-מספר הזמנה: ${orderNumber}
-תאריך: ${orderDate}
-סטטוס: הושלם ✅
-
--------------------------------------------
-פרטי הרכישה:
-- מוצרים דיגיטליים מ-Infinity Empire Store
-- התשלום בוצע בהצלחה
-- המוצרים נשלחו למייל
-
--------------------------------------------
-תודה על הרכישה!
-info@infinityempire.com
-===========================================
-            `;
-            
-            const blob = new Blob([receiptContent], { type: 'text/plain;charset=utf-8' });
-            const url = window.URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = `receipt-${orderNumber.replace('#', '')}.txt`;
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-            window.URL.revokeObjectURL(url);
-        }
-    </script>
 </body>
 </html>
 

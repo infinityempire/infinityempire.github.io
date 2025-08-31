@@ -3,188 +3,460 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>תשלום בוטל - Infinity Empire Store</title>
-    <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <meta name="description" content="תשלום בוטל - Infinity Empire">
+    <title>תשלום בוטל - Infinity Empire</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="assets/style.css">
+    
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'GA_MEASUREMENT_ID');
+        
+        // Track purchase cancellation
+        gtag('event', 'purchase_cancelled', {
+            currency: 'ILS',
+            value: parseFloat(new URLSearchParams(window.location.search).get('value')) || 0
+        });
+    </script>
+    
+    <!-- Meta Pixel -->
+    <script>
+        !function(f,b,e,v,n,t,s)
+        {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+        n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+        n.queue=[];t=b.createElement(e);t.async=!0;
+        t.src=v;s=b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t,s)}(window, document,'script',
+        'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', 'YOUR_PIXEL_ID');
+        fbq('track', 'PageView');
+    </script>
+</head>
+<body>
+    <div class="cancel-container">
+        <div class="cancel-content">
+            <div class="cancel-icon">
+                <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="40" cy="40" r="40" fill="#dc3545"/>
+                    <path d="M30 30L50 50M50 30L30 50" stroke="white" stroke-width="4" stroke-linecap="round"/>
+                </svg>
+            </div>
+            
+            <h1 class="cancel-title">❌ הרכישה בוטלה</h1>
+            
+            <div class="cancel-message">
+                <p class="cancel-text">נראה שביטלת את הרכישה - אין בעיה! אפשר לחזור בכל עת.</p>
+                <p class="cancel-subtext">המוצרים שלנו ימתינו לך כאן תמיד.</p>
+            </div>
+            
+            <div class="cancel-reasons">
+                <h3>סיבות נפוצות לביטול:</h3>
+                <div class="reasons-grid">
+                    <div class="reason-card">
+                        <div class="reason-icon">💳</div>
+                        <h4>בעיה בתשלום</h4>
+                        <p>נסה שיטת תשלום אחרת</p>
+                    </div>
+                    
+                    <div class="reason-card">
+                        <div class="reason-icon">🤔</div>
+                        <h4>צריך לחשוב</h4>
+                        <p>קח את הזמן שלך</p>
+                    </div>
+                    
+                    <div class="reason-card">
+                        <div class="reason-icon">❓</div>
+                        <h4>יש שאלות</h4>
+                        <p>אנחנו כאן לעזור</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="cancel-actions">
+                <a href="index.html" class="btn btn-primary">
+                    🏠 חזרה לאתר
+                </a>
+                <a href="mailto:support@infinityempire.com" class="btn btn-secondary">
+                    📧 יש לי שאלה
+                </a>
+            </div>
+            
+            <div class="special-offer">
+                <h3>🔥 הצעה מיוחדת רק בשבילך!</h3>
+                <div class="offer-card">
+                    <h4>קבל 20% הנחה על הרכישה הבאה</h4>
+                    <p>השתמש בקוד: <strong>COMEBACK20</strong></p>
+                    <p class="offer-validity">תקף ל-24 שעות הקרובות</p>
+                    <button class="btn btn-primary" onclick="applyDiscountCode()">
+                        השתמש בהנחה עכשיו
+                    </button>
+                </div>
+            </div>
+            
+            <div class="reassurance">
+                <h3>למה לקוחות בוחרים בנו?</h3>
+                <div class="reassurance-grid">
+                    <div class="reassurance-item">
+                        <div class="reassurance-icon">🔒</div>
+                        <span>תשלום מאובטח 100%</span>
+                    </div>
+                    
+                    <div class="reassurance-item">
+                        <div class="reassurance-icon">⚡</div>
+                        <span>גישה מיידית למוצר</span>
+                    </div>
+                    
+                    <div class="reassurance-item">
+                        <div class="reassurance-icon">💎</div>
+                        <span>איכות יוקרתית מובטחת</span>
+                    </div>
+                    
+                    <div class="reassurance-item">
+                        <div class="reassurance-icon">🎯</div>
+                        <span>תמיכה מקצועית</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="testimonial-section">
+                <h3>מה לקוחות אומרים</h3>
+                <div class="testimonial-mini">
+                    <p>"המוצרים של Infinity Empire באיכות מדהימה! שווה כל שקל."</p>
+                    <span>- שרה לוי, מנהלת פרויקטים</span>
+                    <div class="rating">⭐⭐⭐⭐⭐</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Footer -->
+    <footer class="footer-minimal">
+        <div class="container">
+            <p>&copy; 2024 Infinity Empire. כל הזכויות שמורות.</p>
+            <div class="footer-links-minimal">
+                <a href="privacy.html">מדיניות פרטיות</a>
+                <a href="terms.html">תנאי שימוש</a>
+                <a href="refund.html">מדיניות החזרות</a>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- JavaScript -->
+    <script src="assets/script.js"></script>
+    
+    <script>
+        function applyDiscountCode() {
+            // Track discount code usage
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'discount_code_applied', {
+                    discount_code: 'COMEBACK20',
+                    discount_amount: 20
+                });
+            }
+            
+            // Redirect back to main page with discount parameter
+            window.location.href = 'index.html?discount=COMEBACK20&utm_source=cancel_page&utm_medium=special_offer&utm_campaign=comeback_discount';
+        }
+        
+        // Auto-apply discount if coming from cancel page
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const productId = urlParams.get('utm_content') || urlParams.get('product');
+            
+            if (productId && window.InfinityEmpire && window.InfinityEmpire.PRODUCTS[productId]) {
+                const product = window.InfinityEmpire.PRODUCTS[productId];
+                
+                // Show specific product that was cancelled
+                const productInfo = document.createElement('div');
+                productInfo.className = 'cancelled-product-info';
+                productInfo.innerHTML = `
+                    <div class="cancelled-product">
+                        <h4>המוצר שביטלת:</h4>
+                        <div class="product-summary">
+                            <span class="product-name">${product.name}</span>
+                            <span class="product-price">₪${product.price}</span>
+                        </div>
+                    </div>
+                `;
+                
+                const cancelMessage = document.querySelector('.cancel-message');
+                cancelMessage.appendChild(productInfo);
+            }
+            
+            // Track page view with cancellation context
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'cancel_page_view', {
+                    product_id: productId || 'unknown',
+                    referrer: document.referrer
+                });
+            }
+        });
+    </script>
+    
     <style>
         .cancel-container {
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 2rem;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: var(--spacing-lg);
         }
         
-        .cancel-card {
-            max-width: 600px;
+        .cancel-content {
+            max-width: 800px;
+            background: var(--light-color);
+            padding: var(--spacing-xxl);
+            border-radius: var(--border-radius-xl);
+            box-shadow: var(--shadow-xl);
             text-align: center;
-            background: linear-gradient(145deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
-            border-radius: 20px;
-            padding: 3rem;
-            border: 1px solid rgba(255, 107, 53, 0.2);
-            backdrop-filter: blur(10px);
+            animation: fadeInUp 0.8s ease;
         }
         
         .cancel-icon {
-            font-size: 5rem;
-            margin-bottom: 2rem;
-            animation: shake 0.5s ease-in-out infinite alternate;
-        }
-        
-        @keyframes shake {
-            from { transform: translateX(-5px); }
-            to { transform: translateX(5px); }
+            margin-bottom: var(--spacing-lg);
+            animation: shake 0.8s ease;
         }
         
         .cancel-title {
-            font-size: 3rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            background: linear-gradient(45deg, #ff6b35, #ff4757);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: var(--dark-color);
+            margin-bottom: var(--spacing-lg);
+            font-size: var(--font-size-xxl);
         }
         
         .cancel-message {
-            font-size: 1.2rem;
-            color: #cccccc;
-            line-height: 1.8;
-            margin-bottom: 2rem;
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .cancel-text {
+            font-size: var(--font-size-large);
+            color: var(--dark-color);
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .cancel-subtext {
+            color: var(--gray-color);
+            font-size: var(--font-size-base);
         }
         
         .cancel-reasons {
-            background: rgba(0, 0, 0, 0.3);
-            border-radius: 15px;
-            padding: 2rem;
-            margin: 2rem 0;
-            border: 1px solid rgba(255, 107, 53, 0.2);
-            text-align: right;
+            margin-bottom: var(--spacing-xl);
         }
         
-        .reason-item {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            padding: 0.5rem 0;
-            color: #cccccc;
+        .cancel-reasons h3 {
+            margin-bottom: var(--spacing-lg);
+            color: var(--dark-color);
+        }
+        
+        .reasons-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--spacing-lg);
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .reason-card {
+            background: var(--light-gray);
+            padding: var(--spacing-lg);
+            border-radius: var(--border-radius-lg);
+            text-align: center;
+        }
+        
+        .reason-icon {
+            font-size: 2rem;
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .reason-card h4 {
+            color: var(--dark-color);
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .reason-card p {
+            color: var(--gray-color);
+            font-size: var(--font-size-small);
         }
         
         .cancel-actions {
             display: flex;
-            gap: 1rem;
+            gap: var(--spacing-md);
             justify-content: center;
+            margin-bottom: var(--spacing-xl);
             flex-wrap: wrap;
-            margin-top: 2rem;
         }
         
-        .help-section {
-            margin-top: 2rem;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(255, 107, 53, 0.2);
+        .special-offer {
+            background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%);
+            padding: var(--spacing-xl);
+            border-radius: var(--border-radius-lg);
+            margin-bottom: var(--spacing-xl);
+            border: 2px solid var(--secondary-color);
         }
         
-        .help-item {
+        .special-offer h3 {
+            color: var(--dark-color);
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .offer-card {
+            background: var(--light-color);
+            padding: var(--spacing-lg);
+            border-radius: var(--border-radius-lg);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .offer-card h4 {
+            color: var(--dark-color);
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .offer-card p {
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .offer-card strong {
+            background: var(--secondary-color);
+            padding: var(--spacing-xs) var(--spacing-sm);
+            border-radius: var(--border-radius-sm);
+            font-weight: 700;
+        }
+        
+        .offer-validity {
+            color: #dc3545;
+            font-weight: 600;
+            font-size: var(--font-size-small);
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .reassurance {
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .reassurance h3 {
+            margin-bottom: var(--spacing-lg);
+            color: var(--dark-color);
+        }
+        
+        .reassurance-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--spacing-md);
+        }
+        
+        .reassurance-item {
             display: flex;
             align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-            margin: 0.5rem 0;
-            color: #cccccc;
+            gap: var(--spacing-sm);
+            background: var(--light-gray);
+            padding: var(--spacing-md);
+            border-radius: var(--border-radius-md);
+        }
+        
+        .reassurance-icon {
+            font-size: 1.5rem;
+        }
+        
+        .testimonial-section {
+            background: var(--light-gray);
+            padding: var(--spacing-lg);
+            border-radius: var(--border-radius-lg);
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .testimonial-section h3 {
+            margin-bottom: var(--spacing-md);
+            color: var(--dark-color);
+        }
+        
+        .testimonial-mini {
+            font-style: italic;
+            color: var(--gray-color);
+        }
+        
+        .testimonial-mini span {
+            display: block;
+            margin-top: var(--spacing-sm);
+            font-weight: 600;
+            color: var(--dark-color);
+        }
+        
+        .rating {
+            margin-top: var(--spacing-xs);
+            font-size: var(--font-size-large);
+        }
+        
+        .cancelled-product-info {
+            background: var(--light-gray);
+            padding: var(--spacing-lg);
+            border-radius: var(--border-radius-lg);
+            margin-top: var(--spacing-md);
+        }
+        
+        .cancelled-product h4 {
+            margin-bottom: var(--spacing-sm);
+            color: var(--dark-color);
+        }
+        
+        .product-summary {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: var(--spacing-sm);
+            background: var(--light-color);
+            border-radius: var(--border-radius-md);
+        }
+        
+        .product-name {
+            font-weight: 600;
+            color: var(--dark-color);
+        }
+        
+        .product-price {
+            font-weight: 700;
+            color: var(--primary-color);
+            font-size: var(--font-size-large);
+        }
+        
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+            20%, 40%, 60%, 80% { transform: translateX(5px); }
+        }
+        
+        @media (max-width: 768px) {
+            .cancel-content {
+                padding: var(--spacing-lg);
+                margin: var(--spacing-sm);
+            }
+            
+            .cancel-actions {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn {
+                width: 100%;
+                max-width: 300px;
+            }
+            
+            .reasons-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .reassurance-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
-</head>
-<body>
-    <div class="cancel-container">
-        <div class="cancel-card">
-            <div class="cancel-icon">❌</div>
-            <h1 class="cancel-title">הרכישה בוטלה</h1>
-            <p class="cancel-message">
-                נראה שביטלת את הרכישה. אין בעיה – תמיד אפשר לנסות שוב בכל עת.
-            </p>
-            
-            <div class="cancel-reasons">
-                <h3 style="color: #ff6b35; margin-bottom: 1rem; text-align: center;">סיבות נפוצות לביטול:</h3>
-                <div class="reason-item">
-                    <span>💳</span>
-                    <span>בעיה בכרטיס האשראי או אמצעי התשלום</span>
-                </div>
-                <div class="reason-item">
-                    <span>🤔</span>
-                    <span>רצית לחשוב עוד על הרכישה</span>
-                </div>
-                <div class="reason-item">
-                    <span>🛒</span>
-                    <span>רצית לשנות משהו בעגלת הקניות</span>
-                </div>
-                <div class="reason-item">
-                    <span>❓</span>
-                    <span>היו לך שאלות נוספות על המוצרים</span>
-                </div>
-            </div>
-            
-            <div class="cancel-actions">
-                <a href="checkout.html" class="btn btn-primary">חזרה לעמוד התשלום</a>
-                <a href="index.html" class="btn btn-secondary">חזרה לאתר</a>
-            </div>
-            
-            <div class="help-section">
-                <h3 style="color: #ffd700; margin-bottom: 1rem;">זקוק לעזרה?</h3>
-                <div class="help-item">
-                    <span>📧</span>
-                    <span>info@infinityempire.com</span>
-                </div>
-                <div class="help-item">
-                    <span>📱</span>
-                    <span>050-123-4567</span>
-                </div>
-                <div class="help-item">
-                    <span>💬</span>
-                    <span>צ'אט חי באתר (בקרוב)</span>
-                </div>
-                
-                <div style="margin-top: 2rem; padding: 1.5rem; background: rgba(139, 92, 246, 0.1); border-radius: 10px; border: 1px solid rgba(139, 92, 246, 0.3);">
-                    <h4 style="color: #8b5cf6; margin-bottom: 1rem;">💡 טיפ:</h4>
-                    <p style="color: #cccccc; font-size: 0.9rem; line-height: 1.6;">
-                        המוצרים שלנו נשמרים בעגלת הקניות שלך. תוכל לחזור בכל עת להשלים את הרכישה.
-                        אם יש לך שאלות על המוצרים או התשלום, אנחנו כאן לעזור!
-                    </p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Add some interactive elements
-            const cancelIcon = document.querySelector('.cancel-icon');
-            
-            // Stop shake animation after 3 seconds
-            setTimeout(() => {
-                cancelIcon.style.animation = 'none';
-            }, 3000);
-            
-            // Auto-redirect suggestion after 15 seconds
-            setTimeout(() => {
-                if (confirm('האם תרצה לחזור לעמוד התשלום כדי לנסות שוב?')) {
-                    window.location.href = 'checkout.html';
-                }
-            }, 15000);
-            
-            // Track cancel reason (for analytics)
-            const reasons = document.querySelectorAll('.reason-item');
-            reasons.forEach(reason => {
-                reason.addEventListener('click', function() {
-                    this.style.background = 'rgba(255, 107, 53, 0.2)';
-                    this.style.borderRadius = '5px';
-                    this.style.padding = '0.5rem';
-                    
-                    // You could send this data to analytics
-                    console.log('Cancel reason selected:', this.textContent.trim());
-                });
-            });
-        });
-    </script>
 </body>
 </html>
 

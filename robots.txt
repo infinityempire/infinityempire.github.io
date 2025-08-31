@@ -1,0 +1,65 @@
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://infinityempire.github.io/sitemap.xml
+
+# Allow all search engines to crawl the site
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Slurp
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+User-agent: Baiduspider
+Allow: /
+
+User-agent: YandexBot
+Allow: /
+
+User-agent: facebookexternalhit
+Allow: /
+
+User-agent: Twitterbot
+Allow: /
+
+User-agent: LinkedInBot
+Allow: /
+
+User-agent: WhatsApp
+Allow: /
+
+User-agent: TelegramBot
+Allow: /
+
+# Disallow admin and private areas (if any)
+Disallow: /admin/
+Disallow: /private/
+Disallow: /.git/
+Disallow: /node_modules/
+Disallow: /src/
+Disallow: /temp/
+Disallow: /backup/
+
+# Allow important files
+Allow: /assets/
+Allow: /images/
+Allow: /css/
+Allow: /js/
+Allow: /products/
+Allow: /bundles/
+Allow: /blog/
+Allow: /en/
+
+# Crawl delay (optional - be respectful to servers)
+Crawl-delay: 1
+
+# Host directive (helps with canonicalization)
+Host: https://infinityempire.github.io
+
