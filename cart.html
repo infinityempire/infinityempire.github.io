@@ -360,25 +360,20 @@
             form.action = 'https://www.paypal.com/cgi-bin/webscr';
             form.target = '_blank';
 
-            // PayPal parameters
+            // PayPal parameters for guest checkout
             const params = {
-                'cmd': '_cart',
-                'upload': '1',
+                'cmd': '_xclick',
                 'business': 'tal.derie.td@gmail.com',
                 'currency_code': 'ILS',
+                'amount': total.toFixed(2),
+                'item_name': `Infinity Empire - ${cartPage.items.length} מוצרים`,
+                'item_number': 'IE-BUNDLE-' + Date.now(),
                 'return': window.location.origin + '/success.html',
                 'cancel_return': window.location.origin + '/cancel.html',
-                'notify_url': window.location.origin + '/ipn.php'
+                'notify_url': window.location.origin + '/ipn.php',
+                'no_shipping': '1',
+                'no_note': '1'
             };
-
-            // Add each item
-            cartPage.items.forEach((item, index) => {
-                const itemNum = index + 1;
-                params[`item_name_${itemNum}`] = item.name;
-                params[`amount_${itemNum}`] = item.price.toFixed(2);
-                params[`quantity_${itemNum}`] = item.quantity;
-                params[`item_number_${itemNum}`] = item.id;
-            });
 
             // Create hidden inputs
             Object.keys(params).forEach(key => {
