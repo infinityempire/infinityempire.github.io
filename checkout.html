@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>תשלום מאובטח - Infinity Empire</title>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    
+    <!-- Stripe JS -->
+    <script src="https://js.stripe.com/v3/"></script>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Heebo', sans-serif;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: #ffffff;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem 20px;
+        }
+        
+        .checkout-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .checkout-title {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: #ffd700;
+            margin-bottom: 1rem;
+        }
+        
+        .checkout-subtitle {
+            font-size: 1.2rem;
+            color: #cccccc;
+        }
+        
+        .checkout-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+        
+        .order-summary {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2rem;
+            height: fit-content;
+        }
+        
+        .summary-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #ffd700;
+            margin-bottom: 1.5rem;
+        }
+        
+        .order-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .item-name {
+            font-weight: 500;
+        }
+        
+        .item-price {
+            font-weight: 700;
+            color: #ffd700;
+        }
+        
+        .total-section {
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 2px solid #ffd700;
+        }
+        
+        .total-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+        
+        .total-final {
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: #ffd700;
+        }
+        
+        .payment-form {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2rem;
+        }
+        
+        .form-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #ffd700;
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: #ffffff;
+        }
+        
+        .form-input {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+        
+        .form-input:focus {
+            outline: none;
+            border-color: #ffd700;
+        }
+        
+        .form-input::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+        
+        .card-element {
+            padding: 1rem;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            transition: border-color 0.3s;
+        }
+        
+        .card-element:focus {
+            border-color: #ffd700;
+        }
+        
+        .pay-button {
+            width: 100%;
+            padding: 1.2rem;
+            background: linear-gradient(45deg, #ffd700, #ffed4e);
+            color: #1e3c72;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 1rem;
+        }
+        
+        .pay-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(255, 215, 0, 0.3);
+        }
+        
+        .pay-button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .security-info {
+            background: rgba(0, 255, 136, 0.1);
+            border: 1px solid #00ff88;
+            border-radius: 10px;
+            padding: 1rem;
+            margin-top: 1rem;
+            text-align: center;
+        }
+        
+        .security-icon {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .error-message {
+            background: rgba(255, 68, 68, 0.2);
+            border: 1px solid #ff4444;
+            border-radius: 10px;
+            padding: 1rem;
+            margin-top: 1rem;
+            display: none;
+        }
+        
+        .loading {
+            display: none;
+            text-align: center;
+            margin-top: 1rem;
+        }
+        
+        .spinner {
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top: 3px solid #ffd700;
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        @media (max-width: 768px) {
+            .checkout-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="checkout-header">
+            <h1 class="checkout-title">תשלום מאובטח</h1>
+            <p class="checkout-subtitle">השלם את הרכישה שלך בצורה מאובטחת</p>
+        </div>
+        
+        <div class="checkout-container">
+            <div class="order-summary">
+                <h2 class="summary-title">סיכום הזמנה</h2>
+                <div id="order-items"></div>
+                
+                <div class="total-section">
+                    <div class="total-row">
+                        <span>סה"כ מוצרים:</span>
+                        <span id="subtotal">₪0.00</span>
+                    </div>
+                    <div class="total-row">
+                        <span>מע"ם (17%):</span>
+                        <span id="tax">₪0.00</span>
+                    </div>
+                    <div class="total-row total-final">
+                        <span>סה"כ לתשלום:</span>
+                        <span id="total">₪0.00</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="payment-form">
+                <h2 class="form-title">פרטי תשלום</h2>
+                
+                <form id="payment-form">
+                    <div class="form-group">
+                        <label class="form-label">כתובת אימייל</label>
+                        <input type="email" class="form-input" id="email" placeholder="your@email.com" required>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">שם פרטי</label>
+                            <input type="text" class="form-input" id="firstName" placeholder="שם פרטי" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">שם משפחה</label>
+                            <input type="text" class="form-input" id="lastName" placeholder="שם משפחה" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">פרטי כרטיס אשראי</label>
+                        <div id="card-element" class="card-element">
+                            <!-- Stripe Elements will create form elements here -->
+                        </div>
+                    </div>
+                    
+                    <button type="submit" id="submit-button" class="pay-button">
+                        <span id="button-text">שלם עכשיו - <span id="button-amount">₪0.00</span></span>
+                    </button>
+                    
+                    <div id="loading" class="loading">
+                        <div class="spinner"></div>
+                        <p>מעבד תשלום...</p>
+                    </div>
+                    
+                    <div id="error-message" class="error-message"></div>
+                </form>
+                
+                <div class="security-info">
+                    <div class="security-icon">🔒</div>
+                    <p><strong>תשלום מאובטח 100%</strong></p>
+                    <p>הפרטים שלך מוגנים בהצפנה ברמה בנקאית</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Initialize Stripe
+        const stripe = Stripe('pk_test_51234567890abcdef'); // Replace with your publishable key
+        const elements = stripe.elements();
+        
+        // Create card element
+        const cardElement = elements.create('card', {
+            style: {
+                base: {
+                    fontSize: '16px',
+                    color: '#ffffff',
+                    '::placeholder': {
+                        color: 'rgba(255, 255, 255, 0.6)',
+                    },
+                },
+            },
+        });
+        cardElement.mount('#card-element');
+        
+        // Load cart data
+        let cartItems = [];
+        let totalAmount = 0;
+        
+        function loadCartData() {
+            const cart = JSON.parse(localStorage.getItem('infinityCart') || '[]');
+            cartItems = cart;
+            
+            if (cartItems.length === 0) {
+                window.location.href = 'cart.html';
+                return;
+            }
+            
+            displayOrderSummary();
+        }
+        
+        function displayOrderSummary() {
+            const orderItemsContainer = document.getElementById('order-items');
+            let subtotal = 0;
+            
+            orderItemsContainer.innerHTML = '';
+            
+            cartItems.forEach(item => {
+                const itemTotal = item.price * item.quantity;
+                subtotal += itemTotal;
+                
+                const itemElement = document.createElement('div');
+                itemElement.className = 'order-item';
+                itemElement.innerHTML = `
+                    <div>
+                        <div class="item-name">${item.name}</div>
+                        <div style="font-size: 0.9rem; color: #cccccc;">כמות: ${item.quantity}</div>
+                    </div>
+                    <div class="item-price">₪${itemTotal.toFixed(2)}</div>
+                `;
+                orderItemsContainer.appendChild(itemElement);
+            });
+            
+            const tax = subtotal * 0.17;
+            totalAmount = subtotal + tax;
+            
+            document.getElementById('subtotal').textContent = `₪${subtotal.toFixed(2)}`;
+            document.getElementById('tax').textContent = `₪${tax.toFixed(2)}`;
+            document.getElementById('total').textContent = `₪${totalAmount.toFixed(2)}`;
+            document.getElementById('button-amount').textContent = `₪${totalAmount.toFixed(2)}`;
+        }
+        
+        // Handle form submission
+        const form = document.getElementById('payment-form');
+        form.addEventListener('submit', async (event) => {
+            event.preventDefault();
+            
+            const submitButton = document.getElementById('submit-button');
+            const loading = document.getElementById('loading');
+            const errorMessage = document.getElementById('error-message');
+            
+            // Show loading
+            submitButton.disabled = true;
+            loading.style.display = 'block';
+            errorMessage.style.display = 'none';
+            
+            // Get form data
+            const email = document.getElementById('email').value;
+            const firstName = document.getElementById('firstName').value;
+            const lastName = document.getElementById('lastName').value;
+            
+            try {
+                // Create payment method
+                const {error, paymentMethod} = await stripe.createPaymentMethod({
+                    type: 'card',
+                    card: cardElement,
+                    billing_details: {
+                        name: `${firstName} ${lastName}`,
+                        email: email,
+                    },
+                });
+                
+                if (error) {
+                    throw error;
+                }
+                
+                // Simulate payment processing (replace with actual backend call)
+                await simulatePayment(paymentMethod, totalAmount, email, firstName, lastName);
+                
+                // Clear cart and redirect to success
+                localStorage.removeItem('infinityCart');
+                window.location.href = `success.html?amount=${totalAmount.toFixed(2)}&email=${encodeURIComponent(email)}`;
+                
+            } catch (error) {
+                console.error('Payment error:', error);
+                errorMessage.textContent = error.message || 'שגיאה בעיבוד התשלום. אנא נסה שוב.';
+                errorMessage.style.display = 'block';
+            } finally {
+                submitButton.disabled = false;
+                loading.style.display = 'none';
+            }
+        });
+        
+        async function simulatePayment(paymentMethod, amount, email, firstName, lastName) {
+            // Simulate API call delay
+            await new Promise(resolve => setTimeout(resolve, 2000));
+            
+            // In a real implementation, you would send this to your backend:
+            const paymentData = {
+                paymentMethodId: paymentMethod.id,
+                amount: Math.round(amount * 100), // Convert to cents
+                currency: 'ils',
+                customer: {
+                    email: email,
+                    name: `${firstName} ${lastName}`
+                },
+                items: cartItems
+            };
+            
+            console.log('Payment data that would be sent to backend:', paymentData);
+            
+            // Simulate successful payment
+            return { success: true };
+        }
+        
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', function() {
+            loadCartData();
+        });
+    </script>
+</body>
+</html>
+
