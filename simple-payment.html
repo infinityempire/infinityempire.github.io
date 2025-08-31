@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>תשלום מאובטח - Infinity Empire</title>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Heebo', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .payment-container {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            width: 100%;
+            backdrop-filter: blur(10px);
+        }
+
+        .payment-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .payment-title {
+            color: #2c3e50;
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .payment-subtitle {
+            color: #7f8c8d;
+            font-size: 16px;
+        }
+
+        .order-summary {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 30px;
+            border: 2px solid #e9ecef;
+        }
+
+        .order-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            padding: 5px 0;
+        }
+
+        .order-total {
+            border-top: 2px solid #dee2e6;
+            padding-top: 15px;
+            margin-top: 15px;
+            font-weight: 700;
+            font-size: 18px;
+            color: #2c3e50;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            color: #2c3e50;
+            font-weight: 500;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            direction: ltr;
+            text-align: left;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .form-row {
+            display: flex;
+            gap: 15px;
+        }
+
+        .form-row .form-group {
+            flex: 1;
+        }
+
+        .payment-button {
+            width: 100%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 18px;
+            border-radius: 12px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+        }
+
+        .payment-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+        }
+
+        .security-badge {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 20px;
+            color: #27ae60;
+            font-size: 14px;
+        }
+
+        .security-icon {
+            margin-left: 8px;
+            font-size: 16px;
+        }
+
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .spinner {
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #667eea;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 15px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .success-message {
+            display: none;
+            text-align: center;
+            padding: 30px;
+            background: #d4edda;
+            border: 2px solid #c3e6cb;
+            border-radius: 15px;
+            color: #155724;
+        }
+
+        .success-icon {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="payment-container">
+        <div class="payment-header">
+            <h1 class="payment-title">תשלום מאובטח</h1>
+            <p class="payment-subtitle">השלם את הרכישה שלך בבטחה</p>
+        </div>
+
+        <div class="order-summary">
+            <h3 style="margin-bottom: 15px; color: #2c3e50;">סיכום הזמנה</h3>
+            <div class="order-item">
+                <span>מדריך AI מקיף</span>
+                <span>₪29.00</span>
+            </div>
+            <div class="order-item">
+                <span>מדריך לוטו מתקדם</span>
+                <span>₪39.90</span>
+            </div>
+            <div class="order-item">
+                <span>מע"ם (17%)</span>
+                <span>₪11.71</span>
+            </div>
+            <div class="order-total">
+                <div class="order-item">
+                    <span>סה"כ לתשלום:</span>
+                    <span style="color: #e74c3c;">₪80.61</span>
+                </div>
+            </div>
+        </div>
+
+        <form id="paymentForm">
+            <div class="form-group">
+                <label class="form-label">כתובת אימייל</label>
+                <input type="email" class="form-input" placeholder="your@email.com" required>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label class="form-label">שם פרטי</label>
+                    <input type="text" class="form-input" placeholder="שם פרטי" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">שם משפחה</label>
+                    <input type="text" class="form-input" placeholder="שם משפחה" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">מספר כרטיס אשראי</label>
+                <input type="text" class="form-input" placeholder="1234 5678 9012 3456" maxlength="19" required>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label class="form-label">תוקף</label>
+                    <input type="text" class="form-input" placeholder="MM/YY" maxlength="5" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">CVV</label>
+                    <input type="text" class="form-input" placeholder="123" maxlength="3" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">תעודת זהות</label>
+                <input type="text" class="form-input" placeholder="123456789" maxlength="9" required>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">כתובת מלאה</label>
+                <input type="text" class="form-input" placeholder="רחוב הרצל 123, תל אביב" required>
+            </div>
+
+            <button type="submit" class="payment-button">
+                שלם עכשיו ₪80.61
+            </button>
+
+            <div class="security-badge">
+                <span class="security-icon">🔒</span>
+                תשלום מאובטח בהצפנה ברמה בנקאית
+            </div>
+        </form>
+
+        <div class="loading" id="loading">
+            <div class="spinner"></div>
+            <p>מעבד תשלום...</p>
+        </div>
+
+        <div class="success-message" id="success">
+            <div class="success-icon">✅</div>
+            <h3>תשלום הושלם בהצלחה!</h3>
+            <p>מספר הזמנה: <strong id="orderNumber"></strong></p>
+            <p>קבלה נשלחה לאימייל שלך</p>
+        </div>
+    </div>
+
+    <script>
+        // Format card number
+        document.querySelector('input[placeholder="1234 5678 9012 3456"]').addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\s/g, '').replace(/[^0-9]/gi, '');
+            let formattedValue = value.match(/.{1,4}/g)?.join(' ') || value;
+            e.target.value = formattedValue;
+        });
+
+        // Format expiry date
+        document.querySelector('input[placeholder="MM/YY"]').addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.length >= 2) {
+                value = value.substring(0, 2) + '/' + value.substring(2, 4);
+            }
+            e.target.value = value;
+        });
+
+        // Handle form submission
+        document.getElementById('paymentForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Show loading
+            document.querySelector('.payment-container > *:not(.loading):not(.success-message)').style.display = 'none';
+            document.getElementById('loading').style.display = 'block';
+            
+            // Simulate payment processing
+            setTimeout(function() {
+                // Generate order number
+                const orderNumber = 'IE-' + Date.now();
+                document.getElementById('orderNumber').textContent = orderNumber;
+                
+                // Show success
+                document.getElementById('loading').style.display = 'none';
+                document.getElementById('success').style.display = 'block';
+                
+                // Send email notification (simulation)
+                console.log('Payment processed successfully');
+                console.log('Order number:', orderNumber);
+                console.log('Amount: ₪80.61');
+                
+                // In real implementation, this would:
+                // 1. Process payment via PayPal API
+                // 2. Send confirmation email
+                // 3. Update order status
+                // 4. Redirect to success page
+                
+            }, 3000);
+        });
+    </script>
+</body>
+</html>
+
