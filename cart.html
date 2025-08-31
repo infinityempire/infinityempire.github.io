@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>עגלת קניות - Infinity Empire</title>
-    <meta name="description" content="עגלת הקניות שלך - Infinity Empire">
     
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&display=swap" rel="stylesheet">
@@ -27,63 +26,34 @@
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 2rem 20px;
         }
         
-        /* Header */
-        .header {
-            background: rgba(0, 0, 0, 0.1);
-            backdrop-filter: blur(10px);
-            padding: 1rem 0;
-        }
-        
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .nav-logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 1.8rem;
-            font-weight: 900;
-            color: #ffd700;
-        }
-        
-        .nav-menu {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-        }
-        
-        .nav-link {
-            color: #ffffff;
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s;
-        }
-        
-        .nav-link:hover {
-            color: #ffd700;
-        }
-        
-        /* Main Content */
-        .main {
-            padding: 2rem 0;
-            min-height: 80vh;
-        }
-        
-        .page-title {
+        .cart-header {
             text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .cart-title {
             font-size: 3rem;
             font-weight: 900;
-            margin-bottom: 2rem;
             color: #ffd700;
+            margin-bottom: 1rem;
         }
         
-        .cart-container {
+        .back-link {
+            display: inline-block;
+            color: #ffd700;
+            text-decoration: none;
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+        
+        .back-link:hover {
+            text-decoration: underline;
+        }
+        
+        .cart-content {
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
             border-radius: 20px;
@@ -91,29 +61,16 @@
             margin-bottom: 2rem;
         }
         
-        .cart-empty {
-            text-align: center;
-            padding: 3rem;
-        }
-        
-        .cart-empty h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: #ffd700;
-        }
-        
         .cart-item {
             display: flex;
-            align-items: center;
             justify-content: space-between;
-            padding: 1.5rem;
+            align-items: center;
+            padding: 1rem 0;
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            margin-bottom: 1rem;
         }
         
         .cart-item:last-child {
             border-bottom: none;
-            margin-bottom: 0;
         }
         
         .item-info {
@@ -128,8 +85,8 @@
         }
         
         .item-price {
-            font-size: 1.1rem;
-            color: #ffffff;
+            font-size: 1rem;
+            opacity: 0.8;
         }
         
         .item-controls {
@@ -138,7 +95,7 @@
             gap: 1rem;
         }
         
-        .quantity-control {
+        .quantity-controls {
             display: flex;
             align-items: center;
             gap: 0.5rem;
@@ -152,202 +109,159 @@
             height: 30px;
             border-radius: 50%;
             cursor: pointer;
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            font-weight: bold;
         }
         
-        .quantity-input {
-            width: 60px;
+        .quantity {
+            min-width: 30px;
             text-align: center;
-            padding: 0.5rem;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            border-radius: 5px;
-            background: rgba(255, 255, 255, 0.1);
-            color: #ffffff;
+            font-weight: bold;
         }
         
         .remove-btn {
-            background: #ff4757;
+            background: #ff4444;
             color: white;
             border: none;
             padding: 0.5rem 1rem;
             border-radius: 5px;
             cursor: pointer;
-            font-weight: 500;
         }
         
-        .cart-summary {
+        .cart-total {
             background: rgba(255, 215, 0, 0.1);
-            border: 2px solid #ffd700;
+            border: 1px solid #ffd700;
             border-radius: 15px;
             padding: 2rem;
             text-align: center;
+            margin-bottom: 2rem;
         }
         
-        .total-price {
+        .total-amount {
             font-size: 2rem;
             font-weight: 900;
             color: #ffd700;
             margin-bottom: 1rem;
         }
         
-        .btn {
-            display: inline-block;
-            padding: 1rem 2rem;
+        .checkout-btn {
             background: linear-gradient(45deg, #ffd700, #ffed4e);
             color: #1e3c72;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: 700;
-            transition: transform 0.3s, box-shadow 0.3s;
             border: none;
+            padding: 1rem 3rem;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: 700;
             cursor: pointer;
-            font-size: 1.1rem;
-            margin: 0.5rem;
+            transition: transform 0.3s, box-shadow 0.3s;
         }
         
-        .btn:hover {
+        .checkout-btn:hover {
             transform: translateY(-2px);
             box-shadow: 0 10px 25px rgba(255, 215, 0, 0.3);
         }
         
-        .btn-secondary {
-            background: transparent;
-            color: #ffffff;
-            border: 2px solid #ffd700;
-        }
-        
-        .btn-secondary:hover {
-            background: #ffd700;
-            color: #1e3c72;
-        }
-        
-        /* Footer */
-        .footer {
-            background: rgba(0, 0, 0, 0.3);
-            padding: 2rem 0;
+        .empty-cart {
             text-align: center;
-            margin-top: auto;
+            padding: 3rem;
         }
         
-        /* Responsive */
+        .empty-cart h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #ffd700;
+        }
+        
+        .continue-shopping {
+            display: inline-block;
+            background: linear-gradient(45deg, #ffd700, #ffed4e);
+            color: #1e3c72;
+            text-decoration: none;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-weight: 700;
+            margin-top: 1rem;
+        }
+        
         @media (max-width: 768px) {
             .cart-item {
                 flex-direction: column;
+                align-items: flex-start;
                 gap: 1rem;
-                text-align: center;
             }
             
             .item-controls {
-                justify-content: center;
+                width: 100%;
+                justify-content: space-between;
+            }
+            
+            .cart-title {
+                font-size: 2rem;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Header -->
-    <header class="header">
-        <div class="container">
-            <nav class="navbar">
-                <div class="nav-logo">
-                    <span>Infinity Empire</span>
-                    <span>∞</span>
-                </div>
-                <ul class="nav-menu">
-                    <li class="nav-item">
-                        <a href="index.html" class="nav-link">בית</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="index.html#products" class="nav-link">מוצרים</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="index.html#contact" class="nav-link">צור קשר</a>
-                    </li>
-                </ul>
-            </nav>
+    <div class="container">
+        <div class="cart-header">
+            <a href="index.html" class="back-link">← חזור לחנות</a>
+            <h1 class="cart-title">עגלת קניות</h1>
         </div>
-    </header>
-
-    <!-- Main Content -->
-    <main class="main">
-        <div class="container">
-            <h1 class="page-title">עגלת קניות</h1>
-            
-            <div class="cart-container">
-                <div id="cart-items">
-                    <!-- Cart items will be loaded here -->
-                </div>
-            </div>
-            
-            <div class="cart-summary" id="cart-summary" style="display: none;">
-                <div class="total-price" id="total-price">₪0.00</div>
-                <p>סה"כ לתשלום</p>
-                <button class="btn" onclick="proceedToCheckout()">המשך לתשלום</button>
-                <a href="index.html#products" class="btn btn-secondary">המשך קניות</a>
-            </div>
+        
+        <div id="cart-content" class="cart-content">
+            <!-- Cart items will be loaded here -->
         </div>
-    </main>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <p>&copy; 2024 Infinity Empire Store. כל הזכויות שמורות.</p>
+        
+        <div id="cart-total" class="cart-total" style="display: none;">
+            <div class="total-amount">סה"כ: ₪<span id="total-amount">0.00</span></div>
+            <button class="checkout-btn" onclick="proceedToCheckout()">המשך לתשלום</button>
         </div>
-    </footer>
+    </div>
 
     <script>
-        // Product Database (same as main page)
+        // Product Database (same as main site)
         const PRODUCTS = {
             ai_guide: {
                 id: 'ai_guide',
                 name: 'מדריך AI מקיף',
                 price: 49.90,
                 originalPrice: 79.90,
-                currency: 'ILS',
-                description: 'מדריך מקיף לבינה מלאכותית עם כלים מעשיים ואסטרטגיות מתקדמות לשימוש יומיומי'
+                currency: 'ILS'
             },
             lottery_guide: {
                 id: 'lottery_guide',
                 name: 'מדריך לוטו מתקדם',
                 price: 39.90,
-                currency: 'ILS',
-                description: 'אסטרטגיות מתקדמות ושיטות מוכחות לשיפור הסיכויים בלוטו הישראלי'
+                currency: 'ILS'
             },
             time_management: {
                 id: 'time_management',
                 name: 'ניהול זמן יעיל',
                 price: 9.90,
                 originalPrice: 29.90,
-                currency: 'ILS',
-                description: 'טכניקות מוכחות לניהול זמן ושיפור פרודוקטיביות אישית ומקצועית'
+                currency: 'ILS'
             },
             chatbot_guide: {
                 id: 'chatbot_guide',
                 name: 'צ\'אטבוט מהיר',
                 price: 59.90,
-                currency: 'ILS',
-                description: 'מדריך מהיר לבניית צ\'אטבוט חכם עם AI מתקדם'
+                currency: 'ILS'
             },
             business_automation: {
                 id: 'business_automation',
                 name: 'אוטומציות עסק קטן',
                 price: 79.90,
-                currency: 'ILS',
-                description: 'כלים ושיטות לאוטומציה של תהליכים בעסק קטן'
+                currency: 'ILS'
             },
             ai_prompts: {
                 id: 'ai_prompts',
                 name: '50 פרומפטים מנצחים',
                 price: 29.90,
-                currency: 'ILS',
-                description: 'אוסף של 50 פרומפטים מוכחים לAI שיחסכו לך זמן ויעילו תוצאות'
+                currency: 'ILS'
             }
         };
 
         // Cart Management
-        class CartManager {
+        class CartPage {
             constructor() {
                 this.items = this.loadCart();
                 this.renderCart();
@@ -362,99 +276,160 @@
                 localStorage.setItem('infinityCart', JSON.stringify(this.items));
             }
 
-            updateQuantity(productId, quantity) {
-                const item = this.items.find(item => item.id === productId);
-                if (item) {
-                    if (quantity <= 0) {
-                        this.removeItem(productId);
-                    } else {
-                        item.quantity = quantity;
-                        this.saveCart();
-                        this.renderCart();
-                    }
+            renderCart() {
+                const cartContent = document.getElementById('cart-content');
+                const cartTotal = document.getElementById('cart-total');
+                
+                if (this.items.length === 0) {
+                    cartContent.innerHTML = `
+                        <div class="empty-cart">
+                            <h3>העגלה שלך ריקה</h3>
+                            <p>אין לך מוצרים בעגלה כרגע</p>
+                            <a href="index.html" class="continue-shopping">המשך קניות</a>
+                        </div>
+                    `;
+                    cartTotal.style.display = 'none';
+                    return;
                 }
+
+                let cartHTML = '';
+                let total = 0;
+
+                this.items.forEach((item, index) => {
+                    const itemTotal = item.price * item.quantity;
+                    total += itemTotal;
+                    
+                    cartHTML += `
+                        <div class="cart-item">
+                            <div class="item-info">
+                                <div class="item-name">${item.name}</div>
+                                <div class="item-price">₪${item.price.toFixed(2)} לכל יחידה</div>
+                            </div>
+                            <div class="item-controls">
+                                <div class="quantity-controls">
+                                    <button class="quantity-btn" onclick="cartPage.updateQuantity(${index}, ${item.quantity - 1})">-</button>
+                                    <span class="quantity">${item.quantity}</span>
+                                    <button class="quantity-btn" onclick="cartPage.updateQuantity(${index}, ${item.quantity + 1})">+</button>
+                                </div>
+                                <div class="item-total">₪${itemTotal.toFixed(2)}</div>
+                                <button class="remove-btn" onclick="cartPage.removeItem(${index})">הסר</button>
+                            </div>
+                        </div>
+                    `;
+                });
+
+                cartContent.innerHTML = cartHTML;
+                document.getElementById('total-amount').textContent = total.toFixed(2);
+                cartTotal.style.display = 'block';
             }
 
-            removeItem(productId) {
-                this.items = this.items.filter(item => item.id !== productId);
+            updateQuantity(index, newQuantity) {
+                if (newQuantity <= 0) {
+                    this.removeItem(index);
+                    return;
+                }
+                
+                this.items[index].quantity = newQuantity;
                 this.saveCart();
                 this.renderCart();
             }
 
-            getTotalPrice() {
-                return this.items.reduce((total, item) => total + (item.price * item.quantity), 0);
-            }
-
-            renderCart() {
-                const cartItemsContainer = document.getElementById('cart-items');
-                const cartSummary = document.getElementById('cart-summary');
-                const totalPriceElement = document.getElementById('total-price');
-
-                if (this.items.length === 0) {
-                    cartItemsContainer.innerHTML = `
-                        <div class="cart-empty">
-                            <h3>העגלה ריקה</h3>
-                            <p>לא הוספת עדיין מוצרים לעגלה</p>
-                            <a href="index.html#products" class="btn">התחל קניות</a>
-                        </div>
-                    `;
-                    cartSummary.style.display = 'none';
-                    return;
-                }
-
-                cartItemsContainer.innerHTML = this.items.map(item => `
-                    <div class="cart-item">
-                        <div class="item-info">
-                            <div class="item-name">${item.name}</div>
-                            <div class="item-price">₪${item.price.toFixed(2)}</div>
-                        </div>
-                        <div class="item-controls">
-                            <div class="quantity-control">
-                                <button class="quantity-btn" onclick="cartManager.updateQuantity('${item.id}', ${item.quantity - 1})">-</button>
-                                <input type="number" class="quantity-input" value="${item.quantity}" 
-                                       onchange="cartManager.updateQuantity('${item.id}', parseInt(this.value))" min="1">
-                                <button class="quantity-btn" onclick="cartManager.updateQuantity('${item.id}', ${item.quantity + 1})">+</button>
-                            </div>
-                            <button class="remove-btn" onclick="cartManager.removeItem('${item.id}')">הסר</button>
-                        </div>
-                    </div>
-                `).join('');
-
-                totalPriceElement.textContent = `₪${this.getTotalPrice().toFixed(2)}`;
-                cartSummary.style.display = 'block';
-            }
-
-            checkout() {
-                if (this.items.length === 0) {
-                    alert('העגלה ריקה!');
-                    return;
-                }
-
-                const totalAmount = this.getTotalPrice().toFixed(2);
-                const itemsDescription = this.items.map(item => 
-                    `${item.name} x${item.quantity}`
-                ).join(', ');
-
-                // PayPal payment URL
-                const paypalUrl = `https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=tal.derie.td@gmail.com&item_name=${encodeURIComponent(itemsDescription)}&amount=${totalAmount}&currency_code=ILS&return=https://infinityempire.github.io/success.html&cancel_return=https://infinityempire.github.io/cancel.html`;
-
-                // Open PayPal in new window
-                window.open(paypalUrl, '_blank');
+            removeItem(index) {
+                this.items.splice(index, 1);
+                this.saveCart();
+                this.renderCart();
             }
         }
 
-        // Initialize cart manager
-        const cartManager = new CartManager();
+        // Initialize cart page
+        const cartPage = new CartPage();
 
-        // Global functions
+        // Checkout function
         function proceedToCheckout() {
-            cartManager.checkout();
+            if (cartPage.items.length === 0) {
+                alert('העגלה שלך ריקה!');
+                return;
+            }
+
+            // Calculate total
+            const total = cartPage.items.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            
+            // Create PayPal form
+            const form = document.createElement('form');
+            form.method = 'POST';
+            form.action = 'https://www.paypal.com/cgi-bin/webscr';
+            form.target = '_blank';
+
+            // PayPal parameters
+            const params = {
+                'cmd': '_cart',
+                'upload': '1',
+                'business': 'tal.derie.td@gmail.com',
+                'currency_code': 'ILS',
+                'return': window.location.origin + '/success.html',
+                'cancel_return': window.location.origin + '/cancel.html',
+                'notify_url': window.location.origin + '/ipn.php'
+            };
+
+            // Add each item
+            cartPage.items.forEach((item, index) => {
+                const itemNum = index + 1;
+                params[`item_name_${itemNum}`] = item.name;
+                params[`amount_${itemNum}`] = item.price.toFixed(2);
+                params[`quantity_${itemNum}`] = item.quantity;
+                params[`item_number_${itemNum}`] = item.id;
+            });
+
+            // Create hidden inputs
+            Object.keys(params).forEach(key => {
+                const input = document.createElement('input');
+                input.type = 'hidden';
+                input.name = key;
+                input.value = params[key];
+                form.appendChild(input);
+            });
+
+            // Submit form
+            document.body.appendChild(form);
+            form.submit();
+            document.body.removeChild(form);
+
+            // Track purchase initiation
+            this.trackBeginCheckout(total);
         }
 
-        // Initialize when DOM is loaded
-        document.addEventListener('DOMContentLoaded', function() {
-            console.log('Cart page loaded successfully!');
-        });
+        function trackBeginCheckout(total) {
+            // Google Analytics
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'begin_checkout', {
+                    currency: 'ILS',
+                    value: total,
+                    items: cartPage.items.map(item => ({
+                        item_id: item.id,
+                        item_name: item.name,
+                        price: item.price,
+                        quantity: item.quantity
+                    }))
+                });
+            }
+
+            // Facebook Pixel
+            if (typeof fbq !== 'undefined') {
+                fbq('track', 'InitiateCheckout', {
+                    value: total,
+                    currency: 'ILS',
+                    num_items: cartPage.items.reduce((sum, item) => sum + item.quantity, 0)
+                });
+            }
+
+            // TikTok Pixel
+            if (typeof ttq !== 'undefined') {
+                ttq.track('InitiateCheckout', {
+                    value: total,
+                    currency: 'ILS'
+                });
+            }
+        }
     </script>
 </body>
 </html>
