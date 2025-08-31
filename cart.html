@@ -344,7 +344,7 @@
         // Initialize cart page
         const cartPage = new CartPage();
 
-        // Checkout function - redirect to checkout page
+        // Checkout function - redirect to direct payment page
         function proceedToCheckout() {
             if (cartPage.items.length === 0) {
                 alert('העגלה שלך ריקה!');
@@ -357,8 +357,8 @@
             // Track purchase initiation
             trackBeginCheckout(total);
             
-            // Redirect to checkout page
-            window.location.href = 'checkout.html';
+            // Redirect to direct payment page
+            window.location.href = 'payment.html';
         }
 
         function trackBeginCheckout(total) {
